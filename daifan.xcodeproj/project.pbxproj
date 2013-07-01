@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5ABD008CD5561CB5ECB30A63 /* DFCoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD04E86861D1A6E329079D /* DFCoverView.m */; };
+		5ABD049EB03221867D7EF6D4 /* DFTimeLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD046338CD18526847EBE7 /* DFTimeLineViewController.m */; };
+		5ABD07DD1E4E0F4DB6922D61 /* DFTimeLineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD04B0B6BC93931CEED6CD /* DFTimeLineCell.m */; };
+		5ABD07F917812EDA4A897EF6 /* DFTimeLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD07896831771B0DF85D31 /* DFTimeLineView.m */; };
+		5ABD09B202FDD56A846FBA1C /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD0E67AFE31FCF86C93E4A /* UIColor+Hex.m */; };
+		5ABD0FCFB83B16F54180C644 /* line.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ABD0D80BFF096CF1CEFBFCD /* line.png */; };
 		F11AEE7D178068F40008082E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F11AEE7C178068F40008082E /* UIKit.framework */; };
 		F11AEE7F178068F40008082E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F11AEE7E178068F40008082E /* Foundation.framework */; };
 		F11AEE81178068F40008082E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F11AEE80178068F40008082E /* CoreGraphics.framework */; };
@@ -33,6 +39,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5ABD022F3CCD98255A2D6DE8 /* DFTimeLineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFTimeLineViewController.h; sourceTree = "<group>"; };
+		5ABD04530482D4D49EE4D2B4 /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
+		5ABD046338CD18526847EBE7 /* DFTimeLineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFTimeLineViewController.m; sourceTree = "<group>"; };
+		5ABD04B0B6BC93931CEED6CD /* DFTimeLineCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFTimeLineCell.m; sourceTree = "<group>"; };
+		5ABD04E86861D1A6E329079D /* DFCoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFCoverView.m; sourceTree = "<group>"; };
+		5ABD07896831771B0DF85D31 /* DFTimeLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFTimeLineView.m; sourceTree = "<group>"; };
+		5ABD0838FAEEDD3C559AE726 /* DFCoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFCoverView.h; sourceTree = "<group>"; };
+		5ABD0D80BFF096CF1CEFBFCD /* line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = line.png; sourceTree = "<group>"; };
+		5ABD0E00541690BD684DA311 /* DFTimeLineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFTimeLineCell.h; sourceTree = "<group>"; };
+		5ABD0E67AFE31FCF86C93E4A /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
+		5ABD0FA18B315F6DF6CB8EDA /* DFTimeLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFTimeLineView.h; sourceTree = "<group>"; };
 		F11AEE79178068F40008082E /* daifan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = daifan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F11AEE7C178068F40008082E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		F11AEE7E178068F40008082E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -76,6 +93,46 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5ABD08987ABDE28CFE1969D9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				5ABD0D80BFF096CF1CEFBFCD /* line.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		5ABD09C326A72ED39AEF4310 /* Timeline */ = {
+			isa = PBXGroup;
+			children = (
+				5ABD046338CD18526847EBE7 /* DFTimeLineViewController.m */,
+				5ABD022F3CCD98255A2D6DE8 /* DFTimeLineViewController.h */,
+				5ABD0C89CE83DFE585A39B66 /* Views */,
+			);
+			path = Timeline;
+			sourceTree = "<group>";
+		};
+		5ABD0C89CE83DFE585A39B66 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5ABD07896831771B0DF85D31 /* DFTimeLineView.m */,
+				5ABD0FA18B315F6DF6CB8EDA /* DFTimeLineView.h */,
+				5ABD04E86861D1A6E329079D /* DFCoverView.m */,
+				5ABD0838FAEEDD3C559AE726 /* DFCoverView.h */,
+				5ABD04B0B6BC93931CEED6CD /* DFTimeLineCell.m */,
+				5ABD0E00541690BD684DA311 /* DFTimeLineCell.h */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5ABD0EACE6F63FE2526542A6 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				5ABD0E67AFE31FCF86C93E4A /* UIColor+Hex.m */,
+				5ABD04530482D4D49EE4D2B4 /* UIColor+Hex.h */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		F11AEE70178068F40008082E = {
 			isa = PBXGroup;
 			children = (
@@ -112,6 +169,9 @@
 				F11AEE8B178068F50008082E /* DFAppDelegate.h */,
 				F11AEE8C178068F50008082E /* DFAppDelegate.m */,
 				F11AEE83178068F50008082E /* Supporting Files */,
+				5ABD09C326A72ED39AEF4310 /* Timeline */,
+				5ABD0EACE6F63FE2526542A6 /* Extensions */,
+				5ABD08987ABDE28CFE1969D9 /* Resources */,
 			);
 			path = daifan;
 			sourceTree = "<group>";
@@ -223,6 +283,7 @@
 				F11AEE8F178068F50008082E /* Default.png in Resources */,
 				F11AEE91178068F50008082E /* Default@2x.png in Resources */,
 				F11AEE93178068F50008082E /* Default-568h@2x.png in Resources */,
+				5ABD0FCFB83B16F54180C644 /* line.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,6 +320,11 @@
 			files = (
 				F11AEE89178068F50008082E /* main.m in Sources */,
 				F11AEE8D178068F50008082E /* DFAppDelegate.m in Sources */,
+				5ABD049EB03221867D7EF6D4 /* DFTimeLineViewController.m in Sources */,
+				5ABD09B202FDD56A846FBA1C /* UIColor+Hex.m in Sources */,
+				5ABD07F917812EDA4A897EF6 /* DFTimeLineView.m in Sources */,
+				5ABD008CD5561CB5ECB30A63 /* DFCoverView.m in Sources */,
+				5ABD07DD1E4E0F4DB6922D61 /* DFTimeLineCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

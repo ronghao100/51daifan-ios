@@ -1,11 +1,18 @@
 #import "DFAppDelegate.h"
+#import "DFTimeLineViewController.h"
 
 @implementation DFAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
+
+    DFTimeLineViewController *vc = [[DFTimeLineViewController alloc] init];
+
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:vc];
+
+    self.window.rootViewController = navigationController;
+
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
