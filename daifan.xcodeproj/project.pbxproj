@@ -8,11 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		5ABD008CD5561CB5ECB30A63 /* DFCoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD04E86861D1A6E329079D /* DFCoverView.m */; };
+		5ABD0219560A9FDA03DA43E5 /* timeline@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ABD0C89BAD6517297984A61 /* timeline@2x.png */; };
 		5ABD049EB03221867D7EF6D4 /* DFTimeLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD046338CD18526847EBE7 /* DFTimeLineViewController.m */; };
 		5ABD07DD1E4E0F4DB6922D61 /* DFTimeLineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD04B0B6BC93931CEED6CD /* DFTimeLineCell.m */; };
 		5ABD07F917812EDA4A897EF6 /* DFTimeLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD07896831771B0DF85D31 /* DFTimeLineView.m */; };
 		5ABD09B202FDD56A846FBA1C /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD0E67AFE31FCF86C93E4A /* UIColor+Hex.m */; };
-		5ABD0FCFB83B16F54180C644 /* line.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ABD0D80BFF096CF1CEFBFCD /* line.png */; };
+		5ABD0E1C5FB3157CFC5B1E1D /* timeline.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ABD0253ECC8018BE6E9A0A4 /* timeline.png */; };
 		F11AEE7D178068F40008082E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F11AEE7C178068F40008082E /* UIKit.framework */; };
 		F11AEE7F178068F40008082E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F11AEE7E178068F40008082E /* Foundation.framework */; };
 		F11AEE81178068F40008082E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F11AEE80178068F40008082E /* CoreGraphics.framework */; };
@@ -40,13 +41,15 @@
 
 /* Begin PBXFileReference section */
 		5ABD022F3CCD98255A2D6DE8 /* DFTimeLineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFTimeLineViewController.h; sourceTree = "<group>"; };
+		5ABD0253ECC8018BE6E9A0A4 /* timeline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = timeline.png; sourceTree = "<group>"; };
 		5ABD04530482D4D49EE4D2B4 /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
 		5ABD046338CD18526847EBE7 /* DFTimeLineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFTimeLineViewController.m; sourceTree = "<group>"; };
 		5ABD04B0B6BC93931CEED6CD /* DFTimeLineCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFTimeLineCell.m; sourceTree = "<group>"; };
 		5ABD04E86861D1A6E329079D /* DFCoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFCoverView.m; sourceTree = "<group>"; };
 		5ABD07896831771B0DF85D31 /* DFTimeLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFTimeLineView.m; sourceTree = "<group>"; };
 		5ABD0838FAEEDD3C559AE726 /* DFCoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFCoverView.h; sourceTree = "<group>"; };
-		5ABD0D80BFF096CF1CEFBFCD /* line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = line.png; sourceTree = "<group>"; };
+		5ABD0C89BAD6517297984A61 /* timeline@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "timeline@2x.png"; sourceTree = "<group>"; };
+		5ABD0D5D33AA65E07CD57D7D /* DFConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFConstants.h; sourceTree = "<group>"; };
 		5ABD0E00541690BD684DA311 /* DFTimeLineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFTimeLineCell.h; sourceTree = "<group>"; };
 		5ABD0E67AFE31FCF86C93E4A /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
 		5ABD0FA18B315F6DF6CB8EDA /* DFTimeLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFTimeLineView.h; sourceTree = "<group>"; };
@@ -93,10 +96,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5ABD07D2016FDD043B8437C8 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				5ABD0D5D33AA65E07CD57D7D /* DFConstants.h */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		5ABD08987ABDE28CFE1969D9 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				5ABD0D80BFF096CF1CEFBFCD /* line.png */,
+				5ABD0253ECC8018BE6E9A0A4 /* timeline.png */,
+				5ABD0C89BAD6517297984A61 /* timeline@2x.png */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -172,6 +184,7 @@
 				5ABD09C326A72ED39AEF4310 /* Timeline */,
 				5ABD0EACE6F63FE2526542A6 /* Extensions */,
 				5ABD08987ABDE28CFE1969D9 /* Resources */,
+				5ABD07D2016FDD043B8437C8 /* Common */,
 			);
 			path = daifan;
 			sourceTree = "<group>";
@@ -283,7 +296,8 @@
 				F11AEE8F178068F50008082E /* Default.png in Resources */,
 				F11AEE91178068F50008082E /* Default@2x.png in Resources */,
 				F11AEE93178068F50008082E /* Default-568h@2x.png in Resources */,
-				5ABD0FCFB83B16F54180C644 /* line.png in Resources */,
+				5ABD0E1C5FB3157CFC5B1E1D /* timeline.png in Resources */,
+				5ABD0219560A9FDA03DA43E5 /* timeline@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

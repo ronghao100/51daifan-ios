@@ -3,9 +3,6 @@
 #import "DFCoverView.h"
 #import "DFTimeLineCell.h"
 
-#define COVER_VIEW_HEIGHT 100.0f
-
-
 @implementation DFTimeLineViewController {
 
 }
