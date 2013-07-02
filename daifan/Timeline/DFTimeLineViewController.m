@@ -2,6 +2,7 @@
 #import "DFTimeLineView.h"
 #import "DFCoverView.h"
 #import "DFTimeLineCell.h"
+#import "DFFooterView.h"
 
 @implementation DFTimeLineViewController {
 
@@ -23,8 +24,10 @@
 
     DFCoverView *coverView = [[DFCoverView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, timelineView.frame.size.width, COVER_VIEW_HEIGHT)];
     coverView.backgroundColor = [UIColor orangeColor];
-
     timelineView.tableHeaderView = coverView;
+
+    DFFooterView *footerView = [[DFFooterView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, timelineView.frame.size.width, FOOTER_VIEW_HEIGHT)];
+    timelineView.tableFooterView = footerView;
 
     self.view = timelineView;
     self.view.backgroundColor = [UIColor lightGrayColor];
