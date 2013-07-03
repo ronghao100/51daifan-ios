@@ -10,10 +10,17 @@
 		5ABD008CD5561CB5ECB30A63 /* DFCoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD04E86861D1A6E329079D /* DFCoverView.m */; };
 		5ABD0219560A9FDA03DA43E5 /* timeline@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ABD0C89BAD6517297984A61 /* timeline@2x.png */; };
 		5ABD02474615AD0115E8F712 /* DFFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD054696CBBA1EB8C1D0B6 /* DFFooterView.m */; };
+		5ABD045F14DB42F81744CA99 /* timescroll_minutehand@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ABD000658536BAF4BF60052 /* timescroll_minutehand@2x.png */; };
 		5ABD049EB03221867D7EF6D4 /* DFTimeLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD046338CD18526847EBE7 /* DFTimeLineViewController.m */; };
+		5ABD04AB5057F16094F4E494 /* timescroll_pointer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ABD004596956790111145C7 /* timescroll_pointer@2x.png */; };
+		5ABD0525C41BDC47497AA9C0 /* timescroll_pointer.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ABD05C1BECFE3ED92D1FFA5 /* timescroll_pointer.png */; };
 		5ABD07DD1E4E0F4DB6922D61 /* DFTimeLineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD04B0B6BC93931CEED6CD /* DFTimeLineCell.m */; };
 		5ABD07F917812EDA4A897EF6 /* DFTimeLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD07896831771B0DF85D31 /* DFTimeLineView.m */; };
+		5ABD0914C1098DEF10BDAFD3 /* ACTimeScroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD020EA8B3A90D945C194F /* ACTimeScroller.m */; };
 		5ABD09B202FDD56A846FBA1C /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD0E67AFE31FCF86C93E4A /* UIColor+Hex.m */; };
+		5ABD0BBC7AAC07AB7AF2B578 /* timescroll_hourhand@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ABD0BD0D356C426CB4BC063 /* timescroll_hourhand@2x.png */; };
+		5ABD0CF339A93F661B237A39 /* timescroll_minutehand.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ABD0CB74CBC882493F7644B /* timescroll_minutehand.png */; };
+		5ABD0D0C5A5628C1B79CF767 /* timescroll_hourhand.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ABD07AF55ACDCCBA054CA33 /* timescroll_hourhand.png */; };
 		5ABD0E1C5FB3157CFC5B1E1D /* timeline.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ABD0253ECC8018BE6E9A0A4 /* timeline.png */; };
 		F11AEE7D178068F40008082E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F11AEE7C178068F40008082E /* UIKit.framework */; };
 		F11AEE7F178068F40008082E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F11AEE7E178068F40008082E /* Foundation.framework */; };
@@ -41,6 +48,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5ABD000658536BAF4BF60052 /* timescroll_minutehand@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "timescroll_minutehand@2x.png"; sourceTree = "<group>"; };
+		5ABD004596956790111145C7 /* timescroll_pointer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "timescroll_pointer@2x.png"; sourceTree = "<group>"; };
+		5ABD013F887F72879E69317D /* ACTimeScroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACTimeScroller.h; sourceTree = "<group>"; };
+		5ABD020EA8B3A90D945C194F /* ACTimeScroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACTimeScroller.m; sourceTree = "<group>"; };
 		5ABD022F3CCD98255A2D6DE8 /* DFTimeLineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFTimeLineViewController.h; sourceTree = "<group>"; };
 		5ABD0253ECC8018BE6E9A0A4 /* timeline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = timeline.png; sourceTree = "<group>"; };
 		5ABD04530482D4D49EE4D2B4 /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
@@ -48,9 +59,13 @@
 		5ABD04B0B6BC93931CEED6CD /* DFTimeLineCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFTimeLineCell.m; sourceTree = "<group>"; };
 		5ABD04E86861D1A6E329079D /* DFCoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFCoverView.m; sourceTree = "<group>"; };
 		5ABD054696CBBA1EB8C1D0B6 /* DFFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFFooterView.m; sourceTree = "<group>"; };
+		5ABD05C1BECFE3ED92D1FFA5 /* timescroll_pointer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = timescroll_pointer.png; sourceTree = "<group>"; };
 		5ABD07896831771B0DF85D31 /* DFTimeLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFTimeLineView.m; sourceTree = "<group>"; };
+		5ABD07AF55ACDCCBA054CA33 /* timescroll_hourhand.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = timescroll_hourhand.png; sourceTree = "<group>"; };
 		5ABD0838FAEEDD3C559AE726 /* DFCoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFCoverView.h; sourceTree = "<group>"; };
+		5ABD0BD0D356C426CB4BC063 /* timescroll_hourhand@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "timescroll_hourhand@2x.png"; sourceTree = "<group>"; };
 		5ABD0C89BAD6517297984A61 /* timeline@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "timeline@2x.png"; sourceTree = "<group>"; };
+		5ABD0CB74CBC882493F7644B /* timescroll_minutehand.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = timescroll_minutehand.png; sourceTree = "<group>"; };
 		5ABD0D5D33AA65E07CD57D7D /* DFConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFConstants.h; sourceTree = "<group>"; };
 		5ABD0E00541690BD684DA311 /* DFTimeLineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFTimeLineCell.h; sourceTree = "<group>"; };
 		5ABD0E67AFE31FCF86C93E4A /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
@@ -99,6 +114,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5ABD037623FB06AFDE1A193B /* ThirdParties */ = {
+			isa = PBXGroup;
+			children = (
+				5ABD05E55E83EF3D0B346CE6 /* ACTimeScroller */,
+			);
+			name = ThirdParties;
+			sourceTree = "<group>";
+		};
+		5ABD05E55E83EF3D0B346CE6 /* ACTimeScroller */ = {
+			isa = PBXGroup;
+			children = (
+				5ABD013F887F72879E69317D /* ACTimeScroller.h */,
+				5ABD020EA8B3A90D945C194F /* ACTimeScroller.m */,
+			);
+			name = ACTimeScroller;
+			path = lib/TimeScroller/ACTimeScroller;
+			sourceTree = SOURCE_ROOT;
+		};
 		5ABD07D2016FDD043B8437C8 /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -113,9 +146,24 @@
 			children = (
 				5ABD0253ECC8018BE6E9A0A4 /* timeline.png */,
 				5ABD0C89BAD6517297984A61 /* timeline@2x.png */,
+				5ABD08A21FB3183410B2EC75 /* Assets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
+		};
+		5ABD08A21FB3183410B2EC75 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				5ABD05C1BECFE3ED92D1FFA5 /* timescroll_pointer.png */,
+				5ABD07AF55ACDCCBA054CA33 /* timescroll_hourhand.png */,
+				5ABD0CB74CBC882493F7644B /* timescroll_minutehand.png */,
+				5ABD004596956790111145C7 /* timescroll_pointer@2x.png */,
+				5ABD0BD0D356C426CB4BC063 /* timescroll_hourhand@2x.png */,
+				5ABD000658536BAF4BF60052 /* timescroll_minutehand@2x.png */,
+			);
+			name = Assets;
+			path = lib/TimeScroller/Assets;
+			sourceTree = SOURCE_ROOT;
 		};
 		5ABD08EB14A559863491FA72 /* Views */ = {
 			isa = PBXGroup;
@@ -198,6 +246,7 @@
 				5ABD0EACE6F63FE2526542A6 /* Extensions */,
 				5ABD08987ABDE28CFE1969D9 /* Resources */,
 				5ABD07D2016FDD043B8437C8 /* Common */,
+				5ABD037623FB06AFDE1A193B /* ThirdParties */,
 			);
 			path = daifan;
 			sourceTree = "<group>";
@@ -311,6 +360,12 @@
 				F11AEE93178068F50008082E /* Default-568h@2x.png in Resources */,
 				5ABD0E1C5FB3157CFC5B1E1D /* timeline.png in Resources */,
 				5ABD0219560A9FDA03DA43E5 /* timeline@2x.png in Resources */,
+				5ABD0525C41BDC47497AA9C0 /* timescroll_pointer.png in Resources */,
+				5ABD0D0C5A5628C1B79CF767 /* timescroll_hourhand.png in Resources */,
+				5ABD0CF339A93F661B237A39 /* timescroll_minutehand.png in Resources */,
+				5ABD04AB5057F16094F4E494 /* timescroll_pointer@2x.png in Resources */,
+				5ABD0BBC7AAC07AB7AF2B578 /* timescroll_hourhand@2x.png in Resources */,
+				5ABD045F14DB42F81744CA99 /* timescroll_minutehand@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -353,6 +408,7 @@
 				5ABD008CD5561CB5ECB30A63 /* DFCoverView.m in Sources */,
 				5ABD07DD1E4E0F4DB6922D61 /* DFTimeLineCell.m in Sources */,
 				5ABD02474615AD0115E8F712 /* DFFooterView.m in Sources */,
+				5ABD0914C1098DEF10BDAFD3 /* ACTimeScroller.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

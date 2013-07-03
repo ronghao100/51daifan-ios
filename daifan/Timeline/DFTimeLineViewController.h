@@ -1,4 +1,5 @@
 #import <UIKit/UIKit.h>
+#import "ACTimeScroller.h"
 
-@interface DFTimeLineViewController : UITableViewController
+@interface DFTimeLineViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, ACTimeScrollerDelegate>
 @end
