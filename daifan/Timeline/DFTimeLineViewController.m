@@ -15,7 +15,7 @@
 - (id)init {
     self = [super init];
     if (self) {
-        self.title = @"Daifan";
+        self.title = @"51带饭";
     }
 
     return self;
