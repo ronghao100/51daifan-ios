@@ -1,0 +1,3 @@
+[submodule "lib/TimeScroller"]
+	path = lib/TimeScroller
+	url = https://github.com/cyrilwei/TimeScroller.git
