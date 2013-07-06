@@ -35,6 +35,9 @@
 		F11AEE9C178068F50008082E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F11AEE7C178068F40008082E /* UIKit.framework */; };
 		F11AEE9D178068F50008082E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F11AEE7E178068F40008082E /* Foundation.framework */; };
 		F11AEEA5178068F50008082E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F11AEEA3178068F50008082E /* InfoPlist.strings */; };
+		F133A8F71787F56500CF7897 /* daifan@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F133A8F51787F56500CF7897 /* daifan@2x.png */; };
+		F133A8F81787F56500CF7897 /* daifan-120@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F133A8F61787F56500CF7897 /* daifan-120@2x.png */; };
+		F133A8FA1787F8F300CF7897 /* daifan.png in Resources */ = {isa = PBXBuildFile; fileRef = F133A8F91787F8F300CF7897 /* daifan.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +91,9 @@
 		F11AEE9A178068F50008082E /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		F11AEEA2178068F50008082E /* daifanTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "daifanTests-Info.plist"; sourceTree = "<group>"; };
 		F11AEEA4178068F50008082E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F133A8F51787F56500CF7897 /* daifan@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "daifan@2x.png"; sourceTree = "<group>"; };
+		F133A8F61787F56500CF7897 /* daifan-120@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "daifan-120@2x.png"; sourceTree = "<group>"; };
+		F133A8F91787F8F300CF7897 /* daifan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = daifan.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,12 +147,23 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
+		5ABD081A36FE6F5CE68FC6B9 /* Logo */ = {
+			isa = PBXGroup;
+			children = (
+				F133A8F91787F8F300CF7897 /* daifan.png */,
+				F133A8F51787F56500CF7897 /* daifan@2x.png */,
+				F133A8F61787F56500CF7897 /* daifan-120@2x.png */,
+			);
+			path = Logo;
+			sourceTree = "<group>";
+		};
 		5ABD08987ABDE28CFE1969D9 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
 				5ABD0253ECC8018BE6E9A0A4 /* timeline.png */,
 				5ABD0C89BAD6517297984A61 /* timeline@2x.png */,
 				5ABD08A21FB3183410B2EC75 /* Assets */,
+				5ABD081A36FE6F5CE68FC6B9 /* Logo */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -354,6 +371,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F133A8F81787F56500CF7897 /* daifan-120@2x.png in Resources */,
 				F11AEE87178068F50008082E /* InfoPlist.strings in Resources */,
 				F11AEE8F178068F50008082E /* Default.png in Resources */,
 				F11AEE91178068F50008082E /* Default@2x.png in Resources */,
@@ -361,11 +379,13 @@
 				5ABD0E1C5FB3157CFC5B1E1D /* timeline.png in Resources */,
 				5ABD0219560A9FDA03DA43E5 /* timeline@2x.png in Resources */,
 				5ABD0525C41BDC47497AA9C0 /* timescroll_pointer.png in Resources */,
+				F133A8F71787F56500CF7897 /* daifan@2x.png in Resources */,
 				5ABD0D0C5A5628C1B79CF767 /* timescroll_hourhand.png in Resources */,
 				5ABD0CF339A93F661B237A39 /* timescroll_minutehand.png in Resources */,
 				5ABD04AB5057F16094F4E494 /* timescroll_pointer@2x.png in Resources */,
 				5ABD0BBC7AAC07AB7AF2B578 /* timescroll_hourhand@2x.png in Resources */,
 				5ABD045F14DB42F81744CA99 /* timescroll_minutehand@2x.png in Resources */,
+				F133A8FA1787F8F300CF7897 /* daifan.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

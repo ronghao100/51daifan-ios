@@ -67,7 +67,7 @@
 
 - (NSDate *)timeScroller:(ACTimeScroller *)timeScroller dateForCell:(UITableViewCell *)cell {
     NSIndexPath *indexPath = [_timelineView indexPathForCell:cell];
-    return [NSDate dateWithTimeInterval:indexPath.row * 10000.0f sinceDate:[NSDate date]];
+    return [NSDate dateWithTimeInterval:indexPath.row * -1000000.0f sinceDate:[NSDate date]];
 }
 
 #pragma mark - UIScrollViewDelegate Methods

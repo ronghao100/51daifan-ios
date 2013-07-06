@@ -3,20 +3,24 @@
 <plist version="1.0">
 <dict>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>643D6CEB-EA30-45B8-9608-3E0C93D27BEC</string>
+	<string>CB6CFF07-2A52-4092-80A3-52D7CD3345C5</string>
 	<key>IDESourceControlProjectName</key>
 	<string>daifan</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>EA0E80AC-D581-4FF0-9DCC-A8FE5D1D1F05</key>
 		<string>https://github.com/ronghao100/51daifan-ios.git</string>
+		<key>FD83F2C5-17CA-4C79-81F5-0C51B318D58F</key>
+		<string>https://github.com/cyrilwei/TimeScroller.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>daifan.xcodeproj/project.xcworkspace</string>
+	<string>daifan.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>EA0E80AC-D581-4FF0-9DCC-A8FE5D1D1F05</key>
-		<string>../..</string>
+		<string>..</string>
+		<key>FD83F2C5-17CA-4C79-81F5-0C51B318D58F</key>
+		<string>../lib/TimeScroller</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/ronghao100/51daifan-ios.git</string>
@@ -33,6 +37,14 @@
 			<string>EA0E80AC-D581-4FF0-9DCC-A8FE5D1D1F05</string>
 			<key>IDESourceControlWCCName</key>
 			<string>51daifan-ios</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>FD83F2C5-17CA-4C79-81F5-0C51B318D58F</string>
+			<key>IDESourceControlWCCName</key>
+			<string>TimeScroller</string>
 		</dict>
 	</array>
 </dict>
