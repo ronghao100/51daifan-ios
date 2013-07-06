@@ -10,7 +10,7 @@
     DFTimeLineViewController *vc = [[DFTimeLineViewController alloc] init];
 
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:vc];
-
+    [navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navigationBar.png"] forBarMetrics:UIBarMetricsDefault];
     self.window.rootViewController = navigationController;
 
     self.window.backgroundColor = [UIColor whiteColor];

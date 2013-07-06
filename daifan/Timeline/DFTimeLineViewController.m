@@ -3,19 +3,26 @@
 #import "DFCoverView.h"
 #import "DFTimeLineCell.h"
 #import "DFFooterView.h"
-#import "ACTimeScroller.h"
+#import "DFPost.h"
+#import "DFPostViewController.h"
 
 #define TIMELINE_CELL_ID @"timeLineCellIdentifier"
 
 @implementation DFTimeLineViewController {
     DFTimeLineView *_timelineView;
     ACTimeScroller *_timeScroller;
+
+    NSMutableArray *_posts;
 }
 
 - (id)init {
     self = [super init];
     if (self) {
         self.title = @"51带饭";
+
+        _posts = [[NSMutableArray alloc] init];
+
+        [self createFakePosts];
     }
 
     return self;
@@ -41,22 +48,41 @@
     _timeScroller = [[ACTimeScroller alloc] initWithDelegate:self];
 }
 
+- (void)createFakePosts {
+    for (int i = 0; i < 100; i ++) {
+        DFPost *fakePost = [[DFPost alloc] init];
+        fakePost.identity = i;
+        fakePost.publishDate = [NSDate dateWithTimeInterval:(i + 1) * -1000000.0f sinceDate:[NSDate date]];
+        fakePost.description = @"带饭";
+        fakePost.address = @"银科大厦";
+
+        [_posts addObject:fakePost];
+    }
+}
+
 #pragma mark - table view data source & delegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 30.0f + (indexPath.row % 10) * 10.0f;
+    return 50.0f + (indexPath.row % 10) * 10.0f;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 100;
+    return _posts.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:TIMELINE_CELL_ID];
 
-    cell.textLabel.text = @"饭";
+    DFPost *post = [_posts objectAtIndex:indexPath.row];
+    cell.textLabel.text = post.description;
 
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    DFPostViewController *postVC = [[DFPostViewController alloc] initWithPost:[_posts objectAtIndex:indexPath.row]];
+    [self.navigationController pushViewController:postVC animated:YES];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 #pragma mark - Time Scroller Delegate
@@ -66,8 +92,12 @@
 }
 
 - (NSDate *)timeScroller:(ACTimeScroller *)timeScroller dateForCell:(UITableViewCell *)cell {
+    if (!cell)
+        return [NSDate date];
+
     NSIndexPath *indexPath = [_timelineView indexPathForCell:cell];
-    return [NSDate dateWithTimeInterval:indexPath.row * -1000000.0f sinceDate:[NSDate date]];
+    DFPost *post = [_posts objectAtIndex:indexPath.row];
+    return post.publishDate;
 }
 
 #pragma mark - UIScrollViewDelegate Methods
