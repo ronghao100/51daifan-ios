@@ -5,6 +5,7 @@
 #import "DFFooterView.h"
 #import "DFPost.h"
 #import "DFPostViewController.h"
+#import "DFUser.h"
 
 #define TIMELINE_CELL_ID @"timeLineCellIdentifier"
 
@@ -49,12 +50,18 @@
 }
 
 - (void)createFakePosts {
+    DFUser *fakeUser = [[DFUser alloc] init];
+    fakeUser.id = 0;
+    fakeUser.name = @"rong";
+    fakeUser.avatarURLString = @"";
+
     for (int i = 0; i < 100; i ++) {
         DFPost *fakePost = [[DFPost alloc] init];
         fakePost.identity = i;
         fakePost.publishDate = [NSDate dateWithTimeInterval:(i + 1) * -1000000.0f sinceDate:[NSDate date]];
         fakePost.description = @"带饭";
         fakePost.address = @"银科大厦";
+        fakePost.user = fakeUser;
 
         [_posts addObject:fakePost];
     }
@@ -71,10 +78,10 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:TIMELINE_CELL_ID];
+    DFTimeLineCell *cell = [tableView dequeueReusableCellWithIdentifier:TIMELINE_CELL_ID];
 
     DFPost *post = [_posts objectAtIndex:indexPath.row];
-    cell.textLabel.text = post.description;
+    cell.post = post;
 
     return cell;
 }
