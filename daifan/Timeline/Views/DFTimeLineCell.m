@@ -69,19 +69,6 @@
         _userNameLabel.text = _post.user.name;
         _postNameLabel.text = _post.name;
         _descriptionLabel.text = _post.description;
-
-        [self fitToBestSizeOfLabel:_postNameLabel];
-
-        CGRect oldFrame = _descriptionLabel.frame;
-        oldFrame.origin.y = _postNameLabel.frame.origin.y + _postNameLabel.frame.size.height + INSET_Y;
-        _descriptionLabel.frame = oldFrame;
-        [self fitToBestSizeOfLabel:_descriptionLabel];
-
-        CGFloat totalHeight = _postNameLabel.frame.origin.y + _postNameLabel.frame.size.height + INSET_Y + _descriptionLabel.frame.size.height + INSET_Y;
-
-        oldFrame = self.frame;
-        oldFrame.size.height = totalHeight;
-        self.frame = oldFrame;
     } else {
         _userNameLabel.text = @"";
         _postNameLabel.text = @"";
@@ -104,14 +91,27 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
 
+    [self fitToBestSizeOfLabel:_postNameLabel];
+
+    CGRect oldFrame = _descriptionLabel.frame;
+    oldFrame.origin.y = _postNameLabel.frame.origin.y + _postNameLabel.frame.size.height + INSET_Y;
+    _descriptionLabel.frame = oldFrame;
+    [self fitToBestSizeOfLabel:_descriptionLabel];
+
+    CGFloat totalHeight = 9.0f + 20.0f + INSET_Y + _postNameLabel.frame.size.height + INSET_Y + _descriptionLabel.frame.size.height + 9.0f;
+
+    oldFrame = self.frame;
+    oldFrame.size.height = totalHeight;
+    self.frame = oldFrame;
+
     _lineView.frame = CGRectMake(66.0f, 0.0f, TIMELINE_WIDTH_NORMAL, self.frame.size.height);
 }
 
 + (CGFloat)heightForPost:(DFPost *)post {
-    CGFloat nameHeight = [post.name sizeWithFont:[UIFont boldSystemFontOfSize:[UIFont labelFontSize]] constrainedToSize:CGSizeMake(230.0f, 0.0f)].height;
-    CGFloat descriptionHeight = [post.description sizeWithFont:[UIFont systemFontOfSize:[UIFont labelFontSize]] constrainedToSize:CGSizeMake(230.0f, 0.0f)].height;
+    CGFloat nameHeight = [post.name sizeWithFont:[UIFont boldSystemFontOfSize:[UIFont labelFontSize]] constrainedToSize:CGSizeMake(235.0f, 0.0f)].height;
+    CGFloat descriptionHeight = [post.description sizeWithFont:[UIFont systemFontOfSize:[UIFont labelFontSize]] constrainedToSize:CGSizeMake(235.0f, 0.0f)].height;
 
-    return 20.0f + 5.0f + 5.0f + nameHeight + 5.0f + descriptionHeight + 9.0f;
+    return 9.0f + 20.0f + INSET_Y + nameHeight + INSET_Y + descriptionHeight + 9.0f;
 }
 
 @end
