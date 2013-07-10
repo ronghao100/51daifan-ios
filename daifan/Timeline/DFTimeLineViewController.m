@@ -6,8 +6,16 @@
 #import "DFPost.h"
 #import "DFPostViewController.h"
 #import "DFUser.h"
+#import "AFJSONRequestOperation.h"
 
 #define TIMELINE_CELL_ID @"timeLineCellIdentifier"
+
+#define API_HOST @"http://51daifan.sinaapp.com/api"
+#define API_POST_URL @"/posts"
+
+#define API_POST_NEW_LIST_PARAMETER @"?type=0"
+#define API_POST_NEWER_LIST_PARAMETER @"?type=1&currentId=%d"
+#define API_POST_OLDER_LIST_PARAMETER @"?type=2&currentId=%d"
 
 @implementation DFTimeLineViewController {
     DFTimeLineView *_timelineView;
@@ -22,8 +30,6 @@
         self.title = @"51带饭";
 
         _posts = [[NSMutableArray alloc] init];
-
-        [self createFakePosts];
     }
 
     return self;
@@ -49,13 +55,20 @@
     _timeScroller = [[ACTimeScroller alloc] initWithDelegate:self];
 }
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+
+//    [self createFakePosts];
+    [self loadList];
+}
+
 - (void)createFakePosts {
     DFUser *fakeUser = [[DFUser alloc] init];
-    fakeUser.id = 0;
+    fakeUser.identity = 0;
     fakeUser.name = @"rong";
     fakeUser.avatarURLString = @"";
 
-    for (int i = 0; i < 100; i ++) {
+    for (int i = 0; i < 100; i++) {
         DFPost *fakePost = [[DFPost alloc] init];
         fakePost.identity = i;
         fakePost.publishDate = [NSDate dateWithTimeInterval:(i + 1) * -1000000.0f sinceDate:[NSDate date]];
@@ -70,7 +83,7 @@
 #pragma mark - table view data source & delegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 50.0f + (indexPath.row % 10) * 10.0f;
+    return 100.0f;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -109,20 +122,56 @@
 
 #pragma mark - UIScrollViewDelegate Methods
 
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
-{
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
     [_timeScroller scrollViewWillBeginDragging];
 }
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     [_timeScroller scrollViewDidScroll];
 }
 
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-{
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     [_timeScroller scrollViewDidEndDecelerating];
 }
 
+#pragma mark - Services
+
+- (void)loadList {
+    NSString *urlString = [NSString stringWithFormat:@"%@%@%@", API_HOST, API_POST_URL, API_POST_NEW_LIST_PARAMETER];
+    NSLog(@"%@", urlString);
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
+            success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+                NSArray *posts = [(NSDictionary *) JSON objectForKey:@"posts"];
+
+                [posts enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                    NSDictionary *postDict = obj;
+                    DFPost *post = [[DFPost alloc] init];
+
+                    post.identity = [[postDict objectForKey:@"objectId"] intValue];
+                    post.address = [postDict objectForKey:@"address"];
+                    post.description = [postDict objectForKey:@"describe"];
+
+                    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+                    [dateFormatter setTimeZone:[NSTimeZone localTimeZone]];
+                    dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+                    post.publishDate = [dateFormatter dateFromString:[postDict objectForKey:@"createdAt"]];
+                    NSLog(@"String: %@; Date: %@", [postDict objectForKey:@"createdAt"], post.publishDate);
+
+                    DFUser *user = [[DFUser alloc] init];
+                    user.identity = [[postDict objectForKey:@"user"] intValue];
+                    user.name = [postDict objectForKey:@"realName"];
+                    user.avatarURLString = [postDict objectForKey:@"avatarThumbnail"];
+                    post.user = user;
+
+                    [_posts addObject:post];
+
+                    [_timelineView reloadData];
+                }];
+            } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+            }];
+    [operation start];
+}
 
 @end

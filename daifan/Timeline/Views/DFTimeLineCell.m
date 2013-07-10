@@ -3,6 +3,8 @@
 #import "DFPost.h"
 #import "DFUser.h"
 
+#define INSET_Y 5.0f
+
 @implementation DFTimeLineCell {
     UIImageView *_lineView;
 
@@ -22,15 +24,17 @@
         _lineView.frame = CGRectMake(66.0f, 0.0f, TIMELINE_WIDTH_NORMAL, self.frame.size.height);
         [self addSubview:_lineView];
 
-        _avatarView = [[UIImageView alloc] initWithFrame:CGRectMake(3.0f, 3.0f, 60.0f, 60.0f)];
+        _avatarView = [[UIImageView alloc] initWithFrame:CGRectMake(9.0f, 9.0f, 48.0f, 48.0f)];
         _avatarView.backgroundColor = [UIColor orangeColor];
         [self addSubview:_avatarView];
 
-        _userNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(3.0f, 66.0f, 60.0f, 15.0f)];
+        _userNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(75.0f, 9.0f, 235.0f, 20.0f)];
+        _userNameLabel.backgroundColor = [UIColor clearColor];
         [self addSubview:_userNameLabel];
 
-        _descriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(70.0f, 3.0f, 240.0f, 60.0f)];
+        _descriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(75.0f, 35.0f, 235.0f, 60.0f)];
         _descriptionLabel.numberOfLines = 0;
+        _descriptionLabel.backgroundColor = [UIColor clearColor];
         [self addSubview:_descriptionLabel];
     }
 
@@ -53,6 +57,18 @@
     if (_post) {
         _userNameLabel.text = _post.user.name;
         _descriptionLabel.text = _post.description;
+
+        CGSize bestSize = [_descriptionLabel sizeThatFits:CGSizeMake(_descriptionLabel.frame.size.width, 0)];
+        NSLog (@"Best Size: %f, %f", bestSize.width, bestSize.height);
+
+        CGRect oldFrame = _descriptionLabel.frame;
+        _descriptionLabel.frame = CGRectMake(oldFrame.origin.x, oldFrame.origin.y, oldFrame.size.width, bestSize.height);
+
+        CGFloat totalHeight = bestSize.height + oldFrame.origin.y + INSET_Y;
+
+        oldFrame = self.frame;
+        oldFrame.size.height = totalHeight;
+        self.frame = oldFrame;
     } else {
         _userNameLabel.text = @"";
         _descriptionLabel.text = @"";

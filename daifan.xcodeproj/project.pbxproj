@@ -52,6 +52,9 @@
 		F133A8F71787F56500CF7897 /* daifan@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F133A8F51787F56500CF7897 /* daifan@2x.png */; };
 		F133A8F81787F56500CF7897 /* daifan-120@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F133A8F61787F56500CF7897 /* daifan-120@2x.png */; };
 		F133A8FA1787F8F300CF7897 /* daifan.png in Resources */ = {isa = PBXBuildFile; fileRef = F133A8F91787F8F300CF7897 /* daifan.png */; };
+		F163B3FA17893ADD0064F890 /* production.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = F163B3F917893ADD0064F890 /* production.xcconfig */; };
+		F163B3FC17896A750064F890 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F163B3FB17896A750064F890 /* SystemConfiguration.framework */; };
+		F163B3FE17896A7D0064F890 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F163B3FD17896A7D0064F890 /* MobileCoreServices.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -135,6 +138,9 @@
 		F133A8F51787F56500CF7897 /* daifan@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "daifan@2x.png"; sourceTree = "<group>"; };
 		F133A8F61787F56500CF7897 /* daifan-120@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "daifan-120@2x.png"; sourceTree = "<group>"; };
 		F133A8F91787F8F300CF7897 /* daifan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = daifan.png; sourceTree = "<group>"; };
+		F163B3F917893ADD0064F890 /* production.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = production.xcconfig; sourceTree = "<group>"; };
+		F163B3FB17896A750064F890 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		F163B3FD17896A7D0064F890 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +148,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F163B3FE17896A7D0064F890 /* MobileCoreServices.framework in Frameworks */,
+				F163B3FC17896A750064F890 /* SystemConfiguration.framework in Frameworks */,
 				F11AEE7D178068F40008082E /* UIKit.framework in Frameworks */,
 				F11AEE7F178068F40008082E /* Foundation.framework in Frameworks */,
 				F11AEE81178068F40008082E /* CoreGraphics.framework in Frameworks */,
@@ -215,6 +223,13 @@
 				5ABD0B35B0657307DD8BAA12 /* DFUser.h */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		5ABD055C536D09B23E678BB8 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		5ABD05E55E83EF3D0B346CE6 /* ACTimeScroller */ = {
@@ -336,6 +351,8 @@
 		F11AEE7B178068F40008082E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F163B3FD17896A7D0064F890 /* MobileCoreServices.framework */,
+				F163B3FB17896A750064F890 /* SystemConfiguration.framework */,
 				F11AEE7C178068F40008082E /* UIKit.framework */,
 				F11AEE7E178068F40008082E /* Foundation.framework */,
 				F11AEE80178068F40008082E /* CoreGraphics.framework */,
@@ -347,6 +364,7 @@
 		F11AEE82178068F40008082E /* daifan */ = {
 			isa = PBXGroup;
 			children = (
+				F163B3F817893AA80064F890 /* Configurations */,
 				F11AEE8B178068F50008082E /* DFAppDelegate.h */,
 				F11AEE8C178068F50008082E /* DFAppDelegate.m */,
 				F11AEE83178068F50008082E /* Supporting Files */,
@@ -357,6 +375,7 @@
 				5ABD037623FB06AFDE1A193B /* ThirdParties */,
 				5ABD03F956BC4DE6AE0691F2 /* Post */,
 				5ABD045871C2BEC238F36057 /* Models */,
+				5ABD055C536D09B23E678BB8 /* Services */,
 			);
 			path = daifan;
 			sourceTree = "<group>";
@@ -390,6 +409,14 @@
 				F11AEEA3178068F50008082E /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F163B3F817893AA80064F890 /* Configurations */ = {
+			isa = PBXGroup;
+			children = (
+				F163B3F917893ADD0064F890 /* production.xcconfig */,
+			);
+			path = Configurations;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -471,6 +498,7 @@
 				F11AEE93178068F50008082E /* Default-568h@2x.png in Resources */,
 				5ABD0E1C5FB3157CFC5B1E1D /* timeline.png in Resources */,
 				5ABD0219560A9FDA03DA43E5 /* timeline@2x.png in Resources */,
+				F163B3FA17893ADD0064F890 /* production.xcconfig in Resources */,
 				5ABD0525C41BDC47497AA9C0 /* timescroll_pointer.png in Resources */,
 				F133A8F71787F56500CF7897 /* daifan@2x.png in Resources */,
 				5ABD0D0C5A5628C1B79CF767 /* timescroll_hourhand.png in Resources */,
@@ -634,6 +662,7 @@
 		};
 		F11AEEAC178068F50008082E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F163B3F917893ADD0064F890 /* production.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "daifan/daifan-Prefix.pch";
@@ -645,6 +674,7 @@
 		};
 		F11AEEAD178068F50008082E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F163B3F917893ADD0064F890 /* production.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "daifan/daifan-Prefix.pch";
