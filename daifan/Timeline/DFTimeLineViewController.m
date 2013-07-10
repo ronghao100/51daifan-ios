@@ -39,6 +39,7 @@
     _timelineView = [[DFTimeLineView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     _timelineView.delegate = self;
     _timelineView.dataSource = self;
+    _timelineView.separatorColor = [UIColor orangeColor];
 
     [_timelineView registerClass:[DFTimeLineCell class] forCellReuseIdentifier:TIMELINE_CELL_ID];
 
@@ -49,7 +50,7 @@
     _timelineView.tableFooterView = footerView;
 
     self.view = _timelineView;
-    self.view.backgroundColor = [UIColor lightGrayColor];
+    self.view.backgroundColor = [UIColor colorWithHexString:@"#E0E0E0"];
 
     _timeScroller = [[ACTimeScroller alloc] initWithDelegate:self];
 }
