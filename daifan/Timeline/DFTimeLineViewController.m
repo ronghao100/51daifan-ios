@@ -43,7 +43,6 @@
     [_timelineView registerClass:[DFTimeLineCell class] forCellReuseIdentifier:TIMELINE_CELL_ID];
 
     DFCoverView *coverView = [[DFCoverView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, _timelineView.frame.size.width, COVER_VIEW_HEIGHT)];
-    coverView.backgroundColor = [UIColor orangeColor];
     _timelineView.tableHeaderView = coverView;
 
     DFFooterView *footerView = [[DFFooterView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, _timelineView.frame.size.width, FOOTER_VIEW_HEIGHT)];
@@ -83,7 +82,9 @@
 #pragma mark - table view data source & delegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 100.0f;
+    DFPost *post = [_posts objectAtIndex:indexPath.row];
+
+    return [DFTimeLineCell heightForPost:post];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -151,6 +152,7 @@
 
                     post.identity = [[postDict objectForKey:@"objectId"] intValue];
                     post.address = [postDict objectForKey:@"address"];
+                    post.name = [postDict objectForKey:@"name"];
                     post.description = [postDict objectForKey:@"describe"];
 
                     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];

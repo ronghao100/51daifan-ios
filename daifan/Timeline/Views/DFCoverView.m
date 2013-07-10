@@ -8,6 +8,10 @@
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
+        UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, -568.0f, frame.size.width, frame.size.height + 568.0f)];
+        bgView.backgroundColor = [UIColor orangeColor];
+        [self addSubview:bgView];
+
         UIImage *line = [UIImage imageNamed:@"timeline.png"];
 
         _lineView = [[UIImageView alloc] initWithImage:line];
