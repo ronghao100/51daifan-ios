@@ -2,13 +2,14 @@
 #import "DFTimeLineCell.h"
 #import "DFPost.h"
 #import "DFUser.h"
+#import "DFRemoteImageView.h"
 
 #define INSET_Y 5.0f
 
 @implementation DFTimeLineCell {
     UIImageView *_lineView;
 
-    UIImageView *_avatarView;
+    DFRemoteImageView *_avatarView;
     UILabel *_userNameLabel;
     UILabel *_postNameLabel;
     UILabel *_descriptionLabel;
@@ -25,7 +26,8 @@
         _lineView.frame = CGRectMake(66.0f, 0.0f, TIMELINE_WIDTH_NORMAL, self.frame.size.height);
         [self addSubview:_lineView];
 
-        _avatarView = [[UIImageView alloc] initWithFrame:CGRectMake(9.0f, 9.0f, 48.0f, 48.0f)];
+        _avatarView = [[DFRemoteImageView alloc] initWithFrame:CGRectMake(9.0f, 9.0f, 48.0f, 48.0f)];
+        _avatarView.contentMode = UIViewContentModeScaleAspectFit;
         _avatarView.backgroundColor = [UIColor orangeColor];
         [self addSubview:_avatarView];
 
@@ -62,6 +64,8 @@
 
 - (void)refresh {
     if (_post) {
+        [_avatarView loadImageFromURL:[NSURL URLWithString:_post.user.avatarURLString ]];
+
         _userNameLabel.text = _post.user.name;
         _postNameLabel.text = _post.name;
         _descriptionLabel.text = _post.description;
@@ -80,7 +84,10 @@
         self.frame = oldFrame;
     } else {
         _userNameLabel.text = @"";
+        _postNameLabel.text = @"";
         _descriptionLabel.text = @"";
+        [_avatarView stopLoading];
+        _avatarView.image = nil;
     }
 
     [self setNeedsLayout];
