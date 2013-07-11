@@ -58,26 +58,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-//    [self createFakePosts];
     [self loadList];
-}
-
-- (void)createFakePosts {
-    DFUser *fakeUser = [[DFUser alloc] init];
-    fakeUser.identity = 0;
-    fakeUser.name = @"rong";
-    fakeUser.avatarURLString = @"";
-
-    for (int i = 0; i < 100; i++) {
-        DFPost *fakePost = [[DFPost alloc] init];
-        fakePost.identity = i;
-        fakePost.publishDate = [NSDate dateWithTimeInterval:(i + 1) * -1000000.0f sinceDate:[NSDate date]];
-        fakePost.description = @"带饭";
-        fakePost.address = @"银科大厦";
-        fakePost.user = fakeUser;
-
-        [_posts addObject:fakePost];
-    }
 }
 
 #pragma mark - table view data source & delegate
