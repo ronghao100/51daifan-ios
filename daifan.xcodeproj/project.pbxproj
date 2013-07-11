@@ -10,7 +10,6 @@
 		5ABD008CD5561CB5ECB30A63 /* DFCoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD04E86861D1A6E329079D /* DFCoverView.m */; };
 		5ABD00BAF8FA072B823AEF73 /* DFPost.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD01135129DFE937DD090F /* DFPost.m */; };
 		5ABD0106734CF9F5B1F65BDA /* DFPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD0A726406B6B31190777D /* DFPostViewController.m */; };
-		5ABD019E21D597BB2362CFA4 /* DFRemoteImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD058E7104A12AB16E92BC /* DFRemoteImageView.m */; };
 		5ABD0219560A9FDA03DA43E5 /* timeline@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ABD0C89BAD6517297984A61 /* timeline@2x.png */; };
 		5ABD02474615AD0115E8F712 /* DFFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD054696CBBA1EB8C1D0B6 /* DFFooterView.m */; };
 		5ABD02AC947BF5A450DB4B4B /* AFNetworkActivityIndicatorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD034FEC1E7EC84F7D4278 /* AFNetworkActivityIndicatorManager.m */; };
@@ -25,6 +24,7 @@
 		5ABD07F917812EDA4A897EF6 /* DFTimeLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD07896831771B0DF85D31 /* DFTimeLineView.m */; };
 		5ABD08FA52C6FDC6CD36F2A9 /* AFPropertyListRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD0B0A1905B1F3BC6EC59E /* AFPropertyListRequestOperation.m */; };
 		5ABD0914C1098DEF10BDAFD3 /* ACTimeScroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD020EA8B3A90D945C194F /* ACTimeScroller.m */; };
+		5ABD09895E4652BE633DDF4C /* DFRemoteImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD0A68CFE2077350411196 /* DFRemoteImageView.m */; };
 		5ABD098B6608E0A94D8A14EB /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD0D1492D9F4790000609B /* AFXMLRequestOperation.m */; };
 		5ABD09B202FDD56A846FBA1C /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD0E67AFE31FCF86C93E4A /* UIColor+Hex.m */; };
 		5ABD09C6367AAFC5C2F71204 /* navigationBar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ABD0D882B28307EAF462E94 /* navigationBar@2x.png */; };
@@ -87,7 +87,7 @@
 		5ABD04B0B6BC93931CEED6CD /* DFTimeLineCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFTimeLineCell.m; sourceTree = "<group>"; };
 		5ABD04E86861D1A6E329079D /* DFCoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFCoverView.m; sourceTree = "<group>"; };
 		5ABD054696CBBA1EB8C1D0B6 /* DFFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFFooterView.m; sourceTree = "<group>"; };
-		5ABD058E7104A12AB16E92BC /* DFRemoteImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFRemoteImageView.m; sourceTree = SOURCE_ROOT; };
+		5ABD0592B66C0D6B2FCA5CEC /* DFRemoteImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFRemoteImageView.h; sourceTree = "<group>"; };
 		5ABD05C1BECFE3ED92D1FFA5 /* timescroll_pointer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = timescroll_pointer.png; sourceTree = "<group>"; };
 		5ABD06C07DA29181345EB294 /* AFNetworkActivityIndicatorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkActivityIndicatorManager.h; sourceTree = "<group>"; };
 		5ABD06C53F0FD222E61215D7 /* DFPost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFPost.h; sourceTree = "<group>"; };
@@ -98,8 +98,8 @@
 		5ABD07896831771B0DF85D31 /* DFTimeLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFTimeLineView.m; sourceTree = "<group>"; };
 		5ABD07AF55ACDCCBA054CA33 /* timescroll_hourhand.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = timescroll_hourhand.png; sourceTree = "<group>"; };
 		5ABD0838FAEEDD3C559AE726 /* DFCoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFCoverView.h; sourceTree = "<group>"; };
+		5ABD0A68CFE2077350411196 /* DFRemoteImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFRemoteImageView.m; sourceTree = "<group>"; };
 		5ABD0A726406B6B31190777D /* DFPostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFPostViewController.m; sourceTree = "<group>"; };
-		5ABD0A908A9B6453A43B6F40 /* DFRemoteImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFRemoteImageView.h; sourceTree = SOURCE_ROOT; };
 		5ABD0AFB77A9AB7D36ACB579 /* AFXMLRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFXMLRequestOperation.h; sourceTree = "<group>"; };
 		5ABD0B0A1905B1F3BC6EC59E /* AFPropertyListRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFPropertyListRequestOperation.m; sourceTree = "<group>"; };
 		5ABD0B35B0657307DD8BAA12 /* DFUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFUser.h; sourceTree = "<group>"; };
@@ -294,8 +294,8 @@
 		5ABD08EB14A559863491FA72 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				5ABD058E7104A12AB16E92BC /* DFRemoteImageView.m */,
-				5ABD0A908A9B6453A43B6F40 /* DFRemoteImageView.h */,
+				5ABD0592B66C0D6B2FCA5CEC /* DFRemoteImageView.h */,
+				5ABD0A68CFE2077350411196 /* DFRemoteImageView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -569,7 +569,7 @@
 				5ABD0F0440833BBAF9478A5F /* UIImageView+AFNetworking.m in Sources */,
 				5ABD08FA52C6FDC6CD36F2A9 /* AFPropertyListRequestOperation.m in Sources */,
 				5ABD02AC947BF5A450DB4B4B /* AFNetworkActivityIndicatorManager.m in Sources */,
-				5ABD019E21D597BB2362CFA4 /* DFRemoteImageView.m in Sources */,
+				5ABD09895E4652BE633DDF4C /* DFRemoteImageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
