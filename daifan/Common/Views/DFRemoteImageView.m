@@ -15,6 +15,9 @@
 
         [self addSubview:_activityIndicator];
         [self refreshIndicator];
+
+        self.layer.cornerRadius = 6.0f;
+        self.clipsToBounds = YES;
     }
 
     return self;
