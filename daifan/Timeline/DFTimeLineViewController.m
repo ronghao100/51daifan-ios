@@ -113,8 +113,8 @@
 #pragma mark - Services
 
 - (void)loadList {
-    NSString *urlString = [NSString stringWithFormat:@"%@%@%@", API_HOST, API_POST_URL, API_POST_NEW_LIST_PARAMETER];
-    NSLog(@"%@", urlString);
+    NSString *urlString = [NSString stringWithFormat:@"%@%@%@", API_HOST, API_POST_PATH, API_POST_NEW_LIST_PARAMETER];
+
     NSURL *url = [NSURL URLWithString:urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
@@ -134,7 +134,6 @@
                     [dateFormatter setTimeZone:[NSTimeZone localTimeZone]];
                     dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
                     post.publishDate = [dateFormatter dateFromString:[postDict objectForKey:@"createdAt"]];
-                    NSLog(@"String: %@; Date: %@", [postDict objectForKey:@"createdAt"], post.publishDate);
 
                     DFUser *user = [[DFUser alloc] init];
                     user.identity = [[postDict objectForKey:@"user"] intValue];

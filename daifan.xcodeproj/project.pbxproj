@@ -20,18 +20,16 @@
 		5ABD09B202FDD56A846FBA1C /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD0E67AFE31FCF86C93E4A /* UIColor+Hex.m */; };
 		5ABD09C6367AAFC5C2F71204 /* navigationBar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ABD0D882B28307EAF462E94 /* navigationBar@2x.png */; };
 		5ABD0A16334B122F4C1F7EB5 /* DFLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD0D117A4121B385CF8A4A /* DFLoginViewController.m */; };
+		5ABD0AED842DEACD2A8A7452 /* DFSplashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD08A991343EC47B1066AB /* DFSplashViewController.m */; };
 		5ABD0D92A64F67C968C11386 /* navigationBar.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ABD0C20F336DEB08D023C78 /* navigationBar.png */; };
 		5ABD0E1C5FB3157CFC5B1E1D /* timeline.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ABD0253ECC8018BE6E9A0A4 /* timeline.png */; };
-		DA2035FF3CD349A0838396C5 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4901EC8B88EC476A8E2682EF /* libPods.a */; settings = {}; };
+		DA2035FF3CD349A0838396C5 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4901EC8B88EC476A8E2682EF /* libPods.a */; };
 		F11AEE7D178068F40008082E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F11AEE7C178068F40008082E /* UIKit.framework */; };
 		F11AEE7F178068F40008082E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F11AEE7E178068F40008082E /* Foundation.framework */; };
 		F11AEE81178068F40008082E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F11AEE80178068F40008082E /* CoreGraphics.framework */; };
 		F11AEE87178068F50008082E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F11AEE85178068F50008082E /* InfoPlist.strings */; };
 		F11AEE89178068F50008082E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F11AEE88178068F50008082E /* main.m */; };
 		F11AEE8D178068F50008082E /* DFAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F11AEE8C178068F50008082E /* DFAppDelegate.m */; };
-		F11AEE8F178068F50008082E /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = F11AEE8E178068F50008082E /* Default.png */; };
-		F11AEE91178068F50008082E /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F11AEE90178068F50008082E /* Default@2x.png */; };
-		F11AEE93178068F50008082E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F11AEE92178068F50008082E /* Default-568h@2x.png */; };
 		F11AEE9B178068F50008082E /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F11AEE9A178068F50008082E /* SenTestingKit.framework */; };
 		F11AEE9C178068F50008082E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F11AEE7C178068F40008082E /* UIKit.framework */; };
 		F11AEE9D178068F50008082E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F11AEE7E178068F40008082E /* Foundation.framework */; };
@@ -42,6 +40,9 @@
 		F163B3FA17893ADD0064F890 /* production.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = F163B3F917893ADD0064F890 /* production.xcconfig */; };
 		F163B3FC17896A750064F890 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F163B3FB17896A750064F890 /* SystemConfiguration.framework */; };
 		F163B3FE17896A7D0064F890 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F163B3FD17896A7D0064F890 /* MobileCoreServices.framework */; };
+		F1F7AB33179289DC002D1B33 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = F1F7AB30179289DC002D1B33 /* Default.png */; };
+		F1F7AB34179289DC002D1B33 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F1F7AB31179289DC002D1B33 /* Default-568h@2x.png */; };
+		F1F7AB35179289DC002D1B33 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F1F7AB32179289DC002D1B33 /* Default@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,7 +57,7 @@
 
 /* Begin PBXFileReference section */
 		2DFF4B995E104D65A93F501A /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
-		4901EC8B88EC476A8E2682EF /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libPods.a; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		4901EC8B88EC476A8E2682EF /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5ABD00A06DCE6709CD223EC3 /* DFPostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFPostViewController.h; sourceTree = "<group>"; };
 		5ABD01135129DFE937DD090F /* DFPost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFPost.m; sourceTree = "<group>"; };
 		5ABD022F3CCD98255A2D6DE8 /* DFTimeLineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFTimeLineViewController.h; sourceTree = "<group>"; };
@@ -66,11 +67,13 @@
 		5ABD046338CD18526847EBE7 /* DFTimeLineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFTimeLineViewController.m; sourceTree = "<group>"; };
 		5ABD04B0B6BC93931CEED6CD /* DFTimeLineCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFTimeLineCell.m; sourceTree = "<group>"; };
 		5ABD04E86861D1A6E329079D /* DFCoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFCoverView.m; sourceTree = "<group>"; };
+		5ABD0510972187BB757FA3D3 /* DFSplashViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSplashViewController.h; sourceTree = "<group>"; };
 		5ABD054696CBBA1EB8C1D0B6 /* DFFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFFooterView.m; sourceTree = "<group>"; };
 		5ABD0592B66C0D6B2FCA5CEC /* DFRemoteImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFRemoteImageView.h; sourceTree = "<group>"; };
 		5ABD06C53F0FD222E61215D7 /* DFPost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFPost.h; sourceTree = "<group>"; };
 		5ABD07896831771B0DF85D31 /* DFTimeLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFTimeLineView.m; sourceTree = "<group>"; };
 		5ABD0838FAEEDD3C559AE726 /* DFCoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFCoverView.h; sourceTree = "<group>"; };
+		5ABD08A991343EC47B1066AB /* DFSplashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSplashViewController.m; sourceTree = "<group>"; };
 		5ABD0A68CFE2077350411196 /* DFRemoteImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFRemoteImageView.m; sourceTree = "<group>"; };
 		5ABD0A726406B6B31190777D /* DFPostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFPostViewController.m; sourceTree = "<group>"; };
 		5ABD0B35B0657307DD8BAA12 /* DFUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFUser.h; sourceTree = "<group>"; };
@@ -94,9 +97,6 @@
 		F11AEE8A178068F50008082E /* daifan-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "daifan-Prefix.pch"; sourceTree = "<group>"; };
 		F11AEE8B178068F50008082E /* DFAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DFAppDelegate.h; sourceTree = "<group>"; };
 		F11AEE8C178068F50008082E /* DFAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DFAppDelegate.m; sourceTree = "<group>"; };
-		F11AEE8E178068F50008082E /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		F11AEE90178068F50008082E /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		F11AEE92178068F50008082E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		F11AEE99178068F50008082E /* daifanTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = daifanTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F11AEE9A178068F50008082E /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		F11AEEA2178068F50008082E /* daifanTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "daifanTests-Info.plist"; sourceTree = "<group>"; };
@@ -107,6 +107,9 @@
 		F163B3F917893ADD0064F890 /* production.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = production.xcconfig; sourceTree = "<group>"; };
 		F163B3FB17896A750064F890 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		F163B3FD17896A7D0064F890 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		F1F7AB30179289DC002D1B33 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		F1F7AB31179289DC002D1B33 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		F1F7AB32179289DC002D1B33 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +188,9 @@
 		5ABD08987ABDE28CFE1969D9 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				F1F7AB30179289DC002D1B33 /* Default.png */,
+				F1F7AB31179289DC002D1B33 /* Default-568h@2x.png */,
+				F1F7AB32179289DC002D1B33 /* Default@2x.png */,
 				5ABD0253ECC8018BE6E9A0A4 /* timeline.png */,
 				5ABD0C89BAD6517297984A61 /* timeline@2x.png */,
 				5ABD081A36FE6F5CE68FC6B9 /* Logo */,
@@ -246,6 +252,15 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		5ABD0FD4DAF0BE8265CBFD26 /* Startup */ = {
+			isa = PBXGroup;
+			children = (
+				5ABD08A991343EC47B1066AB /* DFSplashViewController.m */,
+				5ABD0510972187BB757FA3D3 /* DFSplashViewController.h */,
+			);
+			path = Startup;
+			sourceTree = "<group>";
+		};
 		F11AEE70178068F40008082E = {
 			isa = PBXGroup;
 			children = (
@@ -295,6 +310,7 @@
 				5ABD045871C2BEC238F36057 /* Models */,
 				5ABD055C536D09B23E678BB8 /* Services */,
 				5ABD0CC4A0FB8D250002209D /* User */,
+				5ABD0FD4DAF0BE8265CBFD26 /* Startup */,
 			);
 			path = daifan;
 			sourceTree = "<group>";
@@ -306,9 +322,6 @@
 				F11AEE85178068F50008082E /* InfoPlist.strings */,
 				F11AEE88178068F50008082E /* main.m */,
 				F11AEE8A178068F50008082E /* daifan-Prefix.pch */,
-				F11AEE8E178068F50008082E /* Default.png */,
-				F11AEE90178068F50008082E /* Default@2x.png */,
-				F11AEE92178068F50008082E /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -399,8 +412,6 @@
 			mainGroup = F11AEE70178068F40008082E;
 			productRefGroup = F11AEE7A178068F40008082E /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-			);
 			projectRoot = "";
 			targets = (
 				F11AEE78178068F40008082E /* daifan */,
@@ -414,11 +425,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1F7AB35179289DC002D1B33 /* Default@2x.png in Resources */,
 				F133A8F81787F56500CF7897 /* daifan-120@2x.png in Resources */,
+				F1F7AB34179289DC002D1B33 /* Default-568h@2x.png in Resources */,
 				F11AEE87178068F50008082E /* InfoPlist.strings in Resources */,
-				F11AEE8F178068F50008082E /* Default.png in Resources */,
-				F11AEE91178068F50008082E /* Default@2x.png in Resources */,
-				F11AEE93178068F50008082E /* Default-568h@2x.png in Resources */,
 				5ABD0E1C5FB3157CFC5B1E1D /* timeline.png in Resources */,
 				5ABD0219560A9FDA03DA43E5 /* timeline@2x.png in Resources */,
 				F163B3FA17893ADD0064F890 /* production.xcconfig in Resources */,
@@ -426,6 +436,7 @@
 				F133A8FA1787F8F300CF7897 /* daifan.png in Resources */,
 				5ABD09C6367AAFC5C2F71204 /* navigationBar@2x.png in Resources */,
 				5ABD0D92A64F67C968C11386 /* navigationBar.png in Resources */,
+				F1F7AB33179289DC002D1B33 /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -453,7 +464,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
-			showEnvVarsInLog = 1;
 		};
 		F0C2BF261599432CB2756498 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -468,7 +478,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 1;
 		};
 		F11AEE97178068F50008082E /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -503,6 +512,7 @@
 				5ABD05B6D2810735E4EA9D81 /* DFUser.m in Sources */,
 				5ABD09895E4652BE633DDF4C /* DFRemoteImageView.m in Sources */,
 				5ABD0A16334B122F4C1F7EB5 /* DFLoginViewController.m in Sources */,
+				5ABD0AED842DEACD2A8A7452 /* DFSplashViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -608,6 +618,7 @@
 				INFOPLIST_FILE = "daifan/daifan-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -621,6 +632,7 @@
 				INFOPLIST_FILE = "daifan/daifan-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

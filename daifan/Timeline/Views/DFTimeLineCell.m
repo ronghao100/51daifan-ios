@@ -82,7 +82,6 @@
 
 - (void)fitToBestSizeOfLabel:(UILabel *)label {
     CGSize bestSize = [label sizeThatFits:CGSizeMake(label.frame.size.width, 0)];
-    NSLog (@"Best Size: %f, %f", bestSize.width, bestSize.height);
 
     CGRect oldFrame = label.frame;
     label.frame = CGRectMake(oldFrame.origin.x, oldFrame.origin.y, oldFrame.size.width, bestSize.height);
