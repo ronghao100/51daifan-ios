@@ -1,6 +1,0 @@
-[submodule "lib/TimeScroller"]
-	path = lib/TimeScroller
-	url = https://github.com/cyrilwei/TimeScroller.git
-[submodule "lib/AFNetworking"]
-	path = lib/AFNetworking
-	url = https://github.com/AFNetworking/AFNetworking.git

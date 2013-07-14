@@ -10,13 +10,6 @@
 
 #define TIMELINE_CELL_ID @"timeLineCellIdentifier"
 
-#define API_HOST @"http://51daifan.sinaapp.com/api"
-#define API_POST_URL @"/posts"
-
-#define API_POST_NEW_LIST_PARAMETER @"?type=0"
-#define API_POST_NEWER_LIST_PARAMETER @"?type=1&currentId=%d"
-#define API_POST_OLDER_LIST_PARAMETER @"?type=2&currentId=%d"
-
 @implementation DFTimeLineViewController {
     DFTimeLineView *_timelineView;
     ACTimeScroller *_timeScroller;
