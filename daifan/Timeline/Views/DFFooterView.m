@@ -13,7 +13,7 @@
         CGFloat backgroundHeight = [UIScreen mainScreen].bounds.size.height * 2.0f;
 
         UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, backgroundWidth, backgroundHeight)];
-        bgView.backgroundColor = [UIColor orangeColor];
+        bgView.backgroundColor = [UIColor blueColor];
         [self addSubview:bgView];
 
         UIImage *line = [UIImage imageNamed:@"timeline.png"];

@@ -119,6 +119,7 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
             success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+                NSLog(@"time line success.");
                 NSArray *posts = [(NSDictionary *) JSON objectForKey:@"posts"];
 
                 [posts enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
@@ -146,6 +147,7 @@
                     [_timelineView reloadData];
                 }];
             } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+                NSLog(@"time line failed. \n response: %@, error: %@, JSON: %@", response, error, JSON);
             }];
     [operation start];
 }
