@@ -109,19 +109,19 @@
 }
 
 + (CGFloat)heightForPost:(DFPost *)post {
-    UILabel *testLabel = [[UILabel alloc] init];
-    testLabel.numberOfLines = 0;
+//    UILabel *testLabel = [[UILabel alloc] init];
+//    testLabel.numberOfLines = 0;
+//
+//    testLabel.text = post.name;
+//    testLabel.font = [UIFont boldSystemFontOfSize:[UIFont labelFontSize]];
+//    CGFloat nameHeight = [testLabel sizeThatFits:CGSizeMake(LABEL_WIDTH, 0)].height;
+//
+//    testLabel.text = post.description;
+//    testLabel.font = [UIFont systemFontOfSize:[UIFont labelFontSize]];
+//    CGFloat descriptionHeight = [testLabel sizeThatFits:CGSizeMake(LABEL_WIDTH, 0)].height;
 
-    testLabel.text = post.name;
-    testLabel.font = [UIFont boldSystemFontOfSize:[UIFont labelFontSize]];
-    CGFloat nameHeight = [testLabel sizeThatFits:CGSizeMake(LABEL_WIDTH, 0)].height;
-
-    testLabel.text = post.description;
-    testLabel.font = [UIFont systemFontOfSize:[UIFont labelFontSize]];
-    CGFloat descriptionHeight = [testLabel sizeThatFits:CGSizeMake(LABEL_WIDTH, 0)].height;
-
-//    CGFloat nameHeight = [post.name sizeWithFont:[UIFont boldSystemFontOfSize:[UIFont labelFontSize]] constrainedToSize:CGSizeMake(LABEL_WIDTH, 0.0f)].height;
-//    CGFloat descriptionHeight = [post.description sizeWithFont:[UIFont systemFontOfSize:[UIFont labelFontSize]] constrainedToSize:CGSizeMake(LABEL_WIDTH, 0.0f)].height;
+    CGFloat nameHeight = [post.name sizeWithFont:[UIFont boldSystemFontOfSize:[UIFont labelFontSize]] constrainedToSize:CGSizeMake(LABEL_WIDTH, CGFLOAT_MAX)].height;
+    CGFloat descriptionHeight = [post.description sizeWithFont:[UIFont systemFontOfSize:[UIFont labelFontSize]] constrainedToSize:CGSizeMake(LABEL_WIDTH, CGFLOAT_MAX)].height;
 
     NSLog(@"name: %@ height: %f", post.name, nameHeight);
     NSLog(@"desc: %@ height: %f", post.description, descriptionHeight);
