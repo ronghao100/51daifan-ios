@@ -5,6 +5,7 @@
 #import "DFRemoteImageView.h"
 
 #define INSET_Y 5.0f
+#define LABEL_WIDTH 235.0f
 
 @implementation DFTimeLineCell {
     UIImageView *_lineView;
@@ -31,17 +32,17 @@
         _avatarView.backgroundColor = [UIColor orangeColor];
         [self addSubview:_avatarView];
 
-        _userNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(75.0f, 9.0f, 235.0f, 20.0f)];
+        _userNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(75.0f, 9.0f, LABEL_WIDTH, 20.0f)];
         _userNameLabel.backgroundColor = [UIColor clearColor];
         [self addSubview:_userNameLabel];
 
-        _postNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(75.0f, 35.0f, 235.0f, 0.0f)];
+        _postNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(75.0f, 35.0f, LABEL_WIDTH, 0.0f)];
         _postNameLabel.font = [UIFont boldSystemFontOfSize:[UIFont labelFontSize]];
         _postNameLabel.numberOfLines = 0;
         _postNameLabel.backgroundColor = [UIColor clearColor];
         [self addSubview:_postNameLabel];
 
-        _descriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(75.0f, 60.0f, 235.0f, 0.0f)];
+        _descriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(75.0f, 60.0f, LABEL_WIDTH, 0.0f)];
         _descriptionLabel.numberOfLines = 0;
         _descriptionLabel.backgroundColor = [UIColor clearColor];
         [self addSubview:_descriptionLabel];
@@ -103,12 +104,27 @@
     oldFrame.size.height = totalHeight;
     self.frame = oldFrame;
 
+    NSLog(@"cell height: %f", self.frame.size.height);
     _lineView.frame = CGRectMake(66.0f, 0.0f, TIMELINE_WIDTH_NORMAL, self.frame.size.height);
 }
 
 + (CGFloat)heightForPost:(DFPost *)post {
-    CGFloat nameHeight = [post.name sizeWithFont:[UIFont boldSystemFontOfSize:[UIFont labelFontSize]] constrainedToSize:CGSizeMake(235.0f, 0.0f)].height;
-    CGFloat descriptionHeight = [post.description sizeWithFont:[UIFont systemFontOfSize:[UIFont labelFontSize]] constrainedToSize:CGSizeMake(235.0f, 0.0f)].height;
+    UILabel *testLabel = [[UILabel alloc] init];
+    testLabel.numberOfLines = 0;
+
+    testLabel.text = post.name;
+    testLabel.font = [UIFont boldSystemFontOfSize:[UIFont labelFontSize]];
+    CGFloat nameHeight = [testLabel sizeThatFits:CGSizeMake(LABEL_WIDTH, 0)].height;
+
+    testLabel.text = post.description;
+    testLabel.font = [UIFont systemFontOfSize:[UIFont labelFontSize]];
+    CGFloat descriptionHeight = [testLabel sizeThatFits:CGSizeMake(LABEL_WIDTH, 0)].height;
+
+//    CGFloat nameHeight = [post.name sizeWithFont:[UIFont boldSystemFontOfSize:[UIFont labelFontSize]] constrainedToSize:CGSizeMake(LABEL_WIDTH, 0.0f)].height;
+//    CGFloat descriptionHeight = [post.description sizeWithFont:[UIFont systemFontOfSize:[UIFont labelFontSize]] constrainedToSize:CGSizeMake(LABEL_WIDTH, 0.0f)].height;
+
+    NSLog(@"name: %@ height: %f", post.name, nameHeight);
+    NSLog(@"desc: %@ height: %f", post.description, descriptionHeight);
 
     return 9.0f + 20.0f + INSET_Y + nameHeight + INSET_Y + descriptionHeight + 9.0f;
 }

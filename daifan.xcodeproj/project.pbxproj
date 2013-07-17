@@ -41,6 +41,7 @@
 		F163B3FA17893ADD0064F890 /* production.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = F163B3F917893ADD0064F890 /* production.xcconfig */; };
 		F163B3FC17896A750064F890 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F163B3FB17896A750064F890 /* SystemConfiguration.framework */; };
 		F163B3FE17896A7D0064F890 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F163B3FD17896A7D0064F890 /* MobileCoreServices.framework */; };
+		F1CE43211796D04900425029 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1CE43201796D04900425029 /* QuartzCore.framework */; };
 		F1F7AB33179289DC002D1B33 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = F1F7AB30179289DC002D1B33 /* Default.png */; };
 		F1F7AB34179289DC002D1B33 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F1F7AB31179289DC002D1B33 /* Default-568h@2x.png */; };
 		F1F7AB35179289DC002D1B33 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F1F7AB32179289DC002D1B33 /* Default@2x.png */; };
@@ -110,6 +111,7 @@
 		F163B3F917893ADD0064F890 /* production.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = production.xcconfig; sourceTree = "<group>"; };
 		F163B3FB17896A750064F890 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		F163B3FD17896A7D0064F890 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		F1CE43201796D04900425029 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		F1F7AB30179289DC002D1B33 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		F1F7AB31179289DC002D1B33 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		F1F7AB32179289DC002D1B33 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1CE43211796D04900425029 /* QuartzCore.framework in Frameworks */,
 				F163B3FE17896A7D0064F890 /* MobileCoreServices.framework in Frameworks */,
 				F163B3FC17896A750064F890 /* SystemConfiguration.framework in Frameworks */,
 				F11AEE7D178068F40008082E /* UIKit.framework in Frameworks */,
@@ -269,6 +272,7 @@
 		F11AEE70178068F40008082E = {
 			isa = PBXGroup;
 			children = (
+				F1CE43201796D04900425029 /* QuartzCore.framework */,
 				F11AEE82178068F40008082E /* daifan */,
 				F11AEEA0178068F50008082E /* daifanTests */,
 				F11AEE7B178068F40008082E /* Frameworks */,
