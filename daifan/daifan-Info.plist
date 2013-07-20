@@ -17,6 +17,8 @@
 				<string>daifan-120</string>
 				<string>daifan</string>
 			</array>
+			<key>UIPrerenderedIcon</key>
+			<true/>
 		</dict>
 	</dict>
 	<key>CFBundleIdentifier</key>
