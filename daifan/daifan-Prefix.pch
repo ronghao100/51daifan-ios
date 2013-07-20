@@ -18,4 +18,5 @@
     #import "DFConstants.h"
 
     #import "UIColor+Hex.h"
+    #import "UIScreen+ApplicationBounds.h"
 #endif

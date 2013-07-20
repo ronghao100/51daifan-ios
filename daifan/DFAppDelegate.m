@@ -8,7 +8,7 @@
 {
     [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
 
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] applicationBounds]];
 
     DFSplashViewController *vc = [[DFSplashViewController alloc] init];
     self.window.rootViewController = vc;

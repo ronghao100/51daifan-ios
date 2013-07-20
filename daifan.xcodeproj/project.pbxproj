@@ -24,6 +24,7 @@
 		5ABD0B6BCC66BFE44B8F879E /* DFRoundImageButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD0D38C1CA62976EDAB1AD /* DFRoundImageButton.m */; };
 		5ABD0D92A64F67C968C11386 /* navigationBar.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ABD0C20F336DEB08D023C78 /* navigationBar.png */; };
 		5ABD0E1C5FB3157CFC5B1E1D /* timeline.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ABD0253ECC8018BE6E9A0A4 /* timeline.png */; };
+		5ABD0F355EC35DEC17CA4734 /* UIScreen+ApplicationBounds.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD02CE9F55785E6C28A9FA /* UIScreen+ApplicationBounds.m */; };
 		DA2035FF3CD349A0838396C5 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4901EC8B88EC476A8E2682EF /* libPods.a */; };
 		F11AEE7D178068F40008082E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F11AEE7C178068F40008082E /* UIKit.framework */; };
 		F11AEE7F178068F40008082E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F11AEE7E178068F40008082E /* Foundation.framework */; };
@@ -64,7 +65,9 @@
 		5ABD01135129DFE937DD090F /* DFPost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFPost.m; sourceTree = "<group>"; };
 		5ABD022F3CCD98255A2D6DE8 /* DFTimeLineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFTimeLineViewController.h; sourceTree = "<group>"; };
 		5ABD0253ECC8018BE6E9A0A4 /* timeline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = timeline.png; sourceTree = "<group>"; };
+		5ABD02CE9F55785E6C28A9FA /* UIScreen+ApplicationBounds.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScreen+ApplicationBounds.m"; sourceTree = "<group>"; };
 		5ABD031586657564D4EC3AFB /* DFLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFLoginViewController.h; sourceTree = "<group>"; };
+		5ABD032C1BE1113F0A90F14E /* UIScreen+ApplicationBounds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScreen+ApplicationBounds.h"; sourceTree = "<group>"; };
 		5ABD04530482D4D49EE4D2B4 /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
 		5ABD046338CD18526847EBE7 /* DFTimeLineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFTimeLineViewController.m; sourceTree = "<group>"; };
 		5ABD04B0B6BC93931CEED6CD /* DFTimeLineCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFTimeLineCell.m; sourceTree = "<group>"; };
@@ -165,13 +168,6 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		5ABD055C536D09B23E678BB8 /* Services */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Services;
-			sourceTree = "<group>";
-		};
 		5ABD07D2016FDD043B8437C8 /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -256,6 +252,8 @@
 			children = (
 				5ABD0E67AFE31FCF86C93E4A /* UIColor+Hex.m */,
 				5ABD04530482D4D49EE4D2B4 /* UIColor+Hex.h */,
+				5ABD02CE9F55785E6C28A9FA /* UIScreen+ApplicationBounds.m */,
+				5ABD032C1BE1113F0A90F14E /* UIScreen+ApplicationBounds.h */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -317,7 +315,6 @@
 				5ABD07D2016FDD043B8437C8 /* Common */,
 				5ABD03F956BC4DE6AE0691F2 /* Post */,
 				5ABD045871C2BEC238F36057 /* Models */,
-				5ABD055C536D09B23E678BB8 /* Services */,
 				5ABD0CC4A0FB8D250002209D /* User */,
 				5ABD0FD4DAF0BE8265CBFD26 /* Startup */,
 			);
@@ -523,6 +520,7 @@
 				5ABD0A16334B122F4C1F7EB5 /* DFLoginViewController.m in Sources */,
 				5ABD0AED842DEACD2A8A7452 /* DFSplashViewController.m in Sources */,
 				5ABD0B6BCC66BFE44B8F879E /* DFRoundImageButton.m in Sources */,
+				5ABD0F355EC35DEC17CA4734 /* UIScreen+ApplicationBounds.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

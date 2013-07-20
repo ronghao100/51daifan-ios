@@ -16,20 +16,29 @@
 }
 
 - (void)loadView {
-    self.view = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    self.view = [[UIView alloc] initWithFrame:[UIScreen mainScreen].applicationBounds];
     self.view.backgroundColor = [UIColor orangeColor];
 
-    _userNameField = [[UITextField alloc] initWithFrame:CGRectMake(50.0f, 100.0f, 220.0f, 30.0f)];
-    [self.view addSubview:_userNameField];
-    _userNameField.placeholder = @"邮箱";
-    _userNameField.borderStyle = UITextBorderStyleRoundedRect;
-    _userNameField.keyboardType = UIKeyboardTypeEmailAddress;
-    _userNameField.autocapitalizationType = UITextAutocapitalizationTypeNone;
-    _userNameField.autocorrectionType = UITextAutocorrectionTypeNo;
-    _userNameField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-    [_userNameField becomeFirstResponder];
+    CGFloat viewHeight = self.view.frame.size.height - DEFAULT_KEYBOARD_HEIGHT - DEFAULT_PADDING;
 
-    _passwordField = [[UITextField alloc] initWithFrame:CGRectMake(50.0f, 140.0f, 220.0f, 30.0f)];
+    viewHeight -= DEFAULT_BUTTON_HEIGHT;
+
+    _registerButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [self.view addSubview:_registerButton];
+    _registerButton.frame = CGRectMake(85.0f, viewHeight, 150.0f, DEFAULT_BUTTON_HEIGHT);
+    [_registerButton setTitle:@"注册" forState:UIControlStateNormal];
+
+    viewHeight -= DEFAULT_PADDING + DEFAULT_BUTTON_HEIGHT;
+
+    _loginButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [self.view addSubview:_loginButton];
+    _loginButton.frame = CGRectMake(85.0f, viewHeight, 150.0f, DEFAULT_BUTTON_HEIGHT);
+    [_loginButton setTitle:@"登录" forState:UIControlStateNormal];
+    [_loginButton addTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
+
+    viewHeight -= DEFAULT_PADDING + DEFAULT_TEXTFIELD_HEIGHT;
+
+    _passwordField = [[UITextField alloc] initWithFrame:CGRectMake(50.0f, viewHeight, 220.0f, DEFAULT_TEXTFIELD_HEIGHT)];
     [self.view addSubview:_passwordField];
     _passwordField.placeholder = @"密码";
     _passwordField.borderStyle = UITextBorderStyleRoundedRect;
@@ -39,16 +48,17 @@
     _passwordField.clearsOnBeginEditing = YES;
     _passwordField.secureTextEntry = YES;
 
-    _loginButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [self.view addSubview:_loginButton];
-    _loginButton.frame = CGRectMake(85.0f, 180.0f, 150.0f, 44.0f);
-    [_loginButton setTitle:@"登录" forState:UIControlStateNormal];
-    [_loginButton addTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
+    viewHeight -= DEFAULT_PADDING + DEFAULT_TEXTFIELD_HEIGHT;
 
-    _registerButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [self.view addSubview:_registerButton];
-    _registerButton.frame = CGRectMake(85.0f, 234.0f, 150.0f, 44.0f);
-    [_registerButton setTitle:@"注册" forState:UIControlStateNormal];
+    _userNameField = [[UITextField alloc] initWithFrame:CGRectMake(50.0f, viewHeight, 220.0f, DEFAULT_TEXTFIELD_HEIGHT)];
+    [self.view addSubview:_userNameField];
+    _userNameField.placeholder = @"邮箱";
+    _userNameField.borderStyle = UITextBorderStyleRoundedRect;
+    _userNameField.keyboardType = UIKeyboardTypeEmailAddress;
+    _userNameField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+    _userNameField.autocorrectionType = UITextAutocorrectionTypeNo;
+    _userNameField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+    [_userNameField becomeFirstResponder];
 }
 
 - (void)login {
@@ -61,9 +71,9 @@
     [parameters setValue:_userNameField.text forKey:@"email"];
     [parameters setValue:_passwordField.text forKey:@"password"];
 
-    NSMutableURLRequest *request = [httpClient requestWithMethod:@"POST" path:API_LOGIN_PATH parameters:parameters];
+    NSMutableURLRequest *postRequest = [httpClient requestWithMethod:@"POST" path:API_LOGIN_PATH parameters:parameters];
 
-    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:postRequest
             success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
                 if ([[(NSDictionary *) JSON objectForKey:kRESPONSE_ERROR] boolValue]) {
                     [self showErrorMessage];
