@@ -12,8 +12,11 @@
 
     DFRemoteImageView *_avatarView;
     UILabel *_userNameLabel;
+
+    UILabel *_addressLabel;
+
     UILabel *_postNameLabel;
-    UILabel *_descriptionLabel;
+    UILabel *_contentLabel;
 }
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
@@ -36,16 +39,20 @@
         _userNameLabel.backgroundColor = [UIColor clearColor];
         [self addSubview:_userNameLabel];
 
-        _postNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(75.0f, 35.0f, LABEL_WIDTH, 0.0f)];
+        _addressLabel = [[UILabel alloc] initWithFrame:CGRectMake(75.0f, 35.0f, LABEL_WIDTH, 20.0f)];
+        _addressLabel.backgroundColor = [UIColor clearColor];
+        [self addSubview:_addressLabel];
+
+        _postNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(75.0f, 0.0f, LABEL_WIDTH, 0.0f)];
         _postNameLabel.font = [UIFont boldSystemFontOfSize:[UIFont labelFontSize]];
         _postNameLabel.numberOfLines = 0;
         _postNameLabel.backgroundColor = [UIColor clearColor];
         [self addSubview:_postNameLabel];
 
-        _descriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(75.0f, 60.0f, LABEL_WIDTH, 0.0f)];
-        _descriptionLabel.numberOfLines = 0;
-        _descriptionLabel.backgroundColor = [UIColor clearColor];
-        [self addSubview:_descriptionLabel];
+        _contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(75.0f, 0.0f, LABEL_WIDTH, 0.0f)];
+        _contentLabel.numberOfLines = 0;
+        _contentLabel.backgroundColor = [UIColor clearColor];
+        [self addSubview:_contentLabel];
     }
 
     return self;
@@ -68,12 +75,14 @@
         [_avatarView loadImageFromURL:[NSURL URLWithString:_post.user.avatarURLString ]];
 
         _userNameLabel.text = _post.user.name;
+        _addressLabel.text = _post.address;
         _postNameLabel.text = _post.name;
-        _descriptionLabel.text = _post.description;
+        _contentLabel.text = _post.content;
     } else {
         _userNameLabel.text = @"";
+        _addressLabel.text = @"";
         _postNameLabel.text = @"";
-        _descriptionLabel.text = @"";
+        _contentLabel.text = @"";
         [_avatarView stopLoading];
         _avatarView.image = nil;
     }
@@ -91,42 +100,30 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
 
+    CGRect oldFrame = _postNameLabel.frame;
+    oldFrame.origin.y = _addressLabel.frame.origin.y + _addressLabel.frame.size.height + INSET_Y;
+    _postNameLabel.frame = oldFrame;
     [self fitToBestSizeOfLabel:_postNameLabel];
 
-    CGRect oldFrame = _descriptionLabel.frame;
+    oldFrame = _contentLabel.frame;
     oldFrame.origin.y = _postNameLabel.frame.origin.y + _postNameLabel.frame.size.height + INSET_Y;
-    _descriptionLabel.frame = oldFrame;
-    [self fitToBestSizeOfLabel:_descriptionLabel];
+    _contentLabel.frame = oldFrame;
+    [self fitToBestSizeOfLabel:_contentLabel];
 
-    CGFloat totalHeight = 9.0f + 20.0f + INSET_Y + _postNameLabel.frame.size.height + INSET_Y + _descriptionLabel.frame.size.height + 9.0f;
+    CGFloat totalHeight = 9.0f + 20.0f + INSET_Y + 20.0f + INSET_Y + _postNameLabel.frame.size.height + INSET_Y + _contentLabel.frame.size.height + 9.0f;
 
     oldFrame = self.frame;
     oldFrame.size.height = totalHeight;
     self.frame = oldFrame;
 
-    NSLog(@"cell height: %f", self.frame.size.height);
     _lineView.frame = CGRectMake(66.0f, 0.0f, TIMELINE_WIDTH_NORMAL, self.frame.size.height);
 }
 
 + (CGFloat)heightForPost:(DFPost *)post {
-//    UILabel *testLabel = [[UILabel alloc] init];
-//    testLabel.numberOfLines = 0;
-//
-//    testLabel.text = post.name;
-//    testLabel.font = [UIFont boldSystemFontOfSize:[UIFont labelFontSize]];
-//    CGFloat nameHeight = [testLabel sizeThatFits:CGSizeMake(LABEL_WIDTH, 0)].height;
-//
-//    testLabel.text = post.description;
-//    testLabel.font = [UIFont systemFontOfSize:[UIFont labelFontSize]];
-//    CGFloat descriptionHeight = [testLabel sizeThatFits:CGSizeMake(LABEL_WIDTH, 0)].height;
-
     CGFloat nameHeight = [post.name sizeWithFont:[UIFont boldSystemFontOfSize:[UIFont labelFontSize]] constrainedToSize:CGSizeMake(LABEL_WIDTH, CGFLOAT_MAX)].height;
-    CGFloat descriptionHeight = [post.description sizeWithFont:[UIFont systemFontOfSize:[UIFont labelFontSize]] constrainedToSize:CGSizeMake(LABEL_WIDTH, CGFLOAT_MAX)].height;
+    CGFloat contentHeight = [post.content sizeWithFont:[UIFont systemFontOfSize:[UIFont labelFontSize]] constrainedToSize:CGSizeMake(LABEL_WIDTH, CGFLOAT_MAX)].height;
 
-    NSLog(@"name: %@ height: %f", post.name, nameHeight);
-    NSLog(@"desc: %@ height: %f", post.description, descriptionHeight);
-
-    return 9.0f + 20.0f + INSET_Y + nameHeight + INSET_Y + descriptionHeight + 9.0f;
+    return 9.0f + 20.0f + INSET_Y + 20.0f + INSET_Y + nameHeight + INSET_Y + contentHeight + 9.0f;
 }
 
 @end

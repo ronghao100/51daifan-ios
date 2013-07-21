@@ -8,7 +8,7 @@
 }
 
 - (void)loadView {
-    self.view = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    self.view = [[UIView alloc] initWithFrame:[UIScreen mainScreen].applicationBounds];
 
     UIImageView *splash = [[UIImageView alloc] initWithFrame:self.view.bounds];
     [self.view addSubview:splash];
@@ -29,7 +29,6 @@
     [self setupCache];
 
     [self checkAccount];
-
 }
 
 - (void)checkAccount {

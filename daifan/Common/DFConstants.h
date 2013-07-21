@@ -14,6 +14,8 @@
 #define kRESPONSE_ERROR @"error"
 #define kRESPONSE_SUCCESS @"success"
 #define kRESPONSE_USER @"user"
+#define kRESPONSE_POSTS @"posts"
+#define kRESPONSE_BOOKED_USER_ID @"bookedUidNames"
 
 #define kKEYCHAIN_SERVICE @"51daifan"
 

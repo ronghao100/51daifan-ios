@@ -7,6 +7,7 @@
 #import "DFPostViewController.h"
 #import "DFUser.h"
 #import "AFJSONRequestOperation.h"
+#import "DFUserList.h"
 
 #define TIMELINE_CELL_ID @"timeLineCellIdentifier"
 
@@ -29,7 +30,7 @@
 }
 
 - (void)loadView {
-    _timelineView = [[DFTimeLineView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    _timelineView = [[DFTimeLineView alloc] initWithFrame:[UIScreen mainScreen].applicationBounds];
     _timelineView.delegate = self;
     _timelineView.dataSource = self;
     _timelineView.separatorColor = [UIColor orangeColor];
@@ -120,32 +121,17 @@
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
             success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
                 NSLog(@"time line success.");
-                NSArray *posts = [(NSDictionary *) JSON objectForKey:@"posts"];
+                NSDictionary *dict = (NSDictionary *)JSON;
+                NSArray *posts = [ dict objectForKey:kRESPONSE_POSTS];
+
+                NSDictionary *users = [dict objectForKey:kRESPONSE_BOOKED_USER_ID];
+                [[DFUserList sharedList] mergeUserDict:users];
 
                 [posts enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-                    NSDictionary *postDict = obj;
-                    DFPost *post = [[DFPost alloc] init];
-
-                    post.identity = [[postDict objectForKey:@"objectId"] intValue];
-                    post.address = [postDict objectForKey:@"address"];
-                    post.name = [postDict objectForKey:@"name"];
-                    post.description = [postDict objectForKey:@"describe"];
-
-                    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-                    [dateFormatter setTimeZone:[NSTimeZone localTimeZone]];
-                    dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
-                    post.publishDate = [dateFormatter dateFromString:[postDict objectForKey:@"createdAt"]];
-
-                    DFUser *user = [[DFUser alloc] init];
-                    user.identity = [[postDict objectForKey:@"user"] intValue];
-                    user.name = [postDict objectForKey:@"realName"];
-                    user.avatarURLString = [postDict objectForKey:@"avatarThumbnail"];
-                    post.user = user;
-
-                    [_posts addObject:post];
-
-                    [_timelineView reloadData];
+                    [_posts addObject:[DFPost postFromDict:obj]];
                 }];
+
+                [_timelineView reloadData];
             } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
                 NSLog(@"time line failed. \n response: %@, error: %@, JSON: %@", response, error, JSON);
             }];
