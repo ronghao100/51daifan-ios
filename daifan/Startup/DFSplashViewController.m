@@ -2,8 +2,6 @@
 #import "SSKeychain.h"
 #import "DFTimeLineViewController.h"
 #import "DFLoginViewController.h"
-#import "DFAppDelegate.h"
-
 
 @implementation DFSplashViewController {
 
@@ -37,11 +35,11 @@
 - (void)checkAccount {
     NSArray *accounts = [SSKeychain accountsForService:kKEYCHAIN_SERVICE];
 
-    if (accounts.count <= 0) {
+//    if (accounts.count <= 0) {
         [self showLoginView];
-    } else {
-        [self showTimelineView];
-    }
+//    } else {
+//        [self showTimelineView];
+//    }
 }
 
 - (void)setupCache {

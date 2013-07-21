@@ -19,26 +19,24 @@
     self.view = [[UIView alloc] initWithFrame:[UIScreen mainScreen].applicationBounds];
     self.view.backgroundColor = [UIColor orangeColor];
 
-    CGFloat viewHeight = self.view.frame.size.height - DEFAULT_KEYBOARD_HEIGHT - DEFAULT_PADDING;
+    CGFloat minHeight = DEFAULT_BUTTON_HEIGHT * 2 + DEFAULT_TEXTFIELD_HEIGHT * 2 + DEFAULT_PADDING * 3;
+    CGFloat viewHeight = self.view.frame.size.height - DEFAULT_KEYBOARD_HEIGHT;
 
-    viewHeight -= DEFAULT_BUTTON_HEIGHT;
+    CGFloat yOffset = (viewHeight - minHeight) / 2.0f;
 
-    _registerButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [self.view addSubview:_registerButton];
-    _registerButton.frame = CGRectMake(85.0f, viewHeight, 150.0f, DEFAULT_BUTTON_HEIGHT);
-    [_registerButton setTitle:@"注册" forState:UIControlStateNormal];
+    _userNameField = [[UITextField alloc] initWithFrame:CGRectMake(50.0f, yOffset, 220.0f, DEFAULT_TEXTFIELD_HEIGHT)];
+    [self.view addSubview:_userNameField];
+    _userNameField.placeholder = @"邮箱";
+    _userNameField.borderStyle = UITextBorderStyleRoundedRect;
+    _userNameField.keyboardType = UIKeyboardTypeEmailAddress;
+    _userNameField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+    _userNameField.autocorrectionType = UITextAutocorrectionTypeNo;
+    _userNameField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+    [_userNameField becomeFirstResponder];
 
-    viewHeight -= DEFAULT_PADDING + DEFAULT_BUTTON_HEIGHT;
+    yOffset += DEFAULT_TEXTFIELD_HEIGHT + DEFAULT_PADDING;
 
-    _loginButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [self.view addSubview:_loginButton];
-    _loginButton.frame = CGRectMake(85.0f, viewHeight, 150.0f, DEFAULT_BUTTON_HEIGHT);
-    [_loginButton setTitle:@"登录" forState:UIControlStateNormal];
-    [_loginButton addTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
-
-    viewHeight -= DEFAULT_PADDING + DEFAULT_TEXTFIELD_HEIGHT;
-
-    _passwordField = [[UITextField alloc] initWithFrame:CGRectMake(50.0f, viewHeight, 220.0f, DEFAULT_TEXTFIELD_HEIGHT)];
+    _passwordField = [[UITextField alloc] initWithFrame:CGRectMake(50.0f, yOffset, 220.0f, DEFAULT_TEXTFIELD_HEIGHT)];
     [self.view addSubview:_passwordField];
     _passwordField.placeholder = @"密码";
     _passwordField.borderStyle = UITextBorderStyleRoundedRect;
@@ -48,17 +46,20 @@
     _passwordField.clearsOnBeginEditing = YES;
     _passwordField.secureTextEntry = YES;
 
-    viewHeight -= DEFAULT_PADDING + DEFAULT_TEXTFIELD_HEIGHT;
+    yOffset += DEFAULT_TEXTFIELD_HEIGHT + DEFAULT_PADDING;
 
-    _userNameField = [[UITextField alloc] initWithFrame:CGRectMake(50.0f, viewHeight, 220.0f, DEFAULT_TEXTFIELD_HEIGHT)];
-    [self.view addSubview:_userNameField];
-    _userNameField.placeholder = @"邮箱";
-    _userNameField.borderStyle = UITextBorderStyleRoundedRect;
-    _userNameField.keyboardType = UIKeyboardTypeEmailAddress;
-    _userNameField.autocapitalizationType = UITextAutocapitalizationTypeNone;
-    _userNameField.autocorrectionType = UITextAutocorrectionTypeNo;
-    _userNameField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-    [_userNameField becomeFirstResponder];
+    _loginButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [self.view addSubview:_loginButton];
+    _loginButton.frame = CGRectMake(85.0f, yOffset, 150.0f, DEFAULT_BUTTON_HEIGHT);
+    [_loginButton setTitle:@"登录" forState:UIControlStateNormal];
+    [_loginButton addTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
+
+    yOffset += DEFAULT_BUTTON_HEIGHT + DEFAULT_PADDING;
+
+    _registerButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [self.view addSubview:_registerButton];
+    _registerButton.frame = CGRectMake(85.0f, yOffset, 150.0f, DEFAULT_BUTTON_HEIGHT);
+    [_registerButton setTitle:@"注册" forState:UIControlStateNormal];
 }
 
 - (void)login {
