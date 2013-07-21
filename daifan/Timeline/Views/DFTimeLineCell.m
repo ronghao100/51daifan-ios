@@ -76,7 +76,7 @@
 
         _userNameLabel.text = _post.user.name;
         _addressLabel.text = _post.address;
-        _postNameLabel.text = _post.name;
+        _postNameLabel.text = _post.nameWithEatDate;
         _contentLabel.text = _post.content;
     } else {
         _userNameLabel.text = @"";
@@ -120,7 +120,7 @@
 }
 
 + (CGFloat)heightForPost:(DFPost *)post {
-    CGFloat nameHeight = [post.name sizeWithFont:[UIFont boldSystemFontOfSize:[UIFont labelFontSize]] constrainedToSize:CGSizeMake(LABEL_WIDTH, CGFLOAT_MAX)].height;
+    CGFloat nameHeight = [post.nameWithEatDate sizeWithFont:[UIFont boldSystemFontOfSize:[UIFont labelFontSize]] constrainedToSize:CGSizeMake(LABEL_WIDTH, CGFLOAT_MAX)].height;
     CGFloat contentHeight = [post.content sizeWithFont:[UIFont systemFontOfSize:[UIFont labelFontSize]] constrainedToSize:CGSizeMake(LABEL_WIDTH, CGFLOAT_MAX)].height;
 
     return 9.0f + 20.0f + INSET_Y + 20.0f + INSET_Y + nameHeight + INSET_Y + contentHeight + 9.0f;

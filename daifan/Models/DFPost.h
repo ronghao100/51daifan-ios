@@ -11,6 +11,7 @@
 @property(nonatomic, strong) NSString *content;
 @property(nonatomic, strong) NSString *address;
 @property(nonatomic, strong) NSString *name;
+@property(nonatomic, readonly) NSString *nameWithEatDate;
 
 @property(nonatomic) int count;
 @property(nonatomic) int bookedCount;
@@ -21,4 +22,5 @@
 @property(nonatomic, strong) NSDate *updateDate;
 
 + (DFPost *)postFromDict:(NSDictionary *)postDict;
+
 @end

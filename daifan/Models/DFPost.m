@@ -46,8 +46,19 @@
     return post;
 }
 
+- (NSString *)nameWithEatDate {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setTimeZone:[NSTimeZone localTimeZone]];
+    dateFormatter.dateFormat = @"M月d日";
+
+    NSString *date = [dateFormatter stringFromDate:self.eatDate];
+    return [NSString stringWithFormat:@"%@ 带 %@", date, self.name];
+}
+
+
 - (NSString *)description {
     return [NSString stringWithFormat:@"Post name:%@, desc:%@, publishDate:%@, eatDate:%@", self.name, self.content, self.publishDate, self.eatDate];
 }
+
 
 @end
