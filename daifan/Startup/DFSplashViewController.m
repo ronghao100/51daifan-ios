@@ -35,11 +35,11 @@
 - (void)checkAccount {
     NSArray *accounts = [SSKeychain accountsForService:kKEYCHAIN_SERVICE];
 
-//    if (accounts.count <= 0) {
+    if (accounts.count <= 0) {
         [self showLoginView];
-//    } else {
-//        [self showTimelineView];
-//    }
+    } else {
+        [self showTimelineView];
+    }
 }
 
 - (void)setupCache {
