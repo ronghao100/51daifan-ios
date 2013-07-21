@@ -30,5 +30,8 @@
     return comments;
 }
 
+- (NSString *)description {
+    return [NSString stringWithFormat:@"Comment uid:%@, rate:%@, comment:%@", self.uid, self.rate, self.content];
+}
 
 @end

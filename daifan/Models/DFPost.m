@@ -18,7 +18,7 @@
     post.count = [[postDict objectForKey:@"count"] intValue];
     post.bookedCount = [[postDict objectForKey:@"bookedCount"] intValue];
     post.bookedUserIDs = [postDict objectForKey:@"bookedUids"];
-    post.comments = [DFComment commentsFromArray:[postDict objectForKey:@"comment"]];
+    post.comments = [DFComment commentsFromArray:[postDict objectForKey:@"comments"]];
 
     NSMutableArray *images = [[NSMutableArray alloc] init];
     for (int i = 1; i <= 6; i++) {

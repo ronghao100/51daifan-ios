@@ -3,6 +3,7 @@
 #import "DFPost.h"
 #import "DFUser.h"
 #import "DFRemoteImageView.h"
+#import "DFCommentView.h"
 
 #define INSET_Y 5.0f
 #define LABEL_WIDTH 235.0f
@@ -17,6 +18,8 @@
 
     UILabel *_postNameLabel;
     UILabel *_contentLabel;
+
+    DFCommentView *_commentView;
 }
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
@@ -53,6 +56,9 @@
         _contentLabel.numberOfLines = 0;
         _contentLabel.backgroundColor = [UIColor clearColor];
         [self addSubview:_contentLabel];
+
+        _commentView = [[DFCommentView alloc] initWithFrame:CGRectMake(75.0f, 0.0f, LABEL_WIDTH, 0.0f)];
+        [self addSubview:_commentView];
     }
 
     return self;
@@ -78,11 +84,14 @@
         _addressLabel.text = _post.address;
         _postNameLabel.text = _post.nameWithEatDate;
         _contentLabel.text = _post.content;
+        _commentView.comments = _post.comments;
     } else {
         _userNameLabel.text = @"";
         _addressLabel.text = @"";
         _postNameLabel.text = @"";
         _contentLabel.text = @"";
+        _commentView.comments = nil;
+
         [_avatarView stopLoading];
         _avatarView.image = nil;
     }
@@ -90,40 +99,33 @@
     [self setNeedsLayout];
 }
 
-- (void)fitToBestSizeOfLabel:(UILabel *)label {
-    CGSize bestSize = [label sizeThatFits:CGSizeMake(label.frame.size.width, 0)];
-
-    CGRect oldFrame = label.frame;
-    label.frame = CGRectMake(oldFrame.origin.x, oldFrame.origin.y, oldFrame.size.width, bestSize.height);
-}
-
 - (void)layoutSubviews {
     [super layoutSubviews];
 
-    CGRect oldFrame = _postNameLabel.frame;
-    oldFrame.origin.y = _addressLabel.frame.origin.y + _addressLabel.frame.size.height + INSET_Y;
-    _postNameLabel.frame = oldFrame;
-    [self fitToBestSizeOfLabel:_postNameLabel];
+    _postNameLabel.top = _addressLabel.bottom + INSET_Y;
+    [_postNameLabel fitToBestSize];
 
-    oldFrame = _contentLabel.frame;
-    oldFrame.origin.y = _postNameLabel.frame.origin.y + _postNameLabel.frame.size.height + INSET_Y;
-    _contentLabel.frame = oldFrame;
-    [self fitToBestSizeOfLabel:_contentLabel];
+    _contentLabel.top = _postNameLabel.bottom + INSET_Y;
+    [_contentLabel fitToBestSize];
 
-    CGFloat totalHeight = 9.0f + 20.0f + INSET_Y + 20.0f + INSET_Y + _postNameLabel.frame.size.height + INSET_Y + _contentLabel.frame.size.height + 9.0f;
+    _commentView.top = _contentLabel.bottom + INSET_Y;
 
-    oldFrame = self.frame;
-    oldFrame.size.height = totalHeight;
-    self.frame = oldFrame;
+    CGFloat totalHeight = 9.0f + 20.0f + INSET_Y + 20.0f + INSET_Y + _postNameLabel.height + INSET_Y + _contentLabel.height + INSET_Y + _commentView.height + 9.0f;
 
-    _lineView.frame = CGRectMake(66.0f, 0.0f, TIMELINE_WIDTH_NORMAL, self.frame.size.height);
+    self.height = totalHeight;
+    _lineView.height = totalHeight;
 }
 
 + (CGFloat)heightForPost:(DFPost *)post {
     CGFloat nameHeight = [post.nameWithEatDate sizeWithFont:[UIFont boldSystemFontOfSize:[UIFont labelFontSize]] constrainedToSize:CGSizeMake(LABEL_WIDTH, CGFLOAT_MAX)].height;
     CGFloat contentHeight = [post.content sizeWithFont:[UIFont systemFontOfSize:[UIFont labelFontSize]] constrainedToSize:CGSizeMake(LABEL_WIDTH, CGFLOAT_MAX)].height;
 
-    return 9.0f + 20.0f + INSET_Y + 20.0f + INSET_Y + nameHeight + INSET_Y + contentHeight + 9.0f;
+    DFCommentView *commentView = [[DFCommentView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, LABEL_WIDTH, 0.0f)];
+    commentView.comments = post.comments;
+
+    NSLog(@"comment height: %f", commentView.height);
+
+    return 9.0f + 20.0f + INSET_Y + 20.0f + INSET_Y + nameHeight + INSET_Y + contentHeight + INSET_Y + commentView.height + 9.0f;
 }
 
 @end
