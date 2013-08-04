@@ -4,8 +4,6 @@
 #import "DFTimeLineCell.h"
 #import "DFFooterView.h"
 #import "DFPost.h"
-#import "DFPostViewController.h"
-#import "DFUser.h"
 #import "AFJSONRequestOperation.h"
 #import "DFUserList.h"
 
@@ -38,6 +36,7 @@
     _timelineView.delegate = self;
     _timelineView.dataSource = self;
     _timelineView.separatorColor = [UIColor orangeColor];
+    _timelineView.allowsSelection = NO;
 
     [_timelineView registerClass:[DFTimeLineCell class] forCellReuseIdentifier:TIMELINE_CELL_ID];
 
@@ -85,12 +84,6 @@
     cell.post = post;
 
     return cell;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    DFPostViewController *postVC = [[DFPostViewController alloc] initWithPost:[_posts objectAtIndex:indexPath.row]];
-    [self.navigationController pushViewController:postVC animated:YES];
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 #pragma mark - Time Scroller Delegate

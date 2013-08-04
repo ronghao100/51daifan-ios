@@ -10,7 +10,6 @@
 		5ABD008CD5561CB5ECB30A63 /* DFCoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD04E86861D1A6E329079D /* DFCoverView.m */; };
 		5ABD00BAF8FA072B823AEF73 /* DFPost.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD01135129DFE937DD090F /* DFPost.m */; };
 		5ABD00BB05CAB2B3F86AA83B /* location@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ABD0D33BC038027C32719F9 /* location@2x.png */; };
-		5ABD0106734CF9F5B1F65BDA /* DFPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD0A726406B6B31190777D /* DFPostViewController.m */; };
 		5ABD0219560A9FDA03DA43E5 /* timeline@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ABD0C89BAD6517297984A61 /* timeline@2x.png */; };
 		5ABD02474615AD0115E8F712 /* DFFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD054696CBBA1EB8C1D0B6 /* DFFooterView.m */; };
 		5ABD0255E9584F9EEB2D7A92 /* book@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ABD04D7C32EBD018A98702A /* book@2x.png */; };
@@ -73,7 +72,6 @@
 		4901EC8B88EC476A8E2682EF /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5ABD0036492C99FCCF11F565 /* uparrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "uparrow@2x.png"; sourceTree = "<group>"; };
 		5ABD007B5111418CFD24FEA1 /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
-		5ABD00A06DCE6709CD223EC3 /* DFPostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFPostViewController.h; sourceTree = "<group>"; };
 		5ABD01135129DFE937DD090F /* DFPost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFPost.m; sourceTree = "<group>"; };
 		5ABD022F3CCD98255A2D6DE8 /* DFTimeLineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFTimeLineViewController.h; sourceTree = "<group>"; };
 		5ABD0250C3057DB3E4090823 /* DFCommentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFCommentView.h; sourceTree = "<group>"; };
@@ -100,7 +98,6 @@
 		5ABD08A991343EC47B1066AB /* DFSplashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSplashViewController.m; sourceTree = "<group>"; };
 		5ABD0A5DAAA81DBD18A19A9F /* UILabel+TransparentFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+TransparentFactory.m"; sourceTree = "<group>"; };
 		5ABD0A68CFE2077350411196 /* DFRemoteImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFRemoteImageView.m; sourceTree = "<group>"; };
-		5ABD0A726406B6B31190777D /* DFPostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFPostViewController.m; sourceTree = "<group>"; };
 		5ABD0B03429B344424310AE3 /* DFRoundImageButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFRoundImageButton.h; sourceTree = "<group>"; };
 		5ABD0B35B0657307DD8BAA12 /* DFUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFUser.h; sourceTree = "<group>"; };
 		5ABD0BE71665872E411A941D /* UILabel+FitToBestSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+FitToBestSize.h"; sourceTree = "<group>"; };
@@ -176,15 +173,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5ABD03F956BC4DE6AE0691F2 /* Post */ = {
-			isa = PBXGroup;
-			children = (
-				5ABD0A726406B6B31190777D /* DFPostViewController.m */,
-				5ABD00A06DCE6709CD223EC3 /* DFPostViewController.h */,
-			);
-			path = Post;
-			sourceTree = "<group>";
-		};
 		5ABD045871C2BEC238F36057 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -365,7 +353,6 @@
 				5ABD0EACE6F63FE2526542A6 /* Extensions */,
 				5ABD08987ABDE28CFE1969D9 /* Resources */,
 				5ABD07D2016FDD043B8437C8 /* Common */,
-				5ABD03F956BC4DE6AE0691F2 /* Post */,
 				5ABD045871C2BEC238F36057 /* Models */,
 				5ABD0CC4A0FB8D250002209D /* User */,
 				5ABD0FD4DAF0BE8265CBFD26 /* Startup */,
@@ -577,7 +564,6 @@
 				5ABD008CD5561CB5ECB30A63 /* DFCoverView.m in Sources */,
 				5ABD07DD1E4E0F4DB6922D61 /* DFTimeLineCell.m in Sources */,
 				5ABD02474615AD0115E8F712 /* DFFooterView.m in Sources */,
-				5ABD0106734CF9F5B1F65BDA /* DFPostViewController.m in Sources */,
 				5ABD00BAF8FA072B823AEF73 /* DFPost.m in Sources */,
 				5ABD05B6D2810735E4EA9D81 /* DFUser.m in Sources */,
 				5ABD09895E4652BE633DDF4C /* DFRemoteImageView.m in Sources */,
