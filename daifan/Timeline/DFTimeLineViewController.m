@@ -30,7 +30,7 @@
 - (void)loadView {
     [super loadView];
 
-    self.tableView.separatorColor = [UIColor orangeColor];
+    _timelineView.separatorColor = [UIColor colorWithHexString:SEPARATOR_LINE_COLOR];
     self.tableView.allowsSelection = NO;
 
     self.refreshControl = [[UIRefreshControl alloc] init];

@@ -16,6 +16,7 @@
 #define COUNT_LABEL_COLOR @"#B7B7B7"
 #define COUNT_NUMBER_COLOR @"#557DE6"
 #define COMMENT_TEXT_COLOR @"#666666"
+#define SEPARATOR_LINE_COLOR @"#D8E2E6"
 
 #define kRESPONSE_ERROR @"error"
 #define kRESPONSE_SUCCESS @"success"
