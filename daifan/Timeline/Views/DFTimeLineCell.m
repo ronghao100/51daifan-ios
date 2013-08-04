@@ -135,8 +135,7 @@
 
         _bookButton.enabled = _post.count > _post.bookedCount;
 
-        NSString *formatedCount = [NSString stringWithFormat:@"总共%d 还剩%d", _post.count, _post.count - _post.bookedCount];
-        _countLabel.text = formatedCount;
+        [self displayFormattedCountLabel];
 
         _commentView.comments = _post.comments;
     } else {
@@ -150,7 +149,7 @@
 
         _bookButton.enabled = YES;
 
-        _countLabel.text = @"";
+        _countLabel.attributedText = nil;
 
         _commentView.comments = nil;
 
@@ -159,6 +158,23 @@
     }
 
     [self setNeedsLayout];
+}
+
+- (void)displayFormattedCountLabel {
+    NSString *formattedCount = [NSString stringWithFormat:@"总共%d 还剩%d", _post.count, _post.count - _post.bookedCount];
+
+    NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:formattedCount];
+
+    int countLength = (int)ceilf(log10f(_post.count));
+    int bookedLength = (int)ceilf(log10f(_post.bookedCount));
+
+    NSRange countRange = NSMakeRange(2, countLength);
+    NSRange bookedRange = NSMakeRange(formattedCount.length - bookedLength, bookedLength);
+
+    [attrString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHexString:COUNT_NUMBER_COLOR] range:countRange];
+    [attrString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHexString:COUNT_NUMBER_COLOR] range:bookedRange];
+
+    _countLabel.attributedText = attrString;
 }
 
 - (void)layoutSubviews {

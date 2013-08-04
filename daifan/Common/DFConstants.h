@@ -14,6 +14,7 @@
 #define NAME_LABEL_COLOR @"#5177D6"
 #define SUBTITLE_LABEL_COLOR @"#999999"
 #define COUNT_LABEL_COLOR @"#B7B7B7"
+#define COUNT_NUMBER_COLOR @"#557DE6"
 
 #define kRESPONSE_ERROR @"error"
 #define kRESPONSE_SUCCESS @"success"

@@ -135,6 +135,8 @@
                     [_posts addObject:[DFPost postFromDict:obj]];
                 }];
 
+                NSLog(@"time line count:%d.", _posts.count);
+
                 [_timelineView reloadData];
             } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
                 NSLog(@"time line failed. \n response: %@, error: %@, JSON: %@", response, error, JSON);
