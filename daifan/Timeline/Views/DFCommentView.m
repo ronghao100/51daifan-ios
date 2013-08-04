@@ -55,6 +55,7 @@
         NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:commentString];
 
         [attrString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHexString:NAME_LABEL_COLOR] range:NSMakeRange(0, userName.length)];
+        [attrString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHexString:COMMENT_TEXT_COLOR] range:NSMakeRange(userName.length, commentString.length - userName.length)];
 
         NSMutableParagraphStyle *paragraphStyle =[[NSMutableParagraphStyle alloc] init];
         paragraphStyle.alignment = NSTextAlignmentJustified;

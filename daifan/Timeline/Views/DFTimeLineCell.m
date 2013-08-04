@@ -165,8 +165,8 @@
 
     NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:formattedCount];
 
-    int countLength = (int)ceilf(log10f(_post.count));
-    int bookedLength = (int)ceilf(log10f(_post.bookedCount));
+    int countLength = _post.count > 0 ? (int)ceilf(log10f(_post.count)) : 1;
+    int bookedLength = _post.bookedCount > 0 ?(int)ceilf(log10f(_post.bookedCount)) : 1;
 
     NSRange countRange = NSMakeRange(2, countLength);
     NSRange bookedRange = NSMakeRange(formattedCount.length - bookedLength, bookedLength);
