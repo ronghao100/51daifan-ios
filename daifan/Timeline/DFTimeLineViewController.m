@@ -21,7 +21,7 @@
 - (id)init {
     self = [super init];
     if (self) {
-        self.title = @"51带饭";
+        self.title = @"51daifan";
 
         _posts = [[NSMutableArray alloc] init];
     }

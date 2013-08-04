@@ -7,6 +7,9 @@
 @property (nonatomic) CGFloat width;
 @property (nonatomic) CGFloat height;
 
+@property (nonatomic) CGFloat verticalCenter;
+@property (nonatomic) CGFloat horizontalCenter;
+
 @property (nonatomic, readonly) CGFloat right;
 @property (nonatomic, readonly) CGFloat bottom;
 

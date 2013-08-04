@@ -42,6 +42,28 @@
     self.frame = rect;
 }
 
+- (CGFloat)verticalCenter {
+    CGRect rect = self.frame;
+    return rect.origin.y + rect.size.height / 2.0f;
+}
+
+- (void)setVerticalCenter:(CGFloat)verticalCenter {
+    CGRect rect = self.frame;
+    rect.origin.y = verticalCenter - rect.size.height / 2.0f;
+    self.frame = rect;
+}
+
+- (CGFloat)horizontalCenter {
+    CGRect rect = self.frame;
+    return rect.origin.x + rect.size.width / 2.0f;
+}
+
+- (void)setHorizontalCenter:(CGFloat)horizontalCenter {
+    CGRect rect = self.frame;
+    rect.origin.x = horizontalCenter - rect.size.width / 2.0f;
+    self.frame = rect;
+}
+
 - (CGFloat)right {
     return self.left + self.width;
 }

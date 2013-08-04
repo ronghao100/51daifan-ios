@@ -12,6 +12,8 @@
 #define DEFAULT_TEXTFIELD_HEIGHT 31.0f
 
 #define NAME_LABEL_COLOR @"#5177D6"
+#define SUBTITLE_LABEL_COLOR @"#999999"
+#define COUNT_LABEL_COLOR @"#B7B7B7"
 
 #define kRESPONSE_ERROR @"error"
 #define kRESPONSE_SUCCESS @"success"
