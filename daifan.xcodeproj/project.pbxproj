@@ -13,6 +13,7 @@
 		5ABD0219560A9FDA03DA43E5 /* timeline@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ABD0C89BAD6517297984A61 /* timeline@2x.png */; };
 		5ABD02474615AD0115E8F712 /* DFFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD054696CBBA1EB8C1D0B6 /* DFFooterView.m */; };
 		5ABD0255E9584F9EEB2D7A92 /* book@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ABD04D7C32EBD018A98702A /* book@2x.png */; };
+		5ABD02A4AF053BA7D3D2F5A1 /* comment@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ABD0761BCE96C40C5A280B7 /* comment@2x.png */; };
 		5ABD02BAF1C0232D983FBB5E /* post@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ABD0F9DEC3587F3C4FAD89B /* post@2x.png */; };
 		5ABD0312510B9F3A79D04D99 /* uparrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ABD0036492C99FCCF11F565 /* uparrow@2x.png */; };
 		5ABD049EB03221867D7EF6D4 /* DFTimeLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD046338CD18526847EBE7 /* DFTimeLineViewController.m */; };
@@ -93,6 +94,7 @@
 		5ABD05A318C54E793EDAE3D1 /* UILabel+TransparentFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+TransparentFactory.h"; sourceTree = "<group>"; };
 		5ABD05F19FFFCB2383557E59 /* DFCommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFCommentView.m; sourceTree = "<group>"; };
 		5ABD06C53F0FD222E61215D7 /* DFPost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFPost.h; sourceTree = "<group>"; };
+		5ABD0761BCE96C40C5A280B7 /* comment@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "comment@2x.png"; sourceTree = "<group>"; };
 		5ABD07896831771B0DF85D31 /* DFTimeLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFTimeLineView.m; sourceTree = "<group>"; };
 		5ABD0838FAEEDD3C559AE726 /* DFCoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFCoverView.h; sourceTree = "<group>"; };
 		5ABD08A991343EC47B1066AB /* DFSplashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSplashViewController.m; sourceTree = "<group>"; };
@@ -221,6 +223,7 @@
 				5ABD0D33BC038027C32719F9 /* location@2x.png */,
 				5ABD04D7C32EBD018A98702A /* book@2x.png */,
 				5ABD035E9EA1C7D2404FDF12 /* nomore@2x.png */,
+				5ABD0761BCE96C40C5A280B7 /* comment@2x.png */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -494,6 +497,7 @@
 				5ABD00BB05CAB2B3F86AA83B /* location@2x.png in Resources */,
 				5ABD0255E9584F9EEB2D7A92 /* book@2x.png in Resources */,
 				5ABD09126878146977336DBE /* nomore@2x.png in Resources */,
+				5ABD02A4AF053BA7D3D2F5A1 /* comment@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

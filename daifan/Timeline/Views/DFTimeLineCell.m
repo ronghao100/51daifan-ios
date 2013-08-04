@@ -25,6 +25,8 @@
     UIImageView *_locationMark;
     UILabel *_addressLabel;
 
+    UIButton *_commentButton;
+
     UIButton *_bookButton;
 
     UILabel *_countLabel;
@@ -41,7 +43,7 @@
 
         _lineView.contentMode = UIViewContentModeScaleToFill;
         _lineView.frame = CGRectMake(MIDDLE_LINE_X, 0.0f, TIMELINE_WIDTH_NORMAL, self.frame.size.height);
-        [self addSubview:_lineView];
+//        [self addSubview:_lineView];
 
         _avatarView = [[DFRemoteImageView alloc] initWithFrame:CGRectMake(7.0f, 10.0f, 48.0f, 48.0f)];
         _avatarView.contentMode = UIViewContentModeScaleAspectFit;
@@ -70,6 +72,12 @@
         _addressLabel.font = [UIFont systemFontOfSize:9.0f];
         _addressLabel.textColor = [UIColor colorWithHexString:SUBTITLE_LABEL_COLOR];
         [self addSubview:_addressLabel];
+
+        _commentButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        UIImage *commentImage = [UIImage imageNamed:@"comment.png"];
+        [_commentButton setImage:commentImage forState:UIControlStateNormal];
+        _commentButton.frame = CGRectMake(278.0f, 0.0f, 44.0f, 44.0f);
+        [self addSubview:_commentButton];
 
         _bookButton = [UIButton buttonWithType:UIButtonTypeCustom];
         UIImage *bookImage = [UIImage imageNamed:@"book.png"];
@@ -168,6 +176,8 @@
     _addressLabel.top = _publishDateLabel.top;
     _addressLabel.left = _locationMark.right + 5.0f;
     [_addressLabel fitToBestSize];
+
+    _commentButton.verticalCenter = _publishDateLabel.verticalCenter;
 
     _bookButton.top = _publishDateLabel.bottom + INSET_Y;
 
