@@ -59,7 +59,7 @@
     UIButton *postButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [postButton setImage:[UIImage imageNamed:@"post.png"] forState:UIControlStateNormal];
     [postButton addTarget:self action:@selector(post) forControlEvents:UIControlEventTouchUpInside];
-    postButton.frame = CGRectMake(5.0f, 5.0f, 34.0f, 34.0f);
+    postButton.frame = CGRectMake(0.0f, 0.0f, 34.0f, 34.0f);
 
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:postButton];
 
