@@ -14,6 +14,7 @@
 		5ABD02474615AD0115E8F712 /* DFFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD054696CBBA1EB8C1D0B6 /* DFFooterView.m */; };
 		5ABD02BAF1C0232D983FBB5E /* post@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ABD0F9DEC3587F3C4FAD89B /* post@2x.png */; };
 		5ABD049EB03221867D7EF6D4 /* DFTimeLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD046338CD18526847EBE7 /* DFTimeLineViewController.m */; };
+		5ABD058B0FDFF38FD7673DF9 /* UILabel+TransparentFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD0A5DAAA81DBD18A19A9F /* UILabel+TransparentFactory.m */; };
 		5ABD05B6D2810735E4EA9D81 /* DFUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD0F7407CCEAA83B241D0B /* DFUser.m */; };
 		5ABD07DD1E4E0F4DB6922D61 /* DFTimeLineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD04B0B6BC93931CEED6CD /* DFTimeLineCell.m */; };
 		5ABD07F917812EDA4A897EF6 /* DFTimeLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD07896831771B0DF85D31 /* DFTimeLineView.m */; };
@@ -84,11 +85,13 @@
 		5ABD0510972187BB757FA3D3 /* DFSplashViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFSplashViewController.h; sourceTree = "<group>"; };
 		5ABD054696CBBA1EB8C1D0B6 /* DFFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFFooterView.m; sourceTree = "<group>"; };
 		5ABD0592B66C0D6B2FCA5CEC /* DFRemoteImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFRemoteImageView.h; sourceTree = "<group>"; };
+		5ABD05A318C54E793EDAE3D1 /* UILabel+TransparentFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+TransparentFactory.h"; sourceTree = "<group>"; };
 		5ABD05F19FFFCB2383557E59 /* DFCommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFCommentView.m; sourceTree = "<group>"; };
 		5ABD06C53F0FD222E61215D7 /* DFPost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFPost.h; sourceTree = "<group>"; };
 		5ABD07896831771B0DF85D31 /* DFTimeLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFTimeLineView.m; sourceTree = "<group>"; };
 		5ABD0838FAEEDD3C559AE726 /* DFCoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFCoverView.h; sourceTree = "<group>"; };
 		5ABD08A991343EC47B1066AB /* DFSplashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSplashViewController.m; sourceTree = "<group>"; };
+		5ABD0A5DAAA81DBD18A19A9F /* UILabel+TransparentFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+TransparentFactory.m"; sourceTree = "<group>"; };
 		5ABD0A68CFE2077350411196 /* DFRemoteImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFRemoteImageView.m; sourceTree = "<group>"; };
 		5ABD0A726406B6B31190777D /* DFPostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFPostViewController.m; sourceTree = "<group>"; };
 		5ABD0B03429B344424310AE3 /* DFRoundImageButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFRoundImageButton.h; sourceTree = "<group>"; };
@@ -288,6 +291,8 @@
 				5ABD0BE71665872E411A941D /* UILabel+FitToBestSize.h */,
 				5ABD007B5111418CFD24FEA1 /* UIView+Frame.m */,
 				5ABD0C052847B0FFAFA54CE7 /* UIView+Frame.h */,
+				5ABD0A5DAAA81DBD18A19A9F /* UILabel+TransparentFactory.m */,
+				5ABD05A318C54E793EDAE3D1 /* UILabel+TransparentFactory.h */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -569,6 +574,7 @@
 				5ABD089E9C2730CEFB2354F9 /* DFCommentView.m in Sources */,
 				5ABD09D779A74D3455653968 /* UILabel+FitToBestSize.m in Sources */,
 				5ABD0BC6C244536A4EE26FCE /* UIView+Frame.m in Sources */,
+				5ABD058B0FDFF38FD7673DF9 /* UILabel+TransparentFactory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

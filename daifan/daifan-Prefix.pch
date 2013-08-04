@@ -20,5 +20,6 @@
     #import "UIColor+Hex.h"
     #import "UIScreen+ApplicationBounds.h"
     #import "UILabel+FitToBestSize.h"
+    #import "UILabel+TransparentFactory.h"
     #import "UIView+Frame.h"
 #endif

@@ -48,7 +48,7 @@
     _timelineView.tableFooterView = footerView;
 
     self.view = _timelineView;
-    self.view.backgroundColor = [UIColor colorWithHexString:@"#E0E0E0"];
+    self.view.backgroundColor = [UIColor whiteColor];
 
     _timeScroller = [[ACTimeScroller alloc] initWithDelegate:self];
 }

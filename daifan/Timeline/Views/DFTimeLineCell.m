@@ -38,23 +38,21 @@
         _avatarView.backgroundColor = [UIColor orangeColor];
         [self addSubview:_avatarView];
 
-        _userNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(75.0f, 9.0f, LABEL_WIDTH, 20.0f)];
-        _userNameLabel.backgroundColor = [UIColor clearColor];
+        _userNameLabel = [UILabel transparentLabelWithFrame:CGRectMake(75.0f, 9.0f, LABEL_WIDTH, 20.0f)];
+        _userNameLabel.font = [UIFont boldSystemFontOfSize:[UIFont labelFontSize]];
+        _userNameLabel.textColor = [UIColor colorWithHexString:@"#5177D6"];
         [self addSubview:_userNameLabel];
 
-        _addressLabel = [[UILabel alloc] initWithFrame:CGRectMake(75.0f, 35.0f, LABEL_WIDTH, 20.0f)];
-        _addressLabel.backgroundColor = [UIColor clearColor];
+        _addressLabel = [UILabel transparentLabelWithFrame:CGRectMake(75.0f, 35.0f, LABEL_WIDTH, 20.0f)];
         [self addSubview:_addressLabel];
 
-        _postNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(75.0f, 0.0f, LABEL_WIDTH, 0.0f)];
+        _postNameLabel = [UILabel transparentLabelWithFrame:CGRectMake(75.0f, 0.0f, LABEL_WIDTH, 0.0f)];
         _postNameLabel.font = [UIFont boldSystemFontOfSize:[UIFont labelFontSize]];
         _postNameLabel.numberOfLines = 0;
-        _postNameLabel.backgroundColor = [UIColor clearColor];
         [self addSubview:_postNameLabel];
 
-        _contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(75.0f, 0.0f, LABEL_WIDTH, 0.0f)];
+        _contentLabel = [UILabel transparentLabelWithFrame:CGRectMake(75.0f, 0.0f, LABEL_WIDTH, 0.0f)];
         _contentLabel.numberOfLines = 0;
-        _contentLabel.backgroundColor = [UIColor clearColor];
         [self addSubview:_contentLabel];
 
         _commentView = [[DFCommentView alloc] initWithFrame:CGRectMake(75.0f, 0.0f, LABEL_WIDTH, 0.0f)];
