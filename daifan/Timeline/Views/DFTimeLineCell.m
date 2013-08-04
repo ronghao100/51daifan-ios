@@ -6,7 +6,8 @@
 #import "DFCommentView.h"
 
 #define INSET_Y 5.0f
-#define LABEL_WIDTH 235.0f
+#define LABEL_WIDTH 248.0f
+#define MIDDLE_LINE_X 62.0f
 
 @implementation DFTimeLineCell {
     UIImageView *_lineView;
@@ -30,32 +31,32 @@
         _lineView = [[UIImageView alloc] initWithImage:line];
 
         _lineView.contentMode = UIViewContentModeScaleToFill;
-        _lineView.frame = CGRectMake(66.0f, 0.0f, TIMELINE_WIDTH_NORMAL, self.frame.size.height);
+        _lineView.frame = CGRectMake(MIDDLE_LINE_X, 0.0f, TIMELINE_WIDTH_NORMAL, self.frame.size.height);
         [self addSubview:_lineView];
 
-        _avatarView = [[DFRemoteImageView alloc] initWithFrame:CGRectMake(9.0f, 9.0f, 48.0f, 48.0f)];
+        _avatarView = [[DFRemoteImageView alloc] initWithFrame:CGRectMake(7.0f, 10.0f, 48.0f, 48.0f)];
         _avatarView.contentMode = UIViewContentModeScaleAspectFit;
         _avatarView.backgroundColor = [UIColor orangeColor];
         [self addSubview:_avatarView];
 
-        _userNameLabel = [UILabel transparentLabelWithFrame:CGRectMake(75.0f, 9.0f, LABEL_WIDTH, 20.0f)];
+        _userNameLabel = [UILabel transparentLabelWithFrame:CGRectMake(MIDDLE_LINE_X, 10.0f, LABEL_WIDTH, 20.0f)];
         _userNameLabel.font = [UIFont boldSystemFontOfSize:[UIFont labelFontSize]];
-        _userNameLabel.textColor = [UIColor colorWithHexString:@"#5177D6"];
+        _userNameLabel.textColor = [UIColor colorWithHexString:NAME_LABEL_COLOR];
         [self addSubview:_userNameLabel];
 
-        _addressLabel = [UILabel transparentLabelWithFrame:CGRectMake(75.0f, 35.0f, LABEL_WIDTH, 20.0f)];
+        _addressLabel = [UILabel transparentLabelWithFrame:CGRectMake(MIDDLE_LINE_X, 35.0f, LABEL_WIDTH, 20.0f)];
         [self addSubview:_addressLabel];
 
-        _postNameLabel = [UILabel transparentLabelWithFrame:CGRectMake(75.0f, 0.0f, LABEL_WIDTH, 0.0f)];
+        _postNameLabel = [UILabel transparentLabelWithFrame:CGRectMake(MIDDLE_LINE_X, 0.0f, LABEL_WIDTH, 0.0f)];
         _postNameLabel.font = [UIFont boldSystemFontOfSize:[UIFont labelFontSize]];
         _postNameLabel.numberOfLines = 0;
         [self addSubview:_postNameLabel];
 
-        _contentLabel = [UILabel transparentLabelWithFrame:CGRectMake(75.0f, 0.0f, LABEL_WIDTH, 0.0f)];
+        _contentLabel = [UILabel transparentLabelWithFrame:CGRectMake(MIDDLE_LINE_X, 0.0f, LABEL_WIDTH, 0.0f)];
         _contentLabel.numberOfLines = 0;
         [self addSubview:_contentLabel];
 
-        _commentView = [[DFCommentView alloc] initWithFrame:CGRectMake(75.0f, 0.0f, LABEL_WIDTH, 0.0f)];
+        _commentView = [[DFCommentView alloc] initWithFrame:CGRectMake(MIDDLE_LINE_X, 0.0f, LABEL_WIDTH, 0.0f)];
         [self addSubview:_commentView];
     }
 
@@ -108,7 +109,7 @@
 
     _commentView.top = _contentLabel.bottom + INSET_Y;
 
-    CGFloat totalHeight = 9.0f + 20.0f + INSET_Y + 20.0f + INSET_Y + _postNameLabel.height + INSET_Y + _contentLabel.height + INSET_Y + _commentView.height + 9.0f;
+    CGFloat totalHeight = 10.0f + 20.0f + INSET_Y + 20.0f + INSET_Y + _postNameLabel.height + INSET_Y + _contentLabel.height + INSET_Y + _commentView.height + 10.0f;
 
     self.height = totalHeight;
     _lineView.height = totalHeight;
@@ -123,7 +124,7 @@
 
     NSLog(@"comment height: %f", commentView.height);
 
-    return 9.0f + 20.0f + INSET_Y + 20.0f + INSET_Y + nameHeight + INSET_Y + contentHeight + INSET_Y + commentView.height + 9.0f;
+    return 10.0f + 20.0f + INSET_Y + 20.0f + INSET_Y + nameHeight + INSET_Y + contentHeight + INSET_Y + commentView.height + 10.0f;
 }
 
 @end

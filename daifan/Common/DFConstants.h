@@ -11,6 +11,8 @@
 #define DEFAULT_BUTTON_HEIGHT 44.0f
 #define DEFAULT_TEXTFIELD_HEIGHT 31.0f
 
+#define NAME_LABEL_COLOR @"#5177D6"
+
 #define kRESPONSE_ERROR @"error"
 #define kRESPONSE_SUCCESS @"success"
 #define kRESPONSE_USER @"user"

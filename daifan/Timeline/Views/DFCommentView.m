@@ -3,6 +3,7 @@
 #import "DFUserList.h"
 
 #define INSET_Y 5.0f
+#define PADDING 10.0f
 
 @implementation DFCommentView {
 
@@ -11,7 +12,7 @@
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor clearColor];
+        self.backgroundColor = [UIColor colorWithHexString:@"#EBEBEB"];
     }
 
     return self;
@@ -33,16 +34,19 @@
         DFComment *comment = (DFComment *)obj;
 
         NSString *userName = [[DFUserList sharedList] userNameByID:comment.uid];
-        NSString *commentString = [NSString stringWithFormat:@"%@ %@", userName, comment.content];
+        NSString *commentString = [NSString stringWithFormat:@"%@: %@", userName, comment.content];
 
-        NSRange nameRange = NSMakeRange(0, userName.length);
         NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:commentString];
-        [attrString addAttribute:NSForegroundColorAttributeName value:[UIColor blueColor] range:nameRange];
 
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, yOffset, self.width, 0.0f)];
-        label.backgroundColor = [UIColor clearColor];
+        [attrString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHexString:NAME_LABEL_COLOR] range:NSMakeRange(0, userName.length)];
+
+        NSMutableParagraphStyle *paragraphStyle =[[NSMutableParagraphStyle alloc] init];
+        paragraphStyle.alignment = NSTextAlignmentJustified;
+        paragraphStyle.lineBreakMode = NSLineBreakByCharWrapping;
+        [attrString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, commentString.length)];
+
+        UILabel *label = [UILabel transparentLabelWithFrame:CGRectMake(PADDING, yOffset, self.width - PADDING * 2.0f, 0.0f)];
         label.numberOfLines = 0;
-        label.lineBreakMode = NSLineBreakByCharWrapping;
         label.attributedText = attrString;
 
         [label fitToBestSize];
