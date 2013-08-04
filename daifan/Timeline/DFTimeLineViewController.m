@@ -29,6 +29,10 @@
     return self;
 }
 
+- (void)post {
+
+}
+
 - (void)loadView {
     _timelineView = [[DFTimeLineView alloc] initWithFrame:[UIScreen mainScreen].applicationBounds];
     _timelineView.delegate = self;
@@ -51,6 +55,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    UIButton *postButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [postButton setImage:[UIImage imageNamed:@"post.png"] forState:UIControlStateNormal];
+    [postButton addTarget:self action:@selector(post) forControlEvents:UIControlEventTouchUpInside];
+    postButton.frame = CGRectMake(5.0f, 5.0f, 34.0f, 34.0f);
+
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:postButton];
 
     [self loadList];
 }
