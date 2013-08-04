@@ -8,6 +8,8 @@
 #define INSET_Y 5.0f
 #define LABEL_WIDTH 248.0f
 #define MIDDLE_LINE_X 62.0f
+#define PADDING 10.0f
+
 
 @implementation DFTimeLineCell {
     UIImageView *_lineView;
@@ -107,9 +109,16 @@
     _contentLabel.top = _postNameLabel.bottom + INSET_Y;
     [_contentLabel fitToBestSize];
 
-    _commentView.top = _contentLabel.bottom + INSET_Y;
+    CGFloat commentViewHeight = 0.0f;
+    if (_post.comments.count > 0) {
+        _commentView.hidden = NO;
+        _commentView.top = _contentLabel.bottom + INSET_Y;
+        commentViewHeight = _commentView.height;
+    } else {
+        _commentView.hidden = YES;
+    }
 
-    CGFloat totalHeight = 10.0f + 20.0f + INSET_Y + 20.0f + INSET_Y + _postNameLabel.height + INSET_Y + _contentLabel.height + INSET_Y + _commentView.height + 10.0f;
+    CGFloat totalHeight = PADDING + 20.0f + INSET_Y + 20.0f + INSET_Y + _postNameLabel.height + INSET_Y + _contentLabel.height + INSET_Y + commentViewHeight + PADDING;
 
     self.height = totalHeight;
     _lineView.height = totalHeight;
@@ -119,12 +128,14 @@
     CGFloat nameHeight = [post.nameWithEatDate sizeWithFont:[UIFont boldSystemFontOfSize:[UIFont labelFontSize]] constrainedToSize:CGSizeMake(LABEL_WIDTH, CGFLOAT_MAX)].height;
     CGFloat contentHeight = [post.content sizeWithFont:[UIFont systemFontOfSize:[UIFont labelFontSize]] constrainedToSize:CGSizeMake(LABEL_WIDTH, CGFLOAT_MAX)].height;
 
-    DFCommentView *commentView = [[DFCommentView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, LABEL_WIDTH, 0.0f)];
-    commentView.comments = post.comments;
+    CGFloat commentViewHeight = 0.0f;
+    if (post.comments.count > 0) {
+        DFCommentView *commentView = [[DFCommentView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, LABEL_WIDTH, 0.0f)];
+        commentView.comments = post.comments;
+        commentViewHeight = commentView.height;
+    }
 
-    NSLog(@"comment height: %f", commentView.height);
-
-    return 10.0f + 20.0f + INSET_Y + 20.0f + INSET_Y + nameHeight + INSET_Y + contentHeight + INSET_Y + commentView.height + 10.0f;
+    return PADDING + 20.0f + INSET_Y + 20.0f + INSET_Y + nameHeight + INSET_Y + contentHeight + INSET_Y + commentViewHeight + PADDING;
 }
 
 @end

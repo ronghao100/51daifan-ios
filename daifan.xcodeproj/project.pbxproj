@@ -13,6 +13,7 @@
 		5ABD0219560A9FDA03DA43E5 /* timeline@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ABD0C89BAD6517297984A61 /* timeline@2x.png */; };
 		5ABD02474615AD0115E8F712 /* DFFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD054696CBBA1EB8C1D0B6 /* DFFooterView.m */; };
 		5ABD02BAF1C0232D983FBB5E /* post@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ABD0F9DEC3587F3C4FAD89B /* post@2x.png */; };
+		5ABD0312510B9F3A79D04D99 /* uparrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ABD0036492C99FCCF11F565 /* uparrow@2x.png */; };
 		5ABD049EB03221867D7EF6D4 /* DFTimeLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD046338CD18526847EBE7 /* DFTimeLineViewController.m */; };
 		5ABD058B0FDFF38FD7673DF9 /* UILabel+TransparentFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD0A5DAAA81DBD18A19A9F /* UILabel+TransparentFactory.m */; };
 		5ABD05B6D2810735E4EA9D81 /* DFUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD0F7407CCEAA83B241D0B /* DFUser.m */; };
@@ -67,6 +68,7 @@
 /* Begin PBXFileReference section */
 		2DFF4B995E104D65A93F501A /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		4901EC8B88EC476A8E2682EF /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5ABD0036492C99FCCF11F565 /* uparrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "uparrow@2x.png"; sourceTree = "<group>"; };
 		5ABD007B5111418CFD24FEA1 /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
 		5ABD00A06DCE6709CD223EC3 /* DFPostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFPostViewController.h; sourceTree = "<group>"; };
 		5ABD01135129DFE937DD090F /* DFPost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFPost.m; sourceTree = "<group>"; };
@@ -221,6 +223,7 @@
 				5ABD081A36FE6F5CE68FC6B9 /* Logo */,
 				5ABD0D882B28307EAF462E94 /* navigationBar@2x.png */,
 				5ABD0BBC8EB8BAC431590D9E /* Icons */,
+				5ABD0036492C99FCCF11F565 /* uparrow@2x.png */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -491,6 +494,7 @@
 				5ABD09C6367AAFC5C2F71204 /* navigationBar@2x.png in Resources */,
 				F1F7AB33179289DC002D1B33 /* Default.png in Resources */,
 				5ABD02BAF1C0232D983FBB5E /* post@2x.png in Resources */,
+				5ABD0312510B9F3A79D04D99 /* uparrow@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

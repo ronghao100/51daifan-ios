@@ -6,13 +6,29 @@
 #define PADDING 10.0f
 
 @implementation DFCommentView {
+    UIImageView *_arrowView;
+    UIView *_contentView;
 
+    CGFloat _arrowHeight;
 }
 
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor colorWithHexString:@"#EBEBEB"];
+        self.backgroundColor = [UIColor clearColor];
+
+        _arrowView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"uparrow.png"]];
+        _arrowView.left = 12.0f;
+        _arrowView.top = 0.0f;
+        [self addSubview:_arrowView];
+
+        _arrowHeight = _arrowView.height;
+
+        _contentView = [[UIView alloc] initWithFrame:self.frame];
+        _contentView.left = 0.0f;
+        _contentView.top = _arrowHeight;
+        _contentView.backgroundColor = [UIColor colorWithHexString:@"#EBEBEB"];
+        [self addSubview:_contentView];
     }
 
     return self;
@@ -25,11 +41,11 @@
 }
 
 - (void)refresh {
-    [self.subviews enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+    [_contentView.subviews enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         [obj removeFromSuperview];
     }];
 
-    __block CGFloat yOffset = 0.0f;
+    __block CGFloat yOffset = PADDING;
     [_comments enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         DFComment *comment = (DFComment *)obj;
 
@@ -53,10 +69,11 @@
 
         yOffset += label.height + INSET_Y;
 
-        [self addSubview:label];
+        [_contentView addSubview:label];
     }];
 
-    self.height = yOffset;
+    _contentView.height = yOffset + PADDING;
+    self.height = _arrowHeight + _contentView.height;
 
     [self setNeedsLayout];
 }
