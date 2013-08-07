@@ -55,9 +55,8 @@
     return [NSString stringWithFormat:@"%@ 带 %@", date, self.name];
 }
 
-
 - (NSString *)description {
-    return [NSString stringWithFormat:@"Post name:%@, desc:%@, publishDate:%@, eatDate:%@", self.name, self.content, self.publishDate, self.eatDate];
+    return [NSString stringWithFormat:@"Post id:%d, name:%@, desc:%@, publishDate:%@, eatDate:%@", self.identity, self.name, self.content, self.publishDate, self.eatDate];
 }
 
 

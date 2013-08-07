@@ -138,6 +138,8 @@
         [self displayFormattedCountLabel];
 
         _commentView.comments = _post.comments;
+
+        [self setNeedsLayout];
     } else {
         _userNameLabel.text = @"";
         _contentLabel.text = @"";
@@ -156,8 +158,6 @@
         [_avatarView stopLoading];
         _avatarView.image = nil;
     }
-
-    [self setNeedsLayout];
 }
 
 - (void)displayFormattedCountLabel {

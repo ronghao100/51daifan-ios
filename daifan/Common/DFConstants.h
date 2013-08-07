@@ -29,7 +29,7 @@
 
 #define API_POST_PATH @"/api/posts"
 #define API_POST_NEW_LIST_PARAMETER @"?type=0"
-#define API_POST_NEWER_LIST_PARAMETER @"?type=1&currentId=%d"
+#define API_POST_NEWER_LIST_PARAMETER @"?type=1&currentId=%ld"
 #define API_POST_OLDER_LIST_PARAMETER @"?type=2&currentId=%d"
 
 #define API_LOGIN_PATH @"/api/login"

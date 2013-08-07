@@ -38,12 +38,16 @@
 }
 
 - (void)loadImageFromURL:(NSURL *)imageURL {
-    NSURLRequest *request = [NSURLRequest requestWithURL:imageURL];
-    _operation = [AFImageRequestOperation imageRequestOperationWithRequest:request success:^(UIImage *image) {
-        self.image = image;
-    }];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSURLRequest *request = [NSURLRequest requestWithURL:imageURL];
+        _operation = [AFImageRequestOperation imageRequestOperationWithRequest:request success:^(UIImage *image) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.image = image;
+            });
+        }];
 
-    [_operation start];
+        [_operation start];
+    });
 }
 
 - (void)stopLoading {
