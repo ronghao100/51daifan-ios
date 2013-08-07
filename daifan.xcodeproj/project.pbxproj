@@ -20,7 +20,6 @@
 		5ABD058B0FDFF38FD7673DF9 /* UILabel+TransparentFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD0A5DAAA81DBD18A19A9F /* UILabel+TransparentFactory.m */; };
 		5ABD05B6D2810735E4EA9D81 /* DFUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD0F7407CCEAA83B241D0B /* DFUser.m */; };
 		5ABD07DD1E4E0F4DB6922D61 /* DFTimeLineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD04B0B6BC93931CEED6CD /* DFTimeLineCell.m */; };
-		5ABD07F917812EDA4A897EF6 /* DFTimeLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD07896831771B0DF85D31 /* DFTimeLineView.m */; };
 		5ABD089E9C2730CEFB2354F9 /* DFCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD05F19FFFCB2383557E59 /* DFCommentView.m */; };
 		5ABD09126878146977336DBE /* nomore@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ABD035E9EA1C7D2404FDF12 /* nomore@2x.png */; };
 		5ABD09895E4652BE633DDF4C /* DFRemoteImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD0A68CFE2077350411196 /* DFRemoteImageView.m */; };
@@ -95,7 +94,6 @@
 		5ABD05F19FFFCB2383557E59 /* DFCommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFCommentView.m; sourceTree = "<group>"; };
 		5ABD06C53F0FD222E61215D7 /* DFPost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFPost.h; sourceTree = "<group>"; };
 		5ABD0761BCE96C40C5A280B7 /* comment@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "comment@2x.png"; sourceTree = "<group>"; };
-		5ABD07896831771B0DF85D31 /* DFTimeLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFTimeLineView.m; sourceTree = "<group>"; };
 		5ABD0838FAEEDD3C559AE726 /* DFCoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFCoverView.h; sourceTree = "<group>"; };
 		5ABD08A991343EC47B1066AB /* DFSplashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSplashViewController.m; sourceTree = "<group>"; };
 		5ABD0A5DAAA81DBD18A19A9F /* UILabel+TransparentFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+TransparentFactory.m"; sourceTree = "<group>"; };
@@ -117,7 +115,6 @@
 		5ABD0E82821FE604DD076BBA /* DFFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFFooterView.h; sourceTree = "<group>"; };
 		5ABD0F7407CCEAA83B241D0B /* DFUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFUser.m; sourceTree = "<group>"; };
 		5ABD0F9DEC3587F3C4FAD89B /* post@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "post@2x.png"; sourceTree = "<group>"; };
-		5ABD0FA18B315F6DF6CB8EDA /* DFTimeLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFTimeLineView.h; sourceTree = "<group>"; };
 		F11AEE79178068F40008082E /* daifan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = daifan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F11AEE7C178068F40008082E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		F11AEE7E178068F40008082E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -260,8 +257,6 @@
 		5ABD0C89CE83DFE585A39B66 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				5ABD07896831771B0DF85D31 /* DFTimeLineView.m */,
-				5ABD0FA18B315F6DF6CB8EDA /* DFTimeLineView.h */,
 				5ABD04E86861D1A6E329079D /* DFCoverView.m */,
 				5ABD0838FAEEDD3C559AE726 /* DFCoverView.h */,
 				5ABD04B0B6BC93931CEED6CD /* DFTimeLineCell.m */,
@@ -564,7 +559,6 @@
 				F11AEE8D178068F50008082E /* DFAppDelegate.m in Sources */,
 				5ABD049EB03221867D7EF6D4 /* DFTimeLineViewController.m in Sources */,
 				5ABD09B202FDD56A846FBA1C /* UIColor+Hex.m in Sources */,
-				5ABD07F917812EDA4A897EF6 /* DFTimeLineView.m in Sources */,
 				5ABD008CD5561CB5ECB30A63 /* DFCoverView.m in Sources */,
 				5ABD07DD1E4E0F4DB6922D61 /* DFTimeLineCell.m in Sources */,
 				5ABD02474615AD0115E8F712 /* DFFooterView.m in Sources */,

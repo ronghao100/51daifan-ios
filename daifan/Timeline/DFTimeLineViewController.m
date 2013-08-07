@@ -1,8 +1,5 @@
 #import "DFTimeLineViewController.h"
-#import "DFTimeLineView.h"
-#import "DFCoverView.h"
 #import "DFTimeLineCell.h"
-#import "DFFooterView.h"
 #import "DFPost.h"
 #import "AFJSONRequestOperation.h"
 #import "DFUserList.h"
@@ -10,7 +7,6 @@
 #define TIMELINE_CELL_ID @"timeLineCellIdentifier"
 
 @implementation DFTimeLineViewController {
-    DFTimeLineView *_timelineView;
     ACTimeScroller *_timeScroller;
 
     NSMutableArray *_posts;
@@ -32,13 +28,13 @@
 }
 
 - (void)loadView {
-    _timelineView = [[DFTimeLineView alloc] initWithFrame:[UIScreen mainScreen].applicationBounds];
-    _timelineView.delegate = self;
-    _timelineView.dataSource = self;
-    _timelineView.separatorColor = [UIColor orangeColor];
-    _timelineView.allowsSelection = NO;
+    [super loadView];
 
-    [_timelineView registerClass:[DFTimeLineCell class] forCellReuseIdentifier:TIMELINE_CELL_ID];
+    self.tableView.separatorColor = [UIColor orangeColor];
+    self.tableView.allowsSelection = NO;
+
+
+    [self.tableView registerClass:[DFTimeLineCell class] forCellReuseIdentifier:TIMELINE_CELL_ID];
 
 //    DFCoverView *coverView = [[DFCoverView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, _timelineView.frame.size.width, COVER_VIEW_HEIGHT)];
 //    _timelineView.tableHeaderView = coverView;
@@ -46,7 +42,6 @@
 //    DFFooterView *footerView = [[DFFooterView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, _timelineView.frame.size.width, FOOTER_VIEW_HEIGHT)];
 //    _timelineView.tableFooterView = footerView;
 
-    self.view = _timelineView;
     self.view.backgroundColor = [UIColor whiteColor];
 
     _timeScroller = [[ACTimeScroller alloc] initWithDelegate:self];
@@ -89,14 +84,14 @@
 #pragma mark - Time Scroller Delegate
 
 - (UITableView *)tableViewForTimeScroller:(ACTimeScroller *)timeScroller {
-    return _timelineView;
+    return self.tableView;
 }
 
 - (NSDate *)timeScroller:(ACTimeScroller *)timeScroller dateForCell:(UITableViewCell *)cell {
     if (!cell)
         return [NSDate date];
 
-    NSIndexPath *indexPath = [_timelineView indexPathForCell:cell];
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     DFPost *post = [_posts objectAtIndex:indexPath.row];
     return post.publishDate;
 }
@@ -137,7 +132,7 @@
 
                 NSLog(@"time line count:%d.", _posts.count);
 
-                [_timelineView reloadData];
+                [self.tableView reloadData];
             } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
                 NSLog(@"time line failed. \n response: %@, error: %@, JSON: %@", response, error, JSON);
             }];
