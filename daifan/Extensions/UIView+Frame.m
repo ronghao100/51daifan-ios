@@ -68,8 +68,20 @@
     return self.left + self.width;
 }
 
+- (void)setRight:(CGFloat)right {
+    CGRect rect = self.frame;
+    rect.origin.x = right - rect.size.width;
+    self.frame = rect;
+}
+
 - (CGFloat)bottom {
     return self.top + self.height;
+}
+
+- (void)setBottom:(CGFloat)bottom {
+    CGRect rect = self.frame;
+    rect.origin.y = bottom - rect.size.height;
+    self.frame = rect;
 }
 
 

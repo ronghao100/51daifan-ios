@@ -10,7 +10,7 @@
 @property (nonatomic) CGFloat verticalCenter;
 @property (nonatomic) CGFloat horizontalCenter;
 
-@property (nonatomic, readonly) CGFloat right;
-@property (nonatomic, readonly) CGFloat bottom;
+@property (nonatomic) CGFloat right;
+@property (nonatomic) CGFloat bottom;
 
 @end
