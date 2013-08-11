@@ -20,9 +20,8 @@
     
     [BPush setupChannel:launchOptions];
     [BPush setDelegate:self];
-    //[BPush setAccessToken:@"3.536568bf6a653bcf373879f98250f0f9.2592000.1369200738.282335-313751"];
     
-    [application setApplicationIconBadgeNumber:1];
+    [application setApplicationIconBadgeNumber:0];
     [application registerForRemoteNotificationTypes:
      UIRemoteNotificationTypeAlert
      | UIRemoteNotificationTypeBadge
@@ -31,11 +30,29 @@
     return YES;
 }
 
-- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+- (void)onMethod:(NSString*)method response:(NSDictionary*)data {
+    NSLog(@"pushed method: %@, data: %@", method, data);
     
+    if ([BPushRequestMethod_Bind isEqualToString:method]) {
+        NSDictionary* res = [[NSDictionary alloc] initWithDictionary:data];
+        NSString *appid = [res valueForKey:BPushRequestAppIdKey];
+        NSString *userid = [res valueForKey:BPushRequestUserIdKey];
+        NSString *channelid = [res valueForKey:BPushRequestChannelIdKey];
+        int returnCode = [[res valueForKey:BPushRequestErrorCodeKey] intValue];
+        NSString *requestid = [res valueForKey:BPushRequestRequestIdKey];
+    }
+}
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     NSLog(@"deviceToken:%@",deviceToken);
     [BPush registerDeviceToken: deviceToken];
+    [BPush bindChannel];
 }
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+    NSLog(@"failed to register for PN with error: %@", error);
+}
+
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     NSLog(@"Receive Notify: %@", [userInfo JSONString]);
