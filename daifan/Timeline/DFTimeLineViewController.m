@@ -12,6 +12,9 @@
 
     NSMutableArray *_posts;
     DFFooterView *_footerView;
+
+    int _newestPostID;
+    int _oldestPostID;
 }
 
 - (id)init {
@@ -64,6 +67,7 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:postButton];
 
     [self loadList];
+    [_footerView endRefreshing];
 }
 
 #pragma mark - table view data source & delegate

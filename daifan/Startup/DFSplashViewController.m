@@ -8,18 +8,17 @@
 }
 
 - (void)loadView {
-    self.view = [[UIView alloc] initWithFrame:[UIScreen mainScreen].applicationBounds];
+    self.view = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
 
-    UIImageView *splash = [[UIImageView alloc] initWithFrame:self.view.bounds];
+    NSString *splashImageName = [NSString stringWithFormat:@"Default%@.png", self.view.bounds.size.height == 568.0f ? @"-568h" : @""];
+
+    UIImageView *splash = [[UIImageView alloc] initWithImage:[UIImage imageNamed:splashImageName]];
     [self.view addSubview:splash];
     splash.contentMode = UIViewContentModeCenter;
 
-    NSString *splashImageName = [NSString stringWithFormat:@"Default%@.png", self.view.bounds.size.height == 568.0f ? @"-568h" : @""];
-    splash.image = [UIImage imageNamed:splashImageName];
-
     UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     [self.view addSubview:indicator];
-    indicator.frame = CGRectMake(140.0f, 380.0f, indicator.frame.size.width, indicator.frame.size.height);
+    indicator.frame = CGRectMake(140.0f, 260.0f, indicator.frame.size.width, indicator.frame.size.height);
     [indicator startAnimating];
 }
 
@@ -32,6 +31,10 @@
 }
 
 - (void)checkAccount {
+#ifdef DEBUG
+    [NSThread sleepForTimeInterval:2];
+#endif
+    
     NSArray *accounts = [SSKeychain accountsForService:kKEYCHAIN_SERVICE];
 
     if (accounts.count <= 0) {

@@ -16,20 +16,20 @@
         CGFloat backgroundHeight = [UIScreen mainScreen].bounds.size.height * 2.0f;
 
         UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, backgroundWidth, backgroundHeight)];
-        bgView.backgroundColor = [UIColor blueColor];
+        bgView.backgroundColor = [UIColor clearColor];
         [self addSubview:bgView];
 
-        _messageLabel = [UILabel transparentLabelWithFrame:CGRectMake(0.0f, 0.0f, backgroundWidth, 12.0f)];
-        _messageLabel.font = [UIFont boldSystemFontOfSize:12.0f];
-        _messageLabel.textAlignment = NSTextAlignmentCenter;
+        _messageLabel = [UILabel transparentLabelWithFrame:CGRectMake(141.0f, 0.0f, 160.0f, 12.0f)];
+        _messageLabel.font = [UIFont boldSystemFontOfSize:13.0f];
+        _messageLabel.textAlignment = NSTextAlignmentLeft;
         _messageLabel.text = @"";
-        _messageLabel.bottom = FOOTER_VIEW_HEIGHT / 2.0f - 5.0f;
+        _messageLabel.bottom = FOOTER_VIEW_HEIGHT / 2.0f;
         [self addSubview:_messageLabel];
 
         _activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
         [_activityIndicator stopAnimating];
-        _activityIndicator.horizontalCenter = backgroundWidth / 2.0f;
-        _activityIndicator.top = _messageLabel.bottom + 5.0f;
+        _activityIndicator.verticalCenter = _messageLabel.verticalCenter;
+        _activityIndicator.right = _messageLabel.left - 5.0f;
         [self addSubview:_activityIndicator];
     }
 
