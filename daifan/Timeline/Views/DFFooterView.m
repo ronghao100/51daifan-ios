@@ -2,7 +2,10 @@
 #import "DFFooterView.h"
 
 
-@implementation DFFooterView
+@implementation DFFooterView {
+    UILabel *_messageLabel;
+    UIActivityIndicatorView *_activityIndicator;
+}
 
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -16,15 +19,39 @@
         bgView.backgroundColor = [UIColor blueColor];
         [self addSubview:bgView];
 
-        UIImage *line = [UIImage imageNamed:@"timeline.png"];
+        _messageLabel = [UILabel transparentLabelWithFrame:CGRectMake(0.0f, 0.0f, backgroundWidth, 12.0f)];
+        _messageLabel.font = [UIFont boldSystemFontOfSize:12.0f];
+        _messageLabel.textAlignment = NSTextAlignmentCenter;
+        _messageLabel.text = @"";
+        _messageLabel.bottom = FOOTER_VIEW_HEIGHT / 2.0f - 5.0f;
+        [self addSubview:_messageLabel];
 
-        UIImageView *lineView = [[UIImageView alloc] initWithImage:line];
-        lineView.contentMode = UIViewContentModeScaleToFill;
-        lineView.frame = CGRectMake(66.0f, 0.0f, TIMELINE_WIDTH_NORMAL, backgroundHeight);
-        [self addSubview:lineView];
+        _activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        [_activityIndicator stopAnimating];
+        _activityIndicator.horizontalCenter = backgroundWidth / 2.0f;
+        _activityIndicator.top = _messageLabel.bottom + 5.0f;
+        [self addSubview:_activityIndicator];
     }
 
     return self;
+}
+
+- (void)beginRefreshing {
+    _refreshing = YES;
+    [_activityIndicator startAnimating];
+
+    _messageLabel.text = @"获取中...";
+
+    if ([_delegate respondsToSelector:@selector(loadMore)]) {
+        [_delegate performSelector:@selector(loadMore)];
+    }
+}
+
+- (void)endRefreshing {
+    _messageLabel.text = @"更多...";
+
+    [_activityIndicator stopAnimating];
+    _refreshing = NO;
 }
 
 @end

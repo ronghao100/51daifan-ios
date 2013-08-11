@@ -3,6 +3,7 @@
 #import "DFPost.h"
 #import "AFJSONRequestOperation.h"
 #import "DFUserList.h"
+#import "DFFooterView.h"
 
 #define TIMELINE_CELL_ID @"timeLineCellIdentifier"
 
@@ -10,6 +11,7 @@
     ACTimeScroller *_timeScroller;
 
     NSMutableArray *_posts;
+    DFFooterView *_footerView;
 }
 
 - (id)init {
@@ -40,14 +42,15 @@
     [self.tableView registerClass:[DFTimeLineCell class] forCellReuseIdentifier:TIMELINE_CELL_ID];
 
 //    DFCoverView *coverView = [[DFCoverView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, _timelineView.frame.size.width, COVER_VIEW_HEIGHT)];
-//    _timelineView.tableHeaderView = coverView;
+//    self.tableView.tableHeaderView = coverView;
 
-//    DFFooterView *footerView = [[DFFooterView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, _timelineView.frame.size.width, FOOTER_VIEW_HEIGHT)];
-//    _timelineView.tableFooterView = footerView;
+    _footerView = [[DFFooterView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.tableView.frame.size.width, FOOTER_VIEW_HEIGHT)];
+    _footerView.delegate = self;
+    self.tableView.tableFooterView = _footerView;
 
     self.view.backgroundColor = [UIColor whiteColor];
 
-    _timeScroller = [[ACTimeScroller alloc] initWithDelegate:self];
+//    _timeScroller = [[ACTimeScroller alloc] initWithDelegate:self];
 }
 
 - (void)viewDidLoad {
@@ -107,6 +110,16 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     [_timeScroller scrollViewDidScroll];
+
+    if (_posts.count <= 0) {
+        return;
+    }
+
+    if (self.tableView.contentOffset.y > self.tableView.contentSize.height - self.tableView.frame.size.height + FOOTER_VIEW_HEIGHT) {
+        if (!_footerView.isRefreshing) {
+            [_footerView beginRefreshing];
+        }
+    }
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
@@ -171,6 +184,37 @@
 
                 [self.tableView reloadData];
                 [self.refreshControl endRefreshing];
+            } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+                NSLog(@"time line failed. \n response: %@, error: %@, JSON: %@", response, error, JSON);
+            }];
+    [operation start];
+}
+
+- (void)loadMore {
+    NSString *newerListString = [NSString stringWithFormat:API_POST_OLDER_LIST_PARAMETER, ((DFPost *)_posts.lastObject).identity];
+    NSString *urlString = [NSString stringWithFormat:@"%@%@%@", API_HOST, API_POST_PATH, newerListString];
+
+    NSLog(@"request: %@", urlString);
+
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
+            success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+                NSLog(@"time line older success.");
+                NSDictionary *dict = (NSDictionary *)JSON;
+                NSArray *posts = [dict objectForKey:kRESPONSE_POSTS];
+
+                NSDictionary *users = [dict objectForKey:kRESPONSE_BOOKED_USER_ID];
+                [[DFUserList sharedList] mergeUserDict:users];
+
+                [posts enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                    [_posts addObject:[DFPost postFromDict:obj]];
+                }];
+
+                NSLog(@"time line count:%d.", _posts.count);
+
+                [self.tableView reloadData];
+                [_footerView endRefreshing];
             } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
                 NSLog(@"time line failed. \n response: %@, error: %@, JSON: %@", response, error, JSON);
             }];
