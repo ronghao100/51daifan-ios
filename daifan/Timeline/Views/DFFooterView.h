@@ -10,4 +10,7 @@
 - (void)beginRefreshing;
 - (void)endRefreshing;
 
+- (void)showHaveMore;
+- (void)showNoMore;
+
 @end

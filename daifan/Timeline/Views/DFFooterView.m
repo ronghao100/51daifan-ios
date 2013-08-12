@@ -48,10 +48,18 @@
 }
 
 - (void)endRefreshing {
-    _messageLabel.text = @"更多...";
+    _messageLabel.text = @"";
 
     [_activityIndicator stopAnimating];
     _refreshing = NO;
+}
+
+- (void)showHaveMore {
+    _messageLabel.text = @"更多...";
+}
+
+- (void)showNoMore {
+    _messageLabel.text = @"没有啦";
 }
 
 @end

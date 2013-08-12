@@ -23,6 +23,9 @@
         self.title = @"51daifan";
 
         _posts = [[NSMutableArray alloc] init];
+
+        _newestPostID = 0;
+        _oldestPostID = INT_MAX;
     }
 
     return self;
@@ -67,7 +70,6 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:postButton];
 
     [self loadList];
-    [_footerView endRefreshing];
 }
 
 #pragma mark - table view data source & delegate
@@ -119,7 +121,11 @@
         return;
     }
 
-    if (self.tableView.contentOffset.y > self.tableView.contentSize.height - self.tableView.frame.size.height + FOOTER_VIEW_HEIGHT) {
+    if (_oldestPostID <= 1) {
+        return;
+    }
+
+    if (self.tableView.contentOffset.y > self.tableView.contentSize.height - self.tableView.frame.size.height + 10.0f) {
         if (!_footerView.isRefreshing) {
             [_footerView beginRefreshing];
         }
@@ -149,13 +155,15 @@
                 [[DFUserList sharedList] mergeUserDict:users];
 
                 [posts enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-//                    NSLog(@"%@", [DFPost postFromDict:obj]);
-                    [_posts addObject:[DFPost postFromDict:obj]];
+                    DFPost *post = [DFPost postFromDict:obj];
+                    [self updateIDRange:post];
+                    [_posts addObject:post];
                 }];
 
                 NSLog(@"time line count:%d.", _posts.count);
 
                 [self.tableView reloadData];
+                [self updateFooterViewText];
             } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
                 NSLog(@"time line failed. \n response: %@, error: %@, JSON: %@", response, error, JSON);
             }];
@@ -163,7 +171,7 @@
 }
 
 - (void)pullForNew {
-    NSString *newerListString = [NSString stringWithFormat:API_POST_NEWER_LIST_PARAMETER, ((DFPost *)_posts[0]).identity];
+    NSString *newerListString = [NSString stringWithFormat:API_POST_NEWER_LIST_PARAMETER, _newestPostID];
     NSString *urlString = [NSString stringWithFormat:@"%@%@%@", API_HOST, API_POST_PATH, newerListString];
 
     NSLog(@"request: %@", urlString);
@@ -181,13 +189,16 @@
 
                 [posts enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
 //                    NSLog(@"%@", [DFPost postFromDict:obj]);
-                    [_posts insertObject:[DFPost postFromDict:obj] atIndex:idx];
+                    DFPost *post = [DFPost postFromDict:obj];
+                    [self updateIDRange:post];
+                    [_posts insertObject:post atIndex:idx];
                 }];
 
                 NSLog(@"time line count:%d.", _posts.count);
 
                 [self.tableView reloadData];
                 [self.refreshControl endRefreshing];
+                [self updateFooterViewText];
             } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
                 NSLog(@"time line failed. \n response: %@, error: %@, JSON: %@", response, error, JSON);
             }];
@@ -195,7 +206,7 @@
 }
 
 - (void)loadMore {
-    NSString *newerListString = [NSString stringWithFormat:API_POST_OLDER_LIST_PARAMETER, ((DFPost *)_posts.lastObject).identity];
+    NSString *newerListString = [NSString stringWithFormat:API_POST_OLDER_LIST_PARAMETER, _oldestPostID];
     NSString *urlString = [NSString stringWithFormat:@"%@%@%@", API_HOST, API_POST_PATH, newerListString];
 
     NSLog(@"request: %@", urlString);
@@ -212,17 +223,40 @@
                 [[DFUserList sharedList] mergeUserDict:users];
 
                 [posts enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-                    [_posts addObject:[DFPost postFromDict:obj]];
+                    DFPost *post = [DFPost postFromDict:obj];
+                    [self updateIDRange:post];
+                    [_posts addObject:post];
                 }];
 
                 NSLog(@"time line count:%d.", _posts.count);
 
                 [self.tableView reloadData];
                 [_footerView endRefreshing];
+                [self updateFooterViewText];
             } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
                 NSLog(@"time line failed. \n response: %@, error: %@, JSON: %@", response, error, JSON);
             }];
     [operation start];
+}
+
+- (void)updateIDRange:(DFPost *)post {
+    if (post.identity > _newestPostID) {
+        _newestPostID = post.identity;
+    }
+
+    if (post.identity < _oldestPostID) {
+        _oldestPostID = post.identity;
+    }
+}
+
+- (void)updateFooterViewText {
+    NSLog(@"oldest id: %d, newest id: %d", _oldestPostID, _newestPostID);
+
+    if (_oldestPostID > 1) {
+        [_footerView showHaveMore];
+    } else {
+        [_footerView showNoMore];
+    }
 }
 
 @end
