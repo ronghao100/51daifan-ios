@@ -79,8 +79,8 @@
                 if ([[(NSDictionary *) JSON objectForKey:kRESPONSE_ERROR] boolValue]) {
                     [self showErrorMessage];
                 } else {
-                    [self saveAccount:JSON];
-                    [self showTimelineView];
+                    DFUser *user = [self saveAccount:JSON];
+                    [self showTimelineViewWithUser:user];
                 }
             } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
                 [self showErrorMessage];
@@ -94,7 +94,7 @@
     [alertView show];
 }
 
-- (void)saveAccount:(id)JSON {
+- (DFUser *)saveAccount:(id)JSON {
     NSLog(@"%@", JSON);
     NSDictionary *userDict = [JSON objectForKey:kRESPONSE_USER];
     DFUser *user = [[DFUser alloc] init];
@@ -102,11 +102,16 @@
     user.email = [userDict objectForKey:@"email"];
     user.name = [userDict objectForKey:@"name"];
 
+    [[NSUserDefaults standardUserDefaults] setObject:user forKey:kCURRENT_USER];
+    NSLog(@"saved user: %@", user);
+
     [SSKeychain setPassword:_passwordField.text forService:kKEYCHAIN_SERVICE account:user.email];
+    return user;
 }
 
-- (void)showTimelineView {
+- (void)showTimelineViewWithUser:(DFUser *)user {
     DFTimeLineViewController *vc = [[DFTimeLineViewController alloc] init];
+    vc.currentUser = user;
 
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:vc];
     [navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navigationBar.png"] forBarMetrics:UIBarMetricsDefault];

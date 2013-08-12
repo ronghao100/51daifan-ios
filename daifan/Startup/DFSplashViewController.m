@@ -34,13 +34,15 @@
 #ifdef DEBUG
     [NSThread sleepForTimeInterval:2];
 #endif
-    
-    NSArray *accounts = [SSKeychain accountsForService:kKEYCHAIN_SERVICE];
 
-    if (accounts.count <= 0) {
-        [self showLoginView];
-    } else {
+    DFUser *user = [[NSUserDefaults standardUserDefaults] objectForKey:kCURRENT_USER];
+
+//    NSArray *accounts = [SSKeychain accountsForService:kKEYCHAIN_SERVICE];
+
+    if (user) {
         [self showTimelineView];
+    } else {
+        [self showLoginView];
     }
 }
 
@@ -58,7 +60,11 @@
 }
 
 - (void)showTimelineView {
+    DFUser *user = [[NSUserDefaults standardUserDefaults] objectForKey:kCURRENT_USER];
+    NSLog(@"got user: %@", user);
+
     DFTimeLineViewController *vc = [[DFTimeLineViewController alloc] init];
+    vc.currentUser = user;
 
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:vc];
     [navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navigationBar.png"] forBarMetrics:UIBarMetricsDefault];

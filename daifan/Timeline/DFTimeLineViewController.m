@@ -4,6 +4,7 @@
 #import "AFJSONRequestOperation.h"
 #import "DFUserList.h"
 #import "DFFooterView.h"
+#import "DFUser.h"
 
 #define TIMELINE_CELL_ID @"timeLineCellIdentifier"
 
@@ -13,8 +14,8 @@
     NSMutableArray *_posts;
     DFFooterView *_footerView;
 
-    int _newestPostID;
-    int _oldestPostID;
+    long _newestPostID;
+    long _oldestPostID;
 }
 
 - (id)init {
@@ -25,7 +26,7 @@
         _posts = [[NSMutableArray alloc] init];
 
         _newestPostID = 0;
-        _oldestPostID = INT_MAX;
+        _oldestPostID = LONG_MAX;
     }
 
     return self;
@@ -75,7 +76,7 @@
 #pragma mark - table view data source & delegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    DFPost *post = [_posts objectAtIndex:indexPath.row];
+    DFPost *post = [_posts objectAtIndex:(NSUInteger)indexPath.row];
 
     return [DFTimeLineCell heightForPost:post];
 }
@@ -86,8 +87,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     DFTimeLineCell *cell = [tableView dequeueReusableCellWithIdentifier:TIMELINE_CELL_ID];
+    cell.delegate = self;
 
-    DFPost *post = [_posts objectAtIndex:indexPath.row];
+    DFPost *post = [_posts objectAtIndex:(NSUInteger)indexPath.row];
     cell.post = post;
 
     return cell;
@@ -104,7 +106,7 @@
         return [NSDate date];
 
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-    DFPost *post = [_posts objectAtIndex:indexPath.row];
+    DFPost *post = [_posts objectAtIndex:(NSUInteger)indexPath.row];
     return post.publishDate;
 }
 
@@ -258,5 +260,40 @@
         [_footerView showNoMore];
     }
 }
+
+#pragma mark - Book and Comment
+
+- (void)bookOnPost:(DFPost *)post {
+    NSString *newerListString = [NSString stringWithFormat:API_BOOK_PARAMETER, post.identity, post.user.identity, post.user.name, _currentUser.identity, _currentUser.name];
+    NSString *urlString = [NSString stringWithFormat:@"%@%@%@", API_HOST, API_BOOK_PATH, newerListString];
+
+    NSLog(@"request: %@", urlString);
+
+    return;
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
+            success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+                NSLog(@"book success.");
+                NSDictionary *dict = (NSDictionary *)JSON;
+
+                if ([[dict objectForKey:kRESPONSE_SUCCESS] integerValue] == 1) {
+                    [post bookedByUser:_currentUser];
+                }
+
+                NSDictionary *users = [dict objectForKey:kRESPONSE_BOOKED_USER_ID];
+                [[DFUserList sharedList] mergeUserDict:users];
+
+                [self.tableView reloadData];
+            } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+                NSLog(@"book failed. \n response: %@, error: %@, JSON: %@", response, error, JSON);
+            }];
+    [operation start];
+}
+
+- (void)commentOnPost:(DFPost *)post {
+
+}
+
 
 @end

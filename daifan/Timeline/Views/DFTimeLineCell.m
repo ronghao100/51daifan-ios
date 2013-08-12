@@ -84,6 +84,7 @@
 
         [_bookButton setImage:bookImage forState:UIControlStateNormal];
         [_bookButton setImage:[UIImage imageNamed:@"nomore.png"] forState:UIControlStateDisabled];
+        [_bookButton addTarget:self action:@selector(book) forControlEvents:UIControlEventTouchUpInside];
 
         _bookButton.frame = CGRectMake(MIDDLE_LINE_X, 0.0f, bookImage.size.width, bookImage.size.height);
         [self addSubview:_bookButton];
@@ -221,6 +222,10 @@
 
     self.height = totalHeight;
     _lineView.height = totalHeight;
+}
+
+- (void)book {
+    [_delegate bookOnPost:_post];
 }
 
 + (CGFloat)heightForPost:(DFPost *)post {

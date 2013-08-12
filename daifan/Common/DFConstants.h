@@ -25,6 +25,7 @@
 #define kRESPONSE_BOOKED_USER_ID @"bookedUidNames"
 
 #define kKEYCHAIN_SERVICE @"51daifan"
+#define kCURRENT_USER @"current_user"
 
 #define API_HOST @"http://51daifan.sinaapp.com"
 
@@ -35,3 +36,6 @@
 
 #define API_LOGIN_PATH @"/api/login"
 #define API_LOGIN_PARAMETER @"?email=%@&password=%@"
+
+#define API_BOOK_PATH @"/api/book"
+#define API_BOOK_PARAMETER @"?postId=%ld&food_owner_id=%ld&food_owner_name=%@&userId=%ld&userName=%@"
