@@ -2,8 +2,9 @@
 #import "DFComment.h"
 #import "DFUserList.h"
 
-#define INSET_Y 5.0f
-#define PADDING 10.0f
+#define SPACING_X 5.0f
+#define SPACING_Y 5.0f
+#define INSET 10.0f
 
 @implementation DFCommentView {
     UIImageView *_arrowView;
@@ -40,12 +41,52 @@
     [self refresh];
 }
 
+- (void)setBookedUserIDs:(NSArray *)bookedUserIDs {
+    _bookedUserIDs = bookedUserIDs;
+
+    [self refresh];
+}
+
+
 - (void)refresh {
     [_contentView.subviews enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         [obj removeFromSuperview];
     }];
 
-    __block CGFloat yOffset = PADDING;
+    CGFloat labelWidth = self.width - INSET * 2.0f;
+
+    __block CGFloat yOffset = INSET;
+    if (_bookedUserIDs.count > 0) {
+        UIImageView *heart = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"blueheart.png"]];
+        heart.left = INSET;
+        heart.top = yOffset;
+
+        [_contentView addSubview:heart];
+
+        __block NSMutableString *bookedListStr = [[NSMutableString alloc] init];
+        [_bookedUserIDs enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            [bookedListStr appendFormat:@"%@ ", [[DFUserList sharedList] userNameByID:obj]];
+        }];
+
+        NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:bookedListStr];
+
+        [attrString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHexString:NAME_LABEL_COLOR] range:NSMakeRange(0, bookedListStr.length)];
+
+        NSMutableParagraphStyle *paragraphStyle =[[NSMutableParagraphStyle alloc] init];
+        paragraphStyle.firstLineHeadIndent = heart.width + SPACING_X;
+        paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+        [attrString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, bookedListStr.length)];
+
+        UILabel *bookedList = [UILabel transparentLabelWithFrame:CGRectMake(INSET, yOffset, labelWidth, 0.0f)];
+        bookedList.numberOfLines = 0;
+        bookedList.attributedText = attrString;
+        [bookedList fitToBestSize];
+
+        yOffset += MAX(heart.height, bookedList.height) + SPACING_Y;
+
+        [_contentView addSubview:bookedList];
+    }
+
     [_comments enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         DFComment *comment = (DFComment *)obj;
 
@@ -62,18 +103,17 @@
         paragraphStyle.lineBreakMode = NSLineBreakByCharWrapping;
         [attrString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, commentString.length)];
 
-        UILabel *label = [UILabel transparentLabelWithFrame:CGRectMake(PADDING, yOffset, self.width - PADDING * 2.0f, 0.0f)];
+        UILabel *label = [UILabel transparentLabelWithFrame:CGRectMake(INSET, yOffset, labelWidth, 0.0f)];
         label.numberOfLines = 0;
         label.attributedText = attrString;
-
         [label fitToBestSize];
 
-        yOffset += label.height + INSET_Y;
+        yOffset += label.height + SPACING_Y;
 
         [_contentView addSubview:label];
     }];
 
-    _contentView.height = yOffset + PADDING;
+    _contentView.height = yOffset + INSET;
     self.height = _arrowHeight + _contentView.height;
 
     [self setNeedsLayout];

@@ -137,6 +137,7 @@
 
         [self displayFormattedCountLabel];
 
+        _commentView.bookedUserIDs = _post.bookedUserIDs;
         _commentView.comments = _post.comments;
 
         [self setNeedsLayout];
@@ -230,6 +231,7 @@
     CGFloat commentViewHeight = 0.0f;
     if (post.comments.count > 0) {
         DFCommentView *commentView = [[DFCommentView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, LABEL_WIDTH, 0.0f)];
+        commentView.bookedUserIDs = post.bookedUserIDs;
         commentView.comments = post.comments;
         commentViewHeight = commentView.height;
     }
