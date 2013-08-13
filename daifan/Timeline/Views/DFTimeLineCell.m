@@ -1,4 +1,5 @@
 #import <CoreGraphics/CoreGraphics.h>
+#import <Foundation/Foundation.h>
 #import "DFTimeLineCell.h"
 #import "DFPost.h"
 #import "DFUser.h"
@@ -163,18 +164,21 @@
 }
 
 - (void)displayFormattedCountLabel {
-    NSString *formattedCount = [NSString stringWithFormat:@"总共%d 还剩%d", _post.count, _post.count - _post.bookedCount];
+    int remainCount = _post.count - _post.bookedCount;
+    NSString *formattedCount = [NSString stringWithFormat:@"总共%d 还剩%d", _post.count, remainCount];
 
     NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:formattedCount];
 
-    int countLength = _post.count > 0 ? (int)ceilf(log10f(_post.count)) : 1;
-    int bookedLength = _post.bookedCount > 0 ?(int)ceilf(log10f(_post.bookedCount)) : 1;
+//    int countLength = _post.count > 0 ? (int)ceilf(log10f(_post.count)) : 1;
+//    int remainLength = remainCount > 0 ?(int)ceilf(log10f(remainCount)) : 1;
+    NSUInteger countLength = @(_post.count).stringValue.length;
+    NSUInteger remainLength = @(remainCount).stringValue.length;
 
     NSRange countRange = NSMakeRange(2, countLength);
-    NSRange bookedRange = NSMakeRange(formattedCount.length - bookedLength, bookedLength);
+    NSRange remainRange = NSMakeRange(formattedCount.length - remainLength, remainLength);
 
     [attrString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHexString:COUNT_NUMBER_COLOR] range:countRange];
-    [attrString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHexString:COUNT_NUMBER_COLOR] range:bookedRange];
+    [attrString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHexString:COUNT_NUMBER_COLOR] range:remainRange];
 
     _countLabel.attributedText = attrString;
 }
