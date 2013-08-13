@@ -102,8 +102,9 @@
     user.email = [userDict objectForKey:@"email"];
     user.name = [userDict objectForKey:@"name"];
 
-    [[NSUserDefaults standardUserDefaults] setObject:user forKey:kCURRENT_USER];
-    NSLog(@"saved user: %@", user);
+    [user storeToUserDefaults];
+
+    NSLog(@"user saved: %@", user);
 
     [SSKeychain setPassword:_passwordField.text forService:kKEYCHAIN_SERVICE account:user.email];
     return user;

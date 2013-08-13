@@ -8,4 +8,9 @@
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *avatarURLString;
 
+- (void)storeToUserDefaults;
+
++ (DFUser *)storedUser;
+
++ (BOOL)hasStoredUser;
 @end

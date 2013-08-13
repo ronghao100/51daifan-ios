@@ -25,7 +25,9 @@
 #define kRESPONSE_BOOKED_USER_ID @"bookedUidNames"
 
 #define kKEYCHAIN_SERVICE @"51daifan"
-#define kCURRENT_USER @"current_user"
+#define kCURRENT_USER_ID @"current_user_id"
+#define kCURRENT_USER_NAME @"current_user_name"
+#define kCURRENT_USER_EMAIL @"current_user_email"
 
 #define API_HOST @"http://51daifan.sinaapp.com"
 

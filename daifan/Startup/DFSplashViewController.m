@@ -2,6 +2,7 @@
 #import "SSKeychain.h"
 #import "DFTimeLineViewController.h"
 #import "DFLoginViewController.h"
+#import "DFUser.h"
 
 @implementation DFSplashViewController {
 
@@ -35,11 +36,9 @@
     [NSThread sleepForTimeInterval:2];
 #endif
 
-    DFUser *user = [[NSUserDefaults standardUserDefaults] objectForKey:kCURRENT_USER];
-
 //    NSArray *accounts = [SSKeychain accountsForService:kKEYCHAIN_SERVICE];
 
-    if (user) {
+    if ([DFUser hasStoredUser]) {
         [self showTimelineView];
     } else {
         [self showLoginView];
@@ -60,8 +59,9 @@
 }
 
 - (void)showTimelineView {
-    DFUser *user = [[NSUserDefaults standardUserDefaults] objectForKey:kCURRENT_USER];
-    NSLog(@"got user: %@", user);
+    DFUser *user = [DFUser storedUser];
+
+    NSLog(@"got stored user: %@", user);
 
     DFTimeLineViewController *vc = [[DFTimeLineViewController alloc] init];
     vc.currentUser = user;
