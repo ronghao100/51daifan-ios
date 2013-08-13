@@ -62,9 +62,7 @@
     NSString *idString = [NSString stringWithFormat:@"%d", user.identity];
     [bookedList insertObject:idString atIndex:0];
     self.bookedUserIDs = [bookedList copy];
-
 }
-
 
 - (NSString *)description {
     return [NSString stringWithFormat:@"Post id:%d, name:%@, desc:%@, publishDate:%@, eatDate:%@", self.identity, self.name, self.content, self.publishDate, self.eatDate];

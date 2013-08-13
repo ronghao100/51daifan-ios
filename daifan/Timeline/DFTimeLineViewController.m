@@ -252,7 +252,7 @@
 }
 
 - (void)updateFooterViewText {
-    NSLog(@"oldest id: %d, newest id: %d", _oldestPostID, _newestPostID);
+    NSLog(@"oldest id: %ld, newest id: %ld", _oldestPostID, _newestPostID);
 
     if (_oldestPostID > 1) {
         [_footerView showHaveMore];
@@ -269,7 +269,13 @@
 
     NSLog(@"request: %@", urlString);
 
-    return;
+    [post bookedByUser:_currentUser];
+
+    [[DFUserList sharedList] mergeUserDict:@{@(_currentUser.identity).stringValue: _currentUser.name}];
+
+    [self.tableView reloadData];
+
+return;
     NSURL *url = [NSURL URLWithString:urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
@@ -281,8 +287,7 @@
                     [post bookedByUser:_currentUser];
                 }
 
-                NSDictionary *users = [dict objectForKey:kRESPONSE_BOOKED_USER_ID];
-                [[DFUserList sharedList] mergeUserDict:users];
+                [[DFUserList sharedList] mergeUserDict:@{@(_currentUser.identity).stringValue: _currentUser.name}];
 
                 [self.tableView reloadData];
             } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
