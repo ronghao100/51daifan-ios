@@ -24,4 +24,6 @@
 + (DFPost *)postFromDict:(NSDictionary *)postDict;
 
 - (void)bookedByUser:(DFUser *)user;
+
+- (void)unbookedByUser:(DFUser *)user;
 @end

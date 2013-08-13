@@ -29,6 +29,9 @@
 #define kCURRENT_USER_NAME @"current_user_name"
 #define kCURRENT_USER_EMAIL @"current_user_email"
 
+#define RESPONSE_NOT_SUCCESS 0
+#define RESPONSE_SUCCESS 1
+
 #define API_HOST @"http://51daifan.sinaapp.com"
 
 #define API_POST_PATH @"/api/posts"
@@ -41,3 +44,6 @@
 
 #define API_BOOK_PATH @"/api/book"
 #define API_BOOK_PARAMETER @"?postId=%ld&food_owner_id=%ld&food_owner_name=%@&userId=%ld&userName=%@"
+
+#define API_UNBOOK_PATH @"/api/undo-book"
+#define API_UNBOOK_PARAMETER @"?postId=%ld&userId=%ld"

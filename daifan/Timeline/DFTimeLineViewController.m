@@ -1,5 +1,4 @@
 #import "DFTimeLineViewController.h"
-#import "DFTimeLineCell.h"
 #import "DFPost.h"
 #import "AFJSONRequestOperation.h"
 #import "DFUserList.h"
@@ -76,7 +75,7 @@
 #pragma mark - table view data source & delegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    DFPost *post = [_posts objectAtIndex:(NSUInteger)indexPath.row];
+    DFPost *post = [_posts objectAtIndex:(NSUInteger) indexPath.row];
 
     return [DFTimeLineCell heightForPost:post];
 }
@@ -89,7 +88,7 @@
     DFTimeLineCell *cell = [tableView dequeueReusableCellWithIdentifier:TIMELINE_CELL_ID];
     cell.delegate = self;
 
-    DFPost *post = [_posts objectAtIndex:(NSUInteger)indexPath.row];
+    DFPost *post = [_posts objectAtIndex:(NSUInteger) indexPath.row];
     cell.post = post;
 
     return cell;
@@ -106,7 +105,7 @@
         return [NSDate date];
 
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-    DFPost *post = [_posts objectAtIndex:(NSUInteger)indexPath.row];
+    DFPost *post = [_posts objectAtIndex:(NSUInteger) indexPath.row];
     return post.publishDate;
 }
 
@@ -150,8 +149,13 @@
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
             success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
                 NSLog(@"time line success.");
-                NSDictionary *dict = (NSDictionary *)JSON;
-                NSArray *posts = [ dict objectForKey:kRESPONSE_POSTS];
+                NSDictionary *dict = (NSDictionary *) JSON;
+
+                if ([[dict objectForKey:kRESPONSE_SUCCESS] integerValue] == RESPONSE_NOT_SUCCESS) {
+                    return;
+                }
+
+                NSArray *posts = [dict objectForKey:kRESPONSE_POSTS];
 
                 NSDictionary *users = [dict objectForKey:kRESPONSE_BOOKED_USER_ID];
                 [[DFUserList sharedList] mergeUserDict:users];
@@ -183,8 +187,13 @@
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
             success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
                 NSLog(@"time line newer success.");
-                NSDictionary *dict = (NSDictionary *)JSON;
-                NSArray *posts = [ dict objectForKey:kRESPONSE_POSTS];
+                NSDictionary *dict = (NSDictionary *) JSON;
+
+                if ([[dict objectForKey:kRESPONSE_SUCCESS] integerValue] == RESPONSE_NOT_SUCCESS) {
+                    return;
+                }
+
+                NSArray *posts = [dict objectForKey:kRESPONSE_POSTS];
 
                 NSDictionary *users = [dict objectForKey:kRESPONSE_BOOKED_USER_ID];
                 [[DFUserList sharedList] mergeUserDict:users];
@@ -218,7 +227,12 @@
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
             success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
                 NSLog(@"time line older success.");
-                NSDictionary *dict = (NSDictionary *)JSON;
+                NSDictionary *dict = (NSDictionary *) JSON;
+
+                if ([[dict objectForKey:kRESPONSE_SUCCESS] integerValue] == RESPONSE_NOT_SUCCESS) {
+                    return;
+                }
+
                 NSArray *posts = [dict objectForKey:kRESPONSE_POSTS];
 
                 NSDictionary *users = [dict objectForKey:kRESPONSE_BOOKED_USER_ID];
@@ -264,31 +278,58 @@
 #pragma mark - Book and Comment
 
 - (void)bookOnPost:(DFPost *)post {
+    if ([post.bookedUserIDs containsObject:@(_currentUser.identity).stringValue]) {
+        [self unbookPost:post];
+    } else {
+        [self bookPost:post];
+    }
+}
+
+- (void)bookPost:(DFPost *)post {
     NSString *newerListString = [NSString stringWithFormat:API_BOOK_PARAMETER, post.identity, post.user.identity, post.user.name, _currentUser.identity, _currentUser.name];
     NSString *urlString = [NSString stringWithFormat:@"%@%@%@", API_HOST, API_BOOK_PATH, newerListString];
 
     NSLog(@"request: %@", urlString);
 
-    [post bookedByUser:_currentUser];
-
-    [[DFUserList sharedList] mergeUserDict:@{@(_currentUser.identity).stringValue: _currentUser.name}];
-
-    [self.tableView reloadData];
-
-return;
     NSURL *url = [NSURL URLWithString:urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
             success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
                 NSLog(@"book success.");
-                NSDictionary *dict = (NSDictionary *)JSON;
+                NSDictionary *dict = (NSDictionary *) JSON;
 
-                if ([[dict objectForKey:kRESPONSE_SUCCESS] integerValue] == 1) {
-                    [post bookedByUser:_currentUser];
+                if ([[dict objectForKey:kRESPONSE_SUCCESS] integerValue] == RESPONSE_NOT_SUCCESS) {
+                    return;
                 }
 
-                [[DFUserList sharedList] mergeUserDict:@{@(_currentUser.identity).stringValue: _currentUser.name}];
+                [post bookedByUser:_currentUser];
+                [[DFUserList sharedList] mergeUserDict:@{@(_currentUser.identity).stringValue : _currentUser.name}];
 
+                [self.tableView reloadData];
+            } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+                NSLog(@"book failed. \n response: %@, error: %@, JSON: %@", response, error, JSON);
+            }];
+    [operation start];
+}
+
+- (void)unbookPost:(DFPost *)post {
+    NSString *newerListString = [NSString stringWithFormat:API_UNBOOK_PARAMETER, post.identity, _currentUser.identity];
+    NSString *urlString = [NSString stringWithFormat:@"%@%@%@", API_HOST, API_UNBOOK_PATH, newerListString];
+
+    NSLog(@"request: %@", urlString);
+
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
+            success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+                NSLog(@"unbook success.");
+                NSDictionary *dict = (NSDictionary *) JSON;
+
+                if ([[dict objectForKey:kRESPONSE_SUCCESS] integerValue] == RESPONSE_NOT_SUCCESS) {
+                    return;
+                }
+
+                [post unbookedByUser:_currentUser];
                 [self.tableView reloadData];
             } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
                 NSLog(@"book failed. \n response: %@, error: %@, JSON: %@", response, error, JSON);

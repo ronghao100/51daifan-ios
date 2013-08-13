@@ -24,12 +24,16 @@
         return nil;
     }
 
-    DFUser *user = [[DFUser alloc] init];
-    user.identity = [[[NSUserDefaults standardUserDefaults] objectForKey:kCURRENT_USER_ID] longValue];
-    user.name = [[NSUserDefaults standardUserDefaults] objectForKey:kCURRENT_USER_NAME];
-    user.email = [[NSUserDefaults standardUserDefaults] objectForKey:kCURRENT_USER_EMAIL];
+    static DFUser *currentUser = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        currentUser = [[DFUser alloc] init];
+        currentUser.identity = [[[NSUserDefaults standardUserDefaults] objectForKey:kCURRENT_USER_ID] longValue];
+        currentUser.name = [[NSUserDefaults standardUserDefaults] objectForKey:kCURRENT_USER_NAME];
+        currentUser.email = [[NSUserDefaults standardUserDefaults] objectForKey:kCURRENT_USER_EMAIL];
+    });
 
-    return user;
+    return currentUser;
 }
 
 @end

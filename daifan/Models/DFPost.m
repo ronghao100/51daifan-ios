@@ -64,9 +64,17 @@
     self.bookedUserIDs = [bookedList copy];
 }
 
+- (void)unbookedByUser:(DFUser *)user {
+    self.bookedCount --;
+
+    NSMutableArray *bookedList = [NSMutableArray arrayWithArray:self.bookedUserIDs];
+    NSString *idString = [NSString stringWithFormat:@"%d", user.identity];
+    [bookedList removeObject:idString];
+    self.bookedUserIDs = [bookedList copy];
+}
+
 - (NSString *)description {
     return [NSString stringWithFormat:@"Post id:%d, name:%@, desc:%@, publishDate:%@, eatDate:%@", self.identity, self.name, self.content, self.publishDate, self.eatDate];
 }
-
 
 @end

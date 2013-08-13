@@ -76,7 +76,7 @@
 
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:postRequest
             success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-                if ([[(NSDictionary *) JSON objectForKey:kRESPONSE_ERROR] boolValue]) {
+                if ([[(NSDictionary *) JSON objectForKey:kRESPONSE_SUCCESS] integerValue] == RESPONSE_NOT_SUCCESS) {
                     [self showErrorMessage];
                 } else {
                     DFUser *user = [self saveAccount:JSON];

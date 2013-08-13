@@ -135,7 +135,12 @@
             _locationMark.hidden = YES;
         }
 
-        _bookButton.enabled = _post.count > _post.bookedCount;
+        if ([_post.bookedUserIDs containsObject:@([DFUser storedUser].identity).stringValue]) {
+            [_bookButton setImage:[UIImage imageNamed:@"unbook.png"] forState:UIControlStateNormal];
+            _bookButton.enabled = YES;
+        } else {
+            _bookButton.enabled = _post.count > _post.bookedCount;
+        }
 
         [self displayFormattedCountLabel];
 
@@ -153,6 +158,7 @@
         _locationMark.hidden = NO;
 
         _bookButton.enabled = YES;
+        [_bookButton setImage:[UIImage imageNamed:@"book.png"] forState:UIControlStateNormal];
 
         _countLabel.attributedText = nil;
 
