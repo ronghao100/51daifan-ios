@@ -4,6 +4,7 @@
 #import "DFUserList.h"
 #import "DFFooterView.h"
 #import "DFUser.h"
+#import "DFPostCommentViewController.h"
 
 #define TIMELINE_CELL_ID @"timeLineCellIdentifier"
 
@@ -338,7 +339,10 @@
 }
 
 - (void)commentOnPost:(DFPost *)post {
+    DFPostCommentViewController *vc = [[DFPostCommentViewController alloc] init];
+    [self presentViewController:vc animated:YES completion:^{
 
+    }];
 }
 
 

@@ -75,8 +75,9 @@
         [self addSubview:_addressLabel];
 
         _commentButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        UIImage *commentImage = [UIImage imageNamed:@"comment.png"];
-        [_commentButton setImage:commentImage forState:UIControlStateNormal];
+        [_commentButton setImage:[UIImage imageNamed:@"comment.png"] forState:UIControlStateNormal];
+        [_commentButton addTarget:self action:@selector(comment) forControlEvents:UIControlEventTouchUpInside];
+
         _commentButton.frame = CGRectMake(278.0f, 0.0f, 44.0f, 44.0f);
         [self addSubview:_commentButton];
 
@@ -175,8 +176,6 @@
 
     NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:formattedCount];
 
-//    int countLength = _post.count > 0 ? (int)ceilf(log10f(_post.count)) : 1;
-//    int remainLength = remainCount > 0 ?(int)ceilf(log10f(remainCount)) : 1;
     NSUInteger countLength = @(_post.count).stringValue.length;
     NSUInteger remainLength = @(remainCount).stringValue.length;
 
@@ -236,6 +235,10 @@
 
 - (void)book {
     [_delegate bookOnPost:_post];
+}
+
+- (void)comment {
+    [_delegate commentOnPost:_post];
 }
 
 + (CGFloat)heightForPost:(DFPost *)post {
