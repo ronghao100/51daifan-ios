@@ -4,6 +4,7 @@
 #import "DFUserList.h"
 #import "DFFooterView.h"
 #import "DFUser.h"
+#import "DFPostViewController.h"
 #import "DFPostCommentViewController.h"
 #import "AFHTTPClient.h"
 #import "DFComment.h"
@@ -23,6 +24,7 @@
 - (id)init {
     self = [super init];
     if (self) {
+        self.wantsFullScreenLayout = YES;
         self.title = @"51daifan";
 
         _posts = [[NSMutableArray alloc] init];
@@ -35,7 +37,9 @@
 }
 
 - (void)post {
+    DFPostViewController *postVC = [[DFPostViewController alloc] init];
 
+    [self presentViewController:postVC animated:YES completion:nil];
 }
 
 - (void)loadView {

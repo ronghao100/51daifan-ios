@@ -1,5 +1,5 @@
 #import <UIKit/UIKit.h>
-#import "DFKeyboardViewController.h"
+#import "DFComposeBaseViewController.h"
 
 @class DFPost;
 
@@ -9,7 +9,7 @@
 
 @end
 
-@interface DFPostCommentViewController : DFKeyboardViewController
+@interface DFPostCommentViewController : DFComposeBaseViewController
 
 @property (nonatomic, strong) DFPost *post;
 @property (nonatomic, weak) id<DFPostCommentDelegate> delegate;

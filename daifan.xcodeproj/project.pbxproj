@@ -16,7 +16,7 @@
 		5ABD02BAF1C0232D983FBB5E /* post@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ABD0F9DEC3587F3C4FAD89B /* post@2x.png */; };
 		5ABD0312510B9F3A79D04D99 /* uparrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ABD0036492C99FCCF11F565 /* uparrow@2x.png */; };
 		5ABD046E1E1F62C2195C0EC8 /* blueheart@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ABD08C0D5009DBBFD3CC086 /* blueheart@2x.png */; };
-		5ABD04ECAFB8BCE1D5BF98E1 /* DFKeyboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD08F8FD659E754EE2E01B /* DFKeyboardViewController.m */; };
+		5ABD04ECAFB8BCE1D5BF98E1 /* DFComposeBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD08F8FD659E754EE2E01B /* DFComposeBaseViewController.m */; };
 		5ABD055532F77CAD627C86B2 /* location@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ABD04407BFEB22934FC7E5B /* location@2x.png */; };
 		5ABD058B0FDFF38FD7673DF9 /* UILabel+TransparentFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD0A5DAAA81DBD18A19A9F /* UILabel+TransparentFactory.m */; };
 		5ABD05B6D2810735E4EA9D81 /* DFUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD0F7407CCEAA83B241D0B /* DFUser.m */; };
@@ -30,6 +30,7 @@
 		5ABD09D779A74D3455653968 /* UILabel+FitToBestSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD04CBC8E237130F506273 /* UILabel+FitToBestSize.m */; };
 		5ABD0A08921F303CB5CBFA2C /* comment@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ABD0C5E71F5DE0A3E294538 /* comment@2x.png */; };
 		5ABD0A16334B122F4C1F7EB5 /* DFLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD0D117A4121B385CF8A4A /* DFLoginViewController.m */; };
+		5ABD0A4D236FB6F611250EFB /* DFPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD05E5ECBDEF1B19B83588 /* DFPostViewController.m */; };
 		5ABD0AED842DEACD2A8A7452 /* DFSplashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD08A991343EC47B1066AB /* DFSplashViewController.m */; };
 		5ABD0AFCCB00836219ADE52A /* DFUserList.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD03D0806B666016F20388 /* DFUserList.m */; };
 		5ABD0B6BCC66BFE44B8F879E /* DFRoundImageButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD0D38C1CA62976EDAB1AD /* DFRoundImageButton.m */; };
@@ -96,12 +97,13 @@
 		5ABD054696CBBA1EB8C1D0B6 /* DFFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFFooterView.m; sourceTree = "<group>"; };
 		5ABD0592B66C0D6B2FCA5CEC /* DFRemoteImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFRemoteImageView.h; sourceTree = "<group>"; };
 		5ABD05A318C54E793EDAE3D1 /* UILabel+TransparentFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+TransparentFactory.h"; sourceTree = "<group>"; };
+		5ABD05E5ECBDEF1B19B83588 /* DFPostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFPostViewController.m; sourceTree = "<group>"; };
 		5ABD05F19FFFCB2383557E59 /* DFCommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFCommentView.m; sourceTree = "<group>"; };
 		5ABD06C53F0FD222E61215D7 /* DFPost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFPost.h; sourceTree = "<group>"; };
 		5ABD0838FAEEDD3C559AE726 /* DFCoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFCoverView.h; sourceTree = "<group>"; };
 		5ABD08A991343EC47B1066AB /* DFSplashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSplashViewController.m; sourceTree = "<group>"; };
 		5ABD08C0D5009DBBFD3CC086 /* blueheart@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blueheart@2x.png"; sourceTree = "<group>"; };
-		5ABD08F8FD659E754EE2E01B /* DFKeyboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFKeyboardViewController.m; sourceTree = "<group>"; };
+		5ABD08F8FD659E754EE2E01B /* DFComposeBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFComposeBaseViewController.m; sourceTree = "<group>"; };
 		5ABD09040D1E0CB0F819EA7C /* DFTimeLineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFTimeLineViewController.h; sourceTree = "<group>"; };
 		5ABD0A5DAAA81DBD18A19A9F /* UILabel+TransparentFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+TransparentFactory.m"; sourceTree = "<group>"; };
 		5ABD0A68CFE2077350411196 /* DFRemoteImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFRemoteImageView.m; sourceTree = "<group>"; };
@@ -109,11 +111,12 @@
 		5ABD0B35B0657307DD8BAA12 /* DFUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFUser.h; sourceTree = "<group>"; };
 		5ABD0BE71665872E411A941D /* UILabel+FitToBestSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+FitToBestSize.h"; sourceTree = "<group>"; };
 		5ABD0C052847B0FFAFA54CE7 /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
-		5ABD0C57FE084735F71999BB /* DFKeyboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFKeyboardViewController.h; sourceTree = "<group>"; };
+		5ABD0C57FE084735F71999BB /* DFComposeBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFComposeBaseViewController.h; sourceTree = "<group>"; };
 		5ABD0C5E71F5DE0A3E294538 /* comment@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "comment@2x.png"; sourceTree = "<group>"; };
 		5ABD0C89BAD6517297984A61 /* timeline@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "timeline@2x.png"; sourceTree = "<group>"; };
 		5ABD0C9797E5BF2F76DC6836 /* DFPostCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFPostCommentViewController.m; sourceTree = "<group>"; };
 		5ABD0D117A4121B385CF8A4A /* DFLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFLoginViewController.m; sourceTree = "<group>"; };
+		5ABD0D18E3BD28B0481F8B0E /* DFPostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFPostViewController.h; sourceTree = "<group>"; };
 		5ABD0D38C1CA62976EDAB1AD /* DFRoundImageButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFRoundImageButton.m; sourceTree = "<group>"; };
 		5ABD0D5D33AA65E07CD57D7D /* DFConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFConstants.h; sourceTree = "<group>"; };
 		5ABD0D882B28307EAF462E94 /* navigationBar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigationBar@2x.png"; sourceTree = "<group>"; };
@@ -202,8 +205,8 @@
 		5ABD0711DD19DF935690232E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				5ABD08F8FD659E754EE2E01B /* DFKeyboardViewController.m */,
-				5ABD0C57FE084735F71999BB /* DFKeyboardViewController.h */,
+				5ABD08F8FD659E754EE2E01B /* DFComposeBaseViewController.m */,
+				5ABD0C57FE084735F71999BB /* DFComposeBaseViewController.h */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -299,6 +302,8 @@
 				5ABD0C9797E5BF2F76DC6836 /* DFPostCommentViewController.m */,
 				5ABD09040D1E0CB0F819EA7C /* DFTimeLineViewController.h */,
 				5ABD0FE9718978FAB11805A0 /* DFTimeLineViewController.m */,
+				5ABD05E5ECBDEF1B19B83588 /* DFPostViewController.m */,
+				5ABD0D18E3BD28B0481F8B0E /* DFPostViewController.h */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -612,9 +617,10 @@
 				5ABD09D779A74D3455653968 /* UILabel+FitToBestSize.m in Sources */,
 				5ABD0BC6C244536A4EE26FCE /* UIView+Frame.m in Sources */,
 				5ABD058B0FDFF38FD7673DF9 /* UILabel+TransparentFactory.m in Sources */,
-				5ABD04ECAFB8BCE1D5BF98E1 /* DFKeyboardViewController.m in Sources */,
+				5ABD04ECAFB8BCE1D5BF98E1 /* DFComposeBaseViewController.m in Sources */,
 				5ABD0731481AE419FFADBA44 /* DFPostCommentViewController.m in Sources */,
 				5ABD0D073B953C0DA870208D /* DFTimeLineViewController.m in Sources */,
+				5ABD0A4D236FB6F611250EFB /* DFPostViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
