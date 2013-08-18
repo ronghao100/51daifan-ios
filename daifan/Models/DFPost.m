@@ -73,6 +73,12 @@
     self.bookedUserIDs = [bookedList copy];
 }
 
+- (void)addComment:(DFComment *)comment {
+    NSMutableArray *mutableComments = [NSMutableArray arrayWithArray:self.comments];
+    [mutableComments insertObject:comment atIndex:0];
+    self.comments = [mutableComments copy];
+}
+
 - (NSString *)description {
     return [NSString stringWithFormat:@"Post id:%d, name:%@, desc:%@, publishDate:%@, eatDate:%@", self.identity, self.name, self.content, self.publishDate, self.eatDate];
 }

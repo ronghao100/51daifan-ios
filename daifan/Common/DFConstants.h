@@ -50,3 +50,5 @@
 
 #define API_UNBOOK_PATH @"/api/undo-book"
 #define API_UNBOOK_PARAMETER @"?postId=%ld&userId=%ld"
+
+#define API_COMMENT_PATH @"/api/comment"

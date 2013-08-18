@@ -5,6 +5,8 @@
 #import "DFFooterView.h"
 #import "DFUser.h"
 #import "DFPostCommentViewController.h"
+#import "AFHTTPClient.h"
+#import "DFComment.h"
 
 #define TIMELINE_CELL_ID @"timeLineCellIdentifier"
 
@@ -340,10 +342,47 @@
 
 - (void)commentOnPost:(DFPost *)post {
     DFPostCommentViewController *vc = [[DFPostCommentViewController alloc] init];
-    [self presentViewController:vc animated:YES completion:^{
+    vc.post = post;
+    vc.delegate = self;
 
-    }];
+    [self presentViewController:vc animated:YES completion:nil];
 }
 
+#pragma Mark - post comment delegate
+
+- (void)postComment:(NSString *)commentString toPost:(DFPost *)post {
+    NSURL *url = [NSURL URLWithString:API_HOST];
+    AFHTTPClient *httpClient = [AFHTTPClient clientWithBaseURL:url];
+
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithCapacity:3];
+    [parameters setValue:[@(post.identity) stringValue] forKey:@"postId"];
+    [parameters setValue:[@(_currentUser.identity) stringValue] forKey:@"userId"];
+    [parameters setValue:commentString forKey:@"comment"];
+
+    NSMutableURLRequest *postRequest = [httpClient requestWithMethod:@"POST" path:API_COMMENT_PATH parameters:parameters];
+
+    NSLog(@"request: %@, %@", postRequest, parameters);
+
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:postRequest
+            success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+                if ([[(NSDictionary *) JSON objectForKey:kRESPONSE_SUCCESS] integerValue] == RESPONSE_NOT_SUCCESS) {
+                    NSLog(@"comment post failed: %@", JSON);
+                } else {
+                    NSLog(@"comment post succeed: %@", JSON);
+                    DFComment *comment = [[DFComment alloc] init];
+                    comment.uid = [@(_currentUser.identity) stringValue];
+                    comment.content = commentString;
+                    comment.commentTime = [NSDate date];
+
+                    [post addComment:comment];
+                    [self.tableView reloadData];
+                }
+            } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+                NSLog(@"comment post failed in failure block: %@", JSON);
+//                [self showErrorMessage];
+            }];
+
+    [httpClient enqueueHTTPRequestOperation:operation];
+}
 
 @end

@@ -89,7 +89,7 @@
     postButton.frame = CGRectMake(250.0f, yOffset + INSET_Y, 60.0f, 34.0f);
     [postButton setTitle:@"发送" forState:UIControlStateNormal];
     postButton.titleLabel.font = [UIFont systemFontOfSize:[UIFont systemFontSize]];
-    [postButton addTarget:self action:@selector(post) forControlEvents:UIControlEventTouchUpInside];
+    [postButton addTarget:self action:@selector(postComment) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:postButton];
 
     yOffset += _barImageView.height;
@@ -103,17 +103,21 @@
     [_commentView becomeFirstResponder];
 }
 
-- (void)post {
+- (void)postComment {
     [_commentView resignFirstResponder];
 
     NSString *commentText = [_commentView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 
-    NSLog(@"post comment: %@", commentText);
-    
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [_delegate postComment:commentText toPost:_post];
+
+    [self dismiss];
 }
 
 - (void)cancel {
+    [self dismiss];
+}
+
+- (void)dismiss {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

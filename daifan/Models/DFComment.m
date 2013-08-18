@@ -24,7 +24,7 @@
     NSMutableArray *comments = [[NSMutableArray alloc] initWithCapacity:commentsArray.count];
 
     [commentsArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        [comments addObject:[DFComment commentFromDict:obj]];
+        [comments insertObject:[DFComment commentFromDict:obj] atIndex:0];
     }];
 
     return comments;

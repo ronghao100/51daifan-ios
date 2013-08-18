@@ -1,6 +1,7 @@
 #import <Foundation/Foundation.h>
 
 @class DFUser;
+@class DFComment;
 
 @interface DFPost : NSObject
 
@@ -26,4 +27,7 @@
 - (void)bookedByUser:(DFUser *)user;
 
 - (void)unbookedByUser:(DFUser *)user;
+
+- (void)addComment:(DFComment *)comment;
+
 @end
