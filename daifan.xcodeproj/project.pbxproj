@@ -18,6 +18,7 @@
 		5ABD0312510B9F3A79D04D99 /* uparrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ABD0036492C99FCCF11F565 /* uparrow@2x.png */; };
 		5ABD046E1E1F62C2195C0EC8 /* blueheart@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ABD08C0D5009DBBFD3CC086 /* blueheart@2x.png */; };
 		5ABD049EB03221867D7EF6D4 /* DFTimeLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD046338CD18526847EBE7 /* DFTimeLineViewController.m */; };
+		5ABD04ECAFB8BCE1D5BF98E1 /* DFKeyboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD08F8FD659E754EE2E01B /* DFKeyboardViewController.m */; };
 		5ABD055532F77CAD627C86B2 /* location@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ABD04407BFEB22934FC7E5B /* location@2x.png */; };
 		5ABD058B0FDFF38FD7673DF9 /* UILabel+TransparentFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD0A5DAAA81DBD18A19A9F /* UILabel+TransparentFactory.m */; };
 		5ABD05B6D2810735E4EA9D81 /* DFUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD0F7407CCEAA83B241D0B /* DFUser.m */; };
@@ -103,12 +104,14 @@
 		5ABD0838FAEEDD3C559AE726 /* DFCoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFCoverView.h; sourceTree = "<group>"; };
 		5ABD08A991343EC47B1066AB /* DFSplashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSplashViewController.m; sourceTree = "<group>"; };
 		5ABD08C0D5009DBBFD3CC086 /* blueheart@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blueheart@2x.png"; sourceTree = "<group>"; };
+		5ABD08F8FD659E754EE2E01B /* DFKeyboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFKeyboardViewController.m; sourceTree = "<group>"; };
 		5ABD0A5DAAA81DBD18A19A9F /* UILabel+TransparentFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+TransparentFactory.m"; sourceTree = "<group>"; };
 		5ABD0A68CFE2077350411196 /* DFRemoteImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFRemoteImageView.m; sourceTree = "<group>"; };
 		5ABD0B03429B344424310AE3 /* DFRoundImageButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFRoundImageButton.h; sourceTree = "<group>"; };
 		5ABD0B35B0657307DD8BAA12 /* DFUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFUser.h; sourceTree = "<group>"; };
 		5ABD0BE71665872E411A941D /* UILabel+FitToBestSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+FitToBestSize.h"; sourceTree = "<group>"; };
 		5ABD0C052847B0FFAFA54CE7 /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
+		5ABD0C57FE084735F71999BB /* DFKeyboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFKeyboardViewController.h; sourceTree = "<group>"; };
 		5ABD0C5E71F5DE0A3E294538 /* comment@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "comment@2x.png"; sourceTree = "<group>"; };
 		5ABD0C89BAD6517297984A61 /* timeline@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "timeline@2x.png"; sourceTree = "<group>"; };
 		5ABD0D117A4121B385CF8A4A /* DFLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFLoginViewController.m; sourceTree = "<group>"; };
@@ -196,11 +199,21 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		5ABD0711DD19DF935690232E /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				5ABD08F8FD659E754EE2E01B /* DFKeyboardViewController.m */,
+				5ABD0C57FE084735F71999BB /* DFKeyboardViewController.h */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		5ABD07D2016FDD043B8437C8 /* Common */ = {
 			isa = PBXGroup;
 			children = (
 				5ABD0D5D33AA65E07CD57D7D /* DFConstants.h */,
 				5ABD08EB14A559863491FA72 /* Views */,
+				5ABD0711DD19DF935690232E /* Controllers */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -593,6 +606,7 @@
 				5ABD0BC6C244536A4EE26FCE /* UIView+Frame.m in Sources */,
 				5ABD058B0FDFF38FD7673DF9 /* UILabel+TransparentFactory.m in Sources */,
 				5ABD0106E2B11207A393C000 /* DFPostCommentViewController.m in Sources */,
+				5ABD04ECAFB8BCE1D5BF98E1 /* DFKeyboardViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,50 +10,12 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.wantsFullScreenLayout = YES;
-
-        [self registerKeyboardNotification];
     }
 
     return self;
 }
 
-- (void)registerKeyboardNotification {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
-
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillChangeFrameNotification object:nil];
-}
-
-- (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
-#pragma mark - Responding to keyboard events
-- (void)keyboardWillShow:(NSNotification *)notification {
-    NSDictionary *userInfo = [notification userInfo];
-
-    NSValue* aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
-
-    CGRect keyboardRect = [aValue CGRectValue];
-
-    NSValue *animationDurationValue = [userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
-    NSTimeInterval animationDuration;
-    [animationDurationValue getValue:&animationDuration];
-
-    [self moveInputBarWithKeyboardHeight:keyboardRect.size.height withDuration:animationDuration];
-}
-
-- (void)keyboardWillHide:(NSNotification *)notification {
-    NSDictionary* userInfo = [notification userInfo];
-
-    NSValue *animationDurationValue = [userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
-    NSTimeInterval animationDuration;
-    [animationDurationValue getValue:&animationDuration];
-
-    [self moveInputBarWithKeyboardHeight:0.0f withDuration:animationDuration];
-}
-
-- (void)moveInputBarWithKeyboardHeight:(CGFloat)newKeyboardHeight withDuration:(NSTimeInterval)duration {
+- (void)relayoutViewWithKeyboardHeight:(CGFloat)newKeyboardHeight withDuration:(NSTimeInterval)duration {
     CGFloat statusBarHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
     CGFloat newHeight = self.view.height - statusBarHeight - _barImageView.height - newKeyboardHeight;
 
