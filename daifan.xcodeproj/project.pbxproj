@@ -10,18 +10,17 @@
 		5ABD008CD5561CB5ECB30A63 /* DFCoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD04E86861D1A6E329079D /* DFCoverView.m */; };
 		5ABD00BAF8FA072B823AEF73 /* DFPost.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD01135129DFE937DD090F /* DFPost.m */; };
 		5ABD00DC0F88514453EE070E /* unbook@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ABD0DF14B8C27703E32862A /* unbook@2x.png */; };
-		5ABD0106E2B11207A393C000 /* DFPostCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD01B62873983E9E6B4BC0 /* DFPostCommentViewController.m */; };
 		5ABD0219560A9FDA03DA43E5 /* timeline@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ABD0C89BAD6517297984A61 /* timeline@2x.png */; };
 		5ABD02474615AD0115E8F712 /* DFFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD054696CBBA1EB8C1D0B6 /* DFFooterView.m */; };
 		5ABD0255E9584F9EEB2D7A92 /* book@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ABD04D7C32EBD018A98702A /* book@2x.png */; };
 		5ABD02BAF1C0232D983FBB5E /* post@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ABD0F9DEC3587F3C4FAD89B /* post@2x.png */; };
 		5ABD0312510B9F3A79D04D99 /* uparrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ABD0036492C99FCCF11F565 /* uparrow@2x.png */; };
 		5ABD046E1E1F62C2195C0EC8 /* blueheart@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ABD08C0D5009DBBFD3CC086 /* blueheart@2x.png */; };
-		5ABD049EB03221867D7EF6D4 /* DFTimeLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD046338CD18526847EBE7 /* DFTimeLineViewController.m */; };
 		5ABD04ECAFB8BCE1D5BF98E1 /* DFKeyboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD08F8FD659E754EE2E01B /* DFKeyboardViewController.m */; };
 		5ABD055532F77CAD627C86B2 /* location@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ABD04407BFEB22934FC7E5B /* location@2x.png */; };
 		5ABD058B0FDFF38FD7673DF9 /* UILabel+TransparentFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD0A5DAAA81DBD18A19A9F /* UILabel+TransparentFactory.m */; };
 		5ABD05B6D2810735E4EA9D81 /* DFUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD0F7407CCEAA83B241D0B /* DFUser.m */; };
+		5ABD0731481AE419FFADBA44 /* DFPostCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD0C9797E5BF2F76DC6836 /* DFPostCommentViewController.m */; };
 		5ABD07DD1E4E0F4DB6922D61 /* DFTimeLineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD04B0B6BC93931CEED6CD /* DFTimeLineCell.m */; };
 		5ABD089E9C2730CEFB2354F9 /* DFCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD05F19FFFCB2383557E59 /* DFCommentView.m */; };
 		5ABD09126878146977336DBE /* nomore@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ABD035E9EA1C7D2404FDF12 /* nomore@2x.png */; };
@@ -35,6 +34,7 @@
 		5ABD0AFCCB00836219ADE52A /* DFUserList.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD03D0806B666016F20388 /* DFUserList.m */; };
 		5ABD0B6BCC66BFE44B8F879E /* DFRoundImageButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD0D38C1CA62976EDAB1AD /* DFRoundImageButton.m */; };
 		5ABD0BC6C244536A4EE26FCE /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD007B5111418CFD24FEA1 /* UIView+Frame.m */; };
+		5ABD0D073B953C0DA870208D /* DFTimeLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD0FE9718978FAB11805A0 /* DFTimeLineViewController.m */; };
 		5ABD0F1B9A434B527328B2D5 /* DFComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD0DB7303EC60A61017D8B /* DFComment.m */; };
 		5ABD0F355EC35DEC17CA4734 /* UIScreen+ApplicationBounds.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD02CE9F55785E6C28A9FA /* UIScreen+ApplicationBounds.m */; };
 		DA2035FF3CD349A0838396C5 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4901EC8B88EC476A8E2682EF /* libPods.a */; };
@@ -78,10 +78,8 @@
 		5ABD0036492C99FCCF11F565 /* uparrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "uparrow@2x.png"; sourceTree = "<group>"; };
 		5ABD007B5111418CFD24FEA1 /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
 		5ABD01135129DFE937DD090F /* DFPost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFPost.m; sourceTree = "<group>"; };
-		5ABD01B62873983E9E6B4BC0 /* DFPostCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFPostCommentViewController.m; sourceTree = "<group>"; };
-		5ABD022F3CCD98255A2D6DE8 /* DFTimeLineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFTimeLineViewController.h; sourceTree = "<group>"; };
+		5ABD013C7E3EB96B6EC4438E /* DFPostCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFPostCommentViewController.h; sourceTree = "<group>"; };
 		5ABD0250C3057DB3E4090823 /* DFCommentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFCommentView.h; sourceTree = "<group>"; };
-		5ABD02C21B5E6C434A36D513 /* DFPostCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFPostCommentViewController.h; sourceTree = "<group>"; };
 		5ABD02CE9F55785E6C28A9FA /* UIScreen+ApplicationBounds.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScreen+ApplicationBounds.m"; sourceTree = "<group>"; };
 		5ABD031586657564D4EC3AFB /* DFLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFLoginViewController.h; sourceTree = "<group>"; };
 		5ABD032C1BE1113F0A90F14E /* UIScreen+ApplicationBounds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScreen+ApplicationBounds.h"; sourceTree = "<group>"; };
@@ -90,7 +88,6 @@
 		5ABD03D0806B666016F20388 /* DFUserList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFUserList.m; sourceTree = "<group>"; };
 		5ABD04407BFEB22934FC7E5B /* location@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location@2x.png"; sourceTree = "<group>"; };
 		5ABD04530482D4D49EE4D2B4 /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
-		5ABD046338CD18526847EBE7 /* DFTimeLineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFTimeLineViewController.m; sourceTree = "<group>"; };
 		5ABD04B0B6BC93931CEED6CD /* DFTimeLineCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFTimeLineCell.m; sourceTree = "<group>"; };
 		5ABD04CBC8E237130F506273 /* UILabel+FitToBestSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+FitToBestSize.m"; sourceTree = "<group>"; };
 		5ABD04D7C32EBD018A98702A /* book@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "book@2x.png"; sourceTree = "<group>"; };
@@ -105,6 +102,7 @@
 		5ABD08A991343EC47B1066AB /* DFSplashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSplashViewController.m; sourceTree = "<group>"; };
 		5ABD08C0D5009DBBFD3CC086 /* blueheart@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blueheart@2x.png"; sourceTree = "<group>"; };
 		5ABD08F8FD659E754EE2E01B /* DFKeyboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFKeyboardViewController.m; sourceTree = "<group>"; };
+		5ABD09040D1E0CB0F819EA7C /* DFTimeLineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFTimeLineViewController.h; sourceTree = "<group>"; };
 		5ABD0A5DAAA81DBD18A19A9F /* UILabel+TransparentFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+TransparentFactory.m"; sourceTree = "<group>"; };
 		5ABD0A68CFE2077350411196 /* DFRemoteImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFRemoteImageView.m; sourceTree = "<group>"; };
 		5ABD0B03429B344424310AE3 /* DFRoundImageButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFRoundImageButton.h; sourceTree = "<group>"; };
@@ -114,6 +112,7 @@
 		5ABD0C57FE084735F71999BB /* DFKeyboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFKeyboardViewController.h; sourceTree = "<group>"; };
 		5ABD0C5E71F5DE0A3E294538 /* comment@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "comment@2x.png"; sourceTree = "<group>"; };
 		5ABD0C89BAD6517297984A61 /* timeline@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "timeline@2x.png"; sourceTree = "<group>"; };
+		5ABD0C9797E5BF2F76DC6836 /* DFPostCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFPostCommentViewController.m; sourceTree = "<group>"; };
 		5ABD0D117A4121B385CF8A4A /* DFLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFLoginViewController.m; sourceTree = "<group>"; };
 		5ABD0D38C1CA62976EDAB1AD /* DFRoundImageButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFRoundImageButton.m; sourceTree = "<group>"; };
 		5ABD0D5D33AA65E07CD57D7D /* DFConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFConstants.h; sourceTree = "<group>"; };
@@ -126,6 +125,7 @@
 		5ABD0E82821FE604DD076BBA /* DFFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFFooterView.h; sourceTree = "<group>"; };
 		5ABD0F7407CCEAA83B241D0B /* DFUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFUser.m; sourceTree = "<group>"; };
 		5ABD0F9DEC3587F3C4FAD89B /* post@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "post@2x.png"; sourceTree = "<group>"; };
+		5ABD0FE9718978FAB11805A0 /* DFTimeLineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFTimeLineViewController.m; sourceTree = "<group>"; };
 		F115B3A217B7CD7800E45BB0 /* BPushConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BPushConfig.plist; sourceTree = "<group>"; };
 		F11AEE79178068F40008082E /* daifan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = daifan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F11AEE7C178068F40008082E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -260,11 +260,8 @@
 		5ABD09C326A72ED39AEF4310 /* Timeline */ = {
 			isa = PBXGroup;
 			children = (
-				5ABD046338CD18526847EBE7 /* DFTimeLineViewController.m */,
-				5ABD022F3CCD98255A2D6DE8 /* DFTimeLineViewController.h */,
 				5ABD0C89CE83DFE585A39B66 /* Views */,
-				5ABD01B62873983E9E6B4BC0 /* DFPostCommentViewController.m */,
-				5ABD02C21B5E6C434A36D513 /* DFPostCommentViewController.h */,
+				5ABD0CA19D886C4508851AFB /* Controllers */,
 			);
 			path = Timeline;
 			sourceTree = "<group>";
@@ -293,6 +290,17 @@
 				5ABD0250C3057DB3E4090823 /* DFCommentView.h */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		5ABD0CA19D886C4508851AFB /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				5ABD013C7E3EB96B6EC4438E /* DFPostCommentViewController.h */,
+				5ABD0C9797E5BF2F76DC6836 /* DFPostCommentViewController.m */,
+				5ABD09040D1E0CB0F819EA7C /* DFTimeLineViewController.h */,
+				5ABD0FE9718978FAB11805A0 /* DFTimeLineViewController.m */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		5ABD0CC4A0FB8D250002209D /* User */ = {
@@ -587,7 +595,6 @@
 			files = (
 				F11AEE89178068F50008082E /* main.m in Sources */,
 				F11AEE8D178068F50008082E /* DFAppDelegate.m in Sources */,
-				5ABD049EB03221867D7EF6D4 /* DFTimeLineViewController.m in Sources */,
 				5ABD09B202FDD56A846FBA1C /* UIColor+Hex.m in Sources */,
 				5ABD008CD5561CB5ECB30A63 /* DFCoverView.m in Sources */,
 				5ABD07DD1E4E0F4DB6922D61 /* DFTimeLineCell.m in Sources */,
@@ -605,8 +612,9 @@
 				5ABD09D779A74D3455653968 /* UILabel+FitToBestSize.m in Sources */,
 				5ABD0BC6C244536A4EE26FCE /* UIView+Frame.m in Sources */,
 				5ABD058B0FDFF38FD7673DF9 /* UILabel+TransparentFactory.m in Sources */,
-				5ABD0106E2B11207A393C000 /* DFPostCommentViewController.m in Sources */,
 				5ABD04ECAFB8BCE1D5BF98E1 /* DFKeyboardViewController.m in Sources */,
+				5ABD0731481AE419FFADBA44 /* DFPostCommentViewController.m in Sources */,
+				5ABD0D073B953C0DA870208D /* DFTimeLineViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
