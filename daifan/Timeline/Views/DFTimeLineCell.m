@@ -6,8 +6,6 @@
 #import "DFRemoteImageView.h"
 #import "DFCommentView.h"
 
-#define INSET_X 5.0f
-#define INSET_Y 5.0f
 #define LABEL_WIDTH 248.0f
 #define MIDDLE_LINE_X 62.0f
 #define PADDING 10.0f

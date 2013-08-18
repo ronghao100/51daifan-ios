@@ -4,6 +4,9 @@
 #define COVER_VIEW_HEIGHT 150.0f
 #define FOOTER_VIEW_HEIGHT 60.0f
 
+#define INSET_X 5.0f
+#define INSET_Y 5.0f
+
 #define DEFAULT_KEYBOARD_HEIGHT 216.0f
 #define DEFAULT_PADDING 10.0f
 
