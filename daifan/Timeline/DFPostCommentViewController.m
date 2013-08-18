@@ -5,6 +5,17 @@
 
 }
 
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+//    if (self) {
+//        if ([self respondsToSelector:@selector(edgesForExtendedLayout)]) {
+//            self.edgesForExtendedLayout = UIRectEdgeNone;
+//        }
+//    }
+
+    return self;
+}
+
 - (void)loadView {
     self.view = [[UIView alloc] initWithFrame:[UIScreen mainScreen].applicationBounds];
     self.view.backgroundColor = [UIColor orangeColor];
@@ -34,7 +45,7 @@
     UITextField *commentField = [[UITextField alloc] initWithFrame:CGRectMake(0.0f, 44.0f, self.view.width, self.view.height - barImageView.height - DEFAULT_KEYBOARD_HEIGHT)];
     commentField.placeholder = @"评论";
     [self.view addSubview:commentField];
-//    [self.view addSubview:toolbar];
+
 }
 
 
