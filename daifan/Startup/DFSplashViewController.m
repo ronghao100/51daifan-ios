@@ -36,8 +36,6 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 
-    [self setupCache];
-
     [self checkAccount];
 }
 
@@ -46,20 +44,11 @@
     [NSThread sleepForTimeInterval:2];
 #endif
 
-//    NSArray *accounts = [SSKeychain accountsForService:kKEYCHAIN_SERVICE];
-
     if ([DFUser hasStoredUser]) {
         [self showTimelineView];
     } else {
         [self showLoginView];
     }
-}
-
-- (void)setupCache {
-    NSURLCache *URLCache = [[NSURLCache alloc] initWithMemoryCapacity:4 * 1024 * 1024
-                                                         diskCapacity:20 * 1024 * 1024
-                                                             diskPath:nil];
-    [NSURLCache setSharedURLCache:URLCache];
 }
 
 - (void)showLoginView {
