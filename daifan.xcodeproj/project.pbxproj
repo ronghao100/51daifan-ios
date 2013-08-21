@@ -35,6 +35,7 @@
 		5ABD0AFCCB00836219ADE52A /* DFUserList.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD03D0806B666016F20388 /* DFUserList.m */; };
 		5ABD0B6BCC66BFE44B8F879E /* DFRoundImageButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD0D38C1CA62976EDAB1AD /* DFRoundImageButton.m */; };
 		5ABD0BC6C244536A4EE26FCE /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD007B5111418CFD24FEA1 /* UIView+Frame.m */; };
+		5ABD0CF4F46377262EA89B74 /* NSDate+DateName.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD0E3801EACFCA21A43086 /* NSDate+DateName.m */; };
 		5ABD0D073B953C0DA870208D /* DFTimeLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD0FE9718978FAB11805A0 /* DFTimeLineViewController.m */; };
 		5ABD0F1B9A434B527328B2D5 /* DFComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD0DB7303EC60A61017D8B /* DFComment.m */; };
 		5ABD0F355EC35DEC17CA4734 /* UIScreen+ApplicationBounds.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD02CE9F55785E6C28A9FA /* UIScreen+ApplicationBounds.m */; };
@@ -53,6 +54,7 @@
 		F133A8F71787F56500CF7897 /* daifan@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F133A8F51787F56500CF7897 /* daifan@2x.png */; };
 		F133A8F81787F56500CF7897 /* daifan-120@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F133A8F61787F56500CF7897 /* daifan-120@2x.png */; };
 		F133A8FA1787F8F300CF7897 /* daifan.png in Resources */ = {isa = PBXBuildFile; fileRef = F133A8F91787F8F300CF7897 /* daifan.png */; };
+		F14F813D17C4A8A30024A4E9 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F14F813C17C4A8A30024A4E9 /* Crashlytics.framework */; };
 		F163B3FA17893ADD0064F890 /* production.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = F163B3F917893ADD0064F890 /* production.xcconfig */; };
 		F163B3FC17896A750064F890 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F163B3FB17896A750064F890 /* SystemConfiguration.framework */; };
 		F163B3FE17896A7D0064F890 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F163B3FD17896A7D0064F890 /* MobileCoreServices.framework */; };
@@ -79,6 +81,7 @@
 		5ABD0036492C99FCCF11F565 /* uparrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "uparrow@2x.png"; sourceTree = "<group>"; };
 		5ABD007B5111418CFD24FEA1 /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
 		5ABD01135129DFE937DD090F /* DFPost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFPost.m; sourceTree = "<group>"; };
+		5ABD012A94016A1E54CB21D5 /* NSDate+DateName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+DateName.h"; sourceTree = "<group>"; };
 		5ABD013C7E3EB96B6EC4438E /* DFPostCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFPostCommentViewController.h; sourceTree = "<group>"; };
 		5ABD0250C3057DB3E4090823 /* DFCommentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFCommentView.h; sourceTree = "<group>"; };
 		5ABD02CE9F55785E6C28A9FA /* UIScreen+ApplicationBounds.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScreen+ApplicationBounds.m"; sourceTree = "<group>"; };
@@ -124,6 +127,7 @@
 		5ABD0DB7303EC60A61017D8B /* DFComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFComment.m; sourceTree = "<group>"; };
 		5ABD0DF14B8C27703E32862A /* unbook@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "unbook@2x.png"; sourceTree = "<group>"; };
 		5ABD0E00541690BD684DA311 /* DFTimeLineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFTimeLineCell.h; sourceTree = "<group>"; };
+		5ABD0E3801EACFCA21A43086 /* NSDate+DateName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+DateName.m"; sourceTree = "<group>"; };
 		5ABD0E67AFE31FCF86C93E4A /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
 		5ABD0E82821FE604DD076BBA /* DFFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFFooterView.h; sourceTree = "<group>"; };
 		5ABD0F7407CCEAA83B241D0B /* DFUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFUser.m; sourceTree = "<group>"; };
@@ -147,6 +151,7 @@
 		F133A8F51787F56500CF7897 /* daifan@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "daifan@2x.png"; sourceTree = "<group>"; };
 		F133A8F61787F56500CF7897 /* daifan-120@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "daifan-120@2x.png"; sourceTree = "<group>"; };
 		F133A8F91787F8F300CF7897 /* daifan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = daifan.png; sourceTree = "<group>"; };
+		F14F813C17C4A8A30024A4E9 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		F163B3F917893ADD0064F890 /* production.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = production.xcconfig; sourceTree = "<group>"; };
 		F163B3FB17896A750064F890 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		F163B3FD17896A7D0064F890 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
@@ -171,6 +176,7 @@
 				F11AEE81178068F40008082E /* CoreGraphics.framework in Frameworks */,
 				DA2035FF3CD349A0838396C5 /* libPods.a in Frameworks */,
 				F17B572B179A9EF900C08814 /* libBPush.a in Frameworks */,
+				F14F813D17C4A8A30024A4E9 /* Crashlytics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,6 +336,8 @@
 				5ABD0C052847B0FFAFA54CE7 /* UIView+Frame.h */,
 				5ABD0A5DAAA81DBD18A19A9F /* UILabel+TransparentFactory.m */,
 				5ABD05A318C54E793EDAE3D1 /* UILabel+TransparentFactory.h */,
+				5ABD0E3801EACFCA21A43086 /* NSDate+DateName.m */,
+				5ABD012A94016A1E54CB21D5 /* NSDate+DateName.h */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -368,6 +376,7 @@
 		F11AEE7B178068F40008082E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F14F813C17C4A8A30024A4E9 /* Crashlytics.framework */,
 				F163B3FD17896A7D0064F890 /* MobileCoreServices.framework */,
 				F163B3FB17896A750064F890 /* SystemConfiguration.framework */,
 				F11AEE7C178068F40008082E /* UIKit.framework */,
@@ -455,6 +464,7 @@
 				F11AEE76178068F40008082E /* Frameworks */,
 				F11AEE77178068F40008082E /* Resources */,
 				C489A92E67B6416682D09D61 /* Copy Pods Resources */,
+				F14F813B17C4A8790024A4E9 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -591,6 +601,19 @@
 			shellPath = /bin/sh;
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 		};
+		F14F813B17C4A8790024A4E9 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Crashlytics.framework/run 12cf69bcd58555af123af07396580d08d970eee1";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -621,6 +644,7 @@
 				5ABD0731481AE419FFADBA44 /* DFPostCommentViewController.m in Sources */,
 				5ABD0D073B953C0DA870208D /* DFTimeLineViewController.m in Sources */,
 				5ABD0A4D236FB6F611250EFB /* DFPostViewController.m in Sources */,
+				5ABD0CF4F46377262EA89B74 /* NSDate+DateName.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -721,6 +745,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2DFF4B995E104D65A93F501A /* Pods.xcconfig */;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "daifan/daifan-Prefix.pch";
 				INFOPLIST_FILE = "daifan/daifan-Info.plist";
@@ -739,6 +767,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2DFF4B995E104D65A93F501A /* Pods.xcconfig */;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "daifan/daifan-Prefix.pch";
 				INFOPLIST_FILE = "daifan/daifan-Info.plist";

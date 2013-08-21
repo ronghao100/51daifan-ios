@@ -22,4 +22,5 @@
     #import "UILabel+FitToBestSize.h"
     #import "UILabel+TransparentFactory.h"
     #import "UIView+Frame.h"
+    #import "NSDate+DateName.h"
 #endif

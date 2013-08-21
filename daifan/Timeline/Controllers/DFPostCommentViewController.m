@@ -30,9 +30,9 @@
     CGFloat yOffset = statusBarHeight + self.barImageView.height;
 
     _commentView = [[UITextView alloc] initWithFrame:CGRectMake(0.0f, yOffset, self.view.width, self.view.height - yOffset)];
-    _commentView.contentInset = UIEdgeInsetsMake(INSET_Y, INSET_X, INSET_Y, INSET_X);
     _commentView.backgroundColor = [UIColor colorWithHexString:@"#F0F0F0"];
     _commentView.font = [UIFont systemFontOfSize:[UIFont systemFontSize]];
+    _commentView.showsHorizontalScrollIndicator = NO;
     [self.view addSubview:_commentView];
 
     [_commentView becomeFirstResponder];

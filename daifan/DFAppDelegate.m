@@ -3,12 +3,18 @@
 #import "AFNetworkActivityIndicatorManager.h"
 #import "BPush.h"
 #import "JSONKit.h"
+#import <Crashlytics/Crashlytics.h>
 
 @implementation DFAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
+
+    [BPush setupChannel:launchOptions];
+    [BPush setDelegate:self];
+
+    [Crashlytics startWithAPIKey:@"12cf69bcd58555af123af07396580d08d970eee1"];
 
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
 
@@ -17,9 +23,6 @@
 
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
-    
-    [BPush setupChannel:launchOptions];
-    [BPush setDelegate:self];
     
     [application setApplicationIconBadgeNumber:0];
     [application registerForRemoteNotificationTypes:
