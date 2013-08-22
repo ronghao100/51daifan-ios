@@ -4,9 +4,14 @@
 #import "TCDateSelector.h"
 
 
+@protocol DFPostDelegate
+
+- (void)post:(NSString *)postString date:(NSDate *)eatDate count:(NSInteger)totalCount;
+
+@end
+
 @interface DFPostViewController : DFComposeBaseViewController <UITextViewDelegate, TCSelectorDelegate>
 
-@property (nonatomic, readonly) NSDate *eatDate;
-@property (nonatomic, readonly) NSInteger totalCount;
+@property (nonatomic, weak) id<DFPostDelegate> delegate;
 
 @end

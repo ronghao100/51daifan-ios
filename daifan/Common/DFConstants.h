@@ -37,10 +37,10 @@
 
 #define API_HOST @"http://51daifan.sinaapp.com"
 
-#define API_POST_PATH @"/api/posts"
-#define API_POST_NEW_LIST_PARAMETER @"?type=0"
-#define API_POST_NEWER_LIST_PARAMETER @"?type=1&currentId=%ld"
-#define API_POST_OLDER_LIST_PARAMETER @"?type=2&currentId=%ld"
+#define API_POSTS_PATH @"/api/posts"
+#define API_POSTS_NEW_LIST_PARAMETER @"?type=0"
+#define API_POSTS_NEWER_LIST_PARAMETER @"?type=1&currentId=%ld"
+#define API_POSTS_OLDER_LIST_PARAMETER @"?type=2&currentId=%ld"
 
 #define API_LOGIN_PATH @"/api/login"
 #define API_LOGIN_PARAMETER @"?email=%@&password=%@"
@@ -52,3 +52,5 @@
 #define API_UNBOOK_PARAMETER @"?postId=%ld&userId=%ld"
 
 #define API_COMMENT_PATH @"/api/comment"
+
+#define API_POST_PATH @"/api/post"

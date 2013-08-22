@@ -4,8 +4,6 @@
 #import "DFUserList.h"
 #import "DFFooterView.h"
 #import "DFUser.h"
-#import "DFPostViewController.h"
-#import "DFPostCommentViewController.h"
 #import "AFHTTPClient.h"
 #import "DFComment.h"
 
@@ -38,6 +36,7 @@
 
 - (void)post {
     DFPostViewController *postVC = [[DFPostViewController alloc] init];
+    postVC.delegate = self;
 
     [self presentViewController:postVC animated:YES completion:nil];
 }
@@ -147,7 +146,7 @@
 #pragma mark - Services
 
 - (void)loadList {
-    NSString *urlString = [NSString stringWithFormat:@"%@%@%@", API_HOST, API_POST_PATH, API_POST_NEW_LIST_PARAMETER];
+    NSString *urlString = [NSString stringWithFormat:@"%@%@%@", API_HOST, API_POSTS_PATH, API_POSTS_NEW_LIST_PARAMETER];
 
     NSLog(@"request: %@", urlString);
 
@@ -184,8 +183,8 @@
 }
 
 - (void)pullForNew {
-    NSString *newerListString = [NSString stringWithFormat:API_POST_NEWER_LIST_PARAMETER, _newestPostID];
-    NSString *urlString = [NSString stringWithFormat:@"%@%@%@", API_HOST, API_POST_PATH, newerListString];
+    NSString *newerListString = [NSString stringWithFormat:API_POSTS_NEWER_LIST_PARAMETER, _newestPostID];
+    NSString *urlString = [NSString stringWithFormat:@"%@%@%@", API_HOST, API_POSTS_PATH, newerListString];
 
     NSLog(@"request: %@", urlString);
 
@@ -224,8 +223,8 @@
 }
 
 - (void)loadMore {
-    NSString *newerListString = [NSString stringWithFormat:API_POST_OLDER_LIST_PARAMETER, _oldestPostID];
-    NSString *urlString = [NSString stringWithFormat:@"%@%@%@", API_HOST, API_POST_PATH, newerListString];
+    NSString *newerListString = [NSString stringWithFormat:API_POSTS_OLDER_LIST_PARAMETER, _oldestPostID];
+    NSString *urlString = [NSString stringWithFormat:@"%@%@%@", API_HOST, API_POSTS_PATH, newerListString];
 
     NSLog(@"request: %@", urlString);
 
@@ -383,7 +382,49 @@
                 }
             } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
                 NSLog(@"comment post failed in failure block: %@", JSON);
-//                [self showErrorMessage];
+            }];
+
+    [httpClient enqueueHTTPRequestOperation:operation];
+}
+
+#pragma Mark - post delegate
+- (void)post:(NSString *)postString date:(NSDate *)eatDate count:(NSInteger)totalCount {
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    df.dateFormat = @"yyyy-MM-dd";
+    df.timeZone = [NSTimeZone localTimeZone];
+
+    NSURL *url = [NSURL URLWithString:API_HOST];
+    AFHTTPClient *httpClient = [AFHTTPClient clientWithBaseURL:url];
+
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithCapacity:3];
+    [parameters setValue:[@(totalCount) stringValue] forKey:@"count"];
+    [parameters setValue:[df stringFromDate:eatDate] forKey:@"eatDate"];
+    [parameters setValue:postString forKey:@"name"];
+    [parameters setValue:@"" forKey:@"desc"];
+    [parameters setValue:[@(1) stringValue] forKey:@"uid"];
+
+    NSMutableURLRequest *postRequest = [httpClient requestWithMethod:@"POST" path:API_POST_PATH parameters:parameters];
+
+    NSLog(@"request: %@, %@", postRequest, parameters);
+
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:postRequest
+            success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+                if ([[(NSDictionary *) JSON objectForKey:kRESPONSE_SUCCESS] integerValue] == RESPONSE_NOT_SUCCESS) {
+                    NSLog(@"post failed: %@", JSON);
+                } else {
+                    NSLog(@"post succeed: %@", JSON);
+                    DFPost *post = [[DFPost alloc] init];
+                    post.bookedUserIDs = [NSArray array];
+                    post.bookedCount = 0;
+                    post.count = totalCount;
+                    post.name = postString;
+                    post.user = _currentUser;
+
+                    [_posts addObject:post];
+                    [self.tableView reloadData];
+                }
+            } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+                NSLog(@"post failed in failure block: %@", JSON);
             }];
 
     [httpClient enqueueHTTPRequestOperation:operation];

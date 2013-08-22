@@ -58,15 +58,12 @@
     [_postTextView resignFirstResponder];
 
     NSString *postText = [_postTextView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    _eatDate = _eatDateSelector.date;
-    _totalCount = _countSelector.number;
+    NSDate *eatDate = _eatDateSelector.date;
+    NSInteger totalCount = _countSelector.number;
 
-    NSDateFormatter *df = [[NSDateFormatter alloc] init];
-    df.dateFormat = @"yyyy年M月d日";
-    df.timeZone = [NSTimeZone localTimeZone];
+    [_delegate post:postText date:eatDate count:totalCount];
 
-    NSLog(@"post: %@, %d, %@", [df stringFromDate:_eatDate], _totalCount, postText);
-//    [super postContent];
+    [super postContent];
 }
 
 - (void)relayoutViewWithKeyboardHeight:(CGFloat)newKeyboardHeight withDuration:(NSTimeInterval)duration {
@@ -95,14 +92,6 @@
     }
 
     [_postTextView becomeFirstResponder];
-}
-
-- (void)selectorValueDidChanged:(TCSelectorBaseView *)selector {
-    if ([selector isEqual:_eatDateSelector]) {
-        _eatDate = _eatDateSelector.date;
-    } else {
-        _totalCount = _countSelector.number;
-    }
 }
 
 #pragma mark - TextView delegate
