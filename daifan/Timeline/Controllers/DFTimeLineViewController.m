@@ -401,7 +401,7 @@
     [parameters setValue:[df stringFromDate:eatDate] forKey:@"eatDate"];
     [parameters setValue:postString forKey:@"name"];
     [parameters setValue:@"" forKey:@"desc"];
-    [parameters setValue:[@(1) stringValue] forKey:@"uid"];
+    [parameters setValue:[@(_currentUser.identity) stringValue] forKey:@"uid"];
 
     NSMutableURLRequest *postRequest = [httpClient requestWithMethod:@"POST" path:API_POST_PATH parameters:parameters];
 
