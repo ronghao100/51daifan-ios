@@ -3,8 +3,9 @@
 
 @implementation DFPostViewController {
     UITextView *_postTextView;
-    UIButton *_eatDateButton;
-    UIButton *_countButton;
+
+    TCDateSelector *_eatDateSelector;
+    TCNumberSelector *_countSelector;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -23,17 +24,18 @@
     CGFloat statusBarHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
     CGFloat yOffset = statusBarHeight + self.barImageView.height;
 
-    _eatDateButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    _eatDateButton.frame = CGRectMake(0.0f, yOffset, halfWidth + 10.0f, DEFAULT_BAR_HEIGHT);
-    [_eatDateButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [_eatDateButton addTarget:self action:@selector(selectDate) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:_eatDateButton];
+    _eatDateSelector = [[TCDateSelector alloc] initWithFrame:CGRectMake(0.0f, yOffset, halfWidth, DEFAULT_BAR_HEIGHT) date:[NSDate tomorrow]];
+    _eatDateSelector.textColor = [UIColor blackColor];
+    _eatDateSelector.format = @"yyyy年M月d日";
+    _eatDateSelector.delegate = self;
+    [self.view addSubview:_eatDateSelector];
 
-    _countButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    _countButton.frame = CGRectMake(halfWidth + 10.0f, yOffset, halfWidth - 10.0f, DEFAULT_BAR_HEIGHT);
-    [_countButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [_countButton addTarget:self action:@selector(selectCount) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:_countButton];
+    _countSelector = [[TCNumberSelector alloc] initWithFrame:CGRectMake(halfWidth, yOffset, halfWidth, DEFAULT_BAR_HEIGHT) number:1];
+    _countSelector.textColor = [UIColor blackColor];
+    _countSelector.format = @"带 %d 份";
+    _countSelector.minimumNumber = 1;
+    _countSelector.delegate = self;
+    [self.view addSubview:_countSelector];
 
     yOffset += DEFAULT_BAR_HEIGHT;
 
@@ -41,47 +43,29 @@
     _postTextView.backgroundColor = [UIColor colorWithHexString:@"#F0F0F0"];
     _postTextView.font = [UIFont systemFontOfSize:[UIFont systemFontSize]];
     _postTextView.showsHorizontalScrollIndicator = NO;
+    _postTextView.delegate = self;
     [self.view addSubview:_postTextView];
+    [self.view sendSubviewToBack:_postTextView];
 
     [_postTextView becomeFirstResponder];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    [self setEatDate:[NSDate tomorrow]];
-    [self setTotalCount:0];
-}
-
-- (void)setEatDate:(NSDate *)date {
-    _eatDate = date;
-
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setTimeZone:[NSTimeZone localTimeZone]];
-    dateFormatter.dateFormat = @"yyyy年M月d日 带";
-
-    [_eatDateButton setTitle:[dateFormatter stringFromDate:_eatDate] forState:UIControlStateNormal];
-}
-
-- (void)setTotalCount:(NSUInteger)count {
-    _totalCount = count;
-
-    [_countButton setTitle:[NSString stringWithFormat:@"%d 份", _totalCount] forState:UIControlStateNormal];
-}
-
-- (void)selectDate {
-
-}
-
-- (void)selectCount {
-    [self setTotalCount:self.totalCount + 1];
 }
 
 - (void)postContent {
     [_postTextView resignFirstResponder];
 
     NSString *postText = [_postTextView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    _eatDate = _eatDateSelector.date;
+    _totalCount = _countSelector.number;
 
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    df.dateFormat = @"yyyy年M月d日";
+    df.timeZone = [NSTimeZone localTimeZone];
+
+    NSLog(@"post: %@, %d, %@", [df stringFromDate:_eatDate], _totalCount, postText);
 //    [super postContent];
 }
 
@@ -92,6 +76,40 @@
     [UIView animateWithDuration:duration animations:^{
         _postTextView.height = newHeight;
     }];
+}
+
+#pragma mark - TCSelector delegate
+- (void)selectorWillExtended:(TCSelectorBaseView *)selector {
+    [_postTextView resignFirstResponder];
+
+    if ([selector isEqual:_eatDateSelector]) {
+        [_countSelector collapse];
+    } else {
+        [_eatDateSelector collapse];
+    }
+}
+
+- (void)selectorDidCollapsed:(TCSelectorBaseView *)selector {
+    if (_eatDateSelector.isExtended || _countSelector.isExtended) {
+        return;
+    }
+
+    [_postTextView becomeFirstResponder];
+}
+
+- (void)selectorValueDidChanged:(TCSelectorBaseView *)selector {
+    if ([selector isEqual:_eatDateSelector]) {
+        _eatDate = _eatDateSelector.date;
+    } else {
+        _totalCount = _countSelector.number;
+    }
+}
+
+#pragma mark - TextView delegate
+- (void)textViewDidBeginEditing:(UITextView *)textView
+{
+    [_eatDateSelector collapse];
+    [_countSelector collapse];
 }
 
 @end

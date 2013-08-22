@@ -29,7 +29,7 @@
 
 - (void)loadView {
     self.view = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor blackColor];
 
     CGFloat statusBarHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
     CGFloat yOffset = statusBarHeight;
