@@ -115,56 +115,85 @@
 
 - (void)refresh {
     if (_post) {
-        [_avatarView loadImageFromURL:[NSURL URLWithString:_post.user.avatarURLString ]];
+        [self displayUserInfo];
 
-        _userNameLabel.text = _post.user.name;
-        NSString *_content = [NSString stringWithFormat:@"%@: %@", _post.nameWithEatDate, _post.content];
-        _contentLabel.text = _content;
+        [self displayContent];
 
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setTimeZone:[NSTimeZone localTimeZone]];
-        dateFormatter.dateFormat = @"yyyy-M-d HH:mm发布";
+        [self displayPublishDate];
 
-        NSString *formatedPublishDate = [dateFormatter stringFromDate:_post.publishDate];
-        _publishDateLabel.text = formatedPublishDate;
+        [self displayAddress];
 
-        _addressLabel.text = _post.address;
-        if (!_post.address || _post.address.length <= 0) {
-            _addressLabel.hidden = YES;
-            _locationMark.hidden = YES;
-        }
-
-        if ([_post.bookedUserIDs containsObject:@([DFUser storedUser].identity).stringValue]) {
-            [_bookButton setImage:[UIImage imageNamed:@"unbook.png"] forState:UIControlStateNormal];
-            _bookButton.enabled = YES;
-        } else {
-            _bookButton.enabled = _post.count > _post.bookedCount;
-        }
+        [self displayBookButton];
 
         [self displayFormattedCountLabel];
 
-        _commentView.bookedUserIDs = _post.bookedUserIDs;
-        _commentView.comments = _post.comments;
+        [self displayCommentView];
 
         [self setNeedsLayout];
     } else {
-        _userNameLabel.text = @"";
-        _contentLabel.text = @"";
-        _publishDateLabel.text = @"";
+        [self clearCellContent];
+    }
+}
 
-        _addressLabel.text = @"";
-        _addressLabel.hidden = NO;
-        _locationMark.hidden = NO;
+- (void)displayUserInfo {
+    [_avatarView loadImageFromURL:[NSURL URLWithString:_post.user.avatarURLString]];
 
+    _userNameLabel.text = _post.user.name;
+}
+
+- (void)displayContent {
+    NSString *_content = [NSString stringWithFormat:@"%@: %@", _post.nameWithEatDate, _post.content];
+    _contentLabel.text = _content;
+}
+
+- (void)displayAddress {
+    _addressLabel.text = _post.address;
+    if (!_post.address || _post.address.length <= 0) {
+            _addressLabel.hidden = YES;
+            _locationMark.hidden = YES;
+        }
+}
+
+- (void)displayPublishDate {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setTimeZone:[NSTimeZone localTimeZone]];
+    dateFormatter.dateFormat = @"yyyy-M-d HH:mm发布";
+
+    NSString *formatedPublishDate = [dateFormatter stringFromDate:_post.publishDate];
+    _publishDateLabel.text = formatedPublishDate;
+}
+
+- (void)displayCommentView {
+    _commentView.bookedUserIDs = _post.bookedUserIDs;
+    _commentView.comments = _post.comments;
+}
+
+- (void)clearCellContent {
+    _userNameLabel.text = @"";
+    _contentLabel.text = @"";
+    _publishDateLabel.text = @"";
+
+    _addressLabel.text = @"";
+    _addressLabel.hidden = NO;
+    _locationMark.hidden = NO;
+
+    _bookButton.enabled = YES;
+    [_bookButton setImage:[UIImage imageNamed:@"book.png"] forState:UIControlStateNormal];
+
+    _countLabel.attributedText = nil;
+
+    _commentView.comments = nil;
+
+    [_avatarView stopLoading];
+    _avatarView.image = nil;
+}
+
+- (void)displayBookButton {
+    if ([_post.bookedUserIDs containsObject:@([DFUser storedUser].identity).stringValue]) {
+        [_bookButton setImage:[UIImage imageNamed:@"unbook.png"] forState:UIControlStateNormal];
         _bookButton.enabled = YES;
-        [_bookButton setImage:[UIImage imageNamed:@"book.png"] forState:UIControlStateNormal];
-
-        _countLabel.attributedText = nil;
-
-        _commentView.comments = nil;
-
-        [_avatarView stopLoading];
-        _avatarView.image = nil;
+    } else {
+        _bookButton.enabled = _post.count > _post.bookedCount;
     }
 }
 
