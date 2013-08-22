@@ -142,7 +142,12 @@
 }
 
 - (void)displayContent {
-    NSString *_content = [NSString stringWithFormat:@"%@: %@", _post.nameWithEatDate, _post.content];
+    NSString *_contentWithComma = @"";
+    if (_post.content.length > 0) {
+        _contentWithComma = [NSString stringWithFormat:@": %@", _post.content];
+    }
+
+    NSString *_content = [NSString stringWithFormat:@"%@%@", _post.nameWithEatDate, _contentWithComma];
     _contentLabel.text = _content;
 }
 

@@ -413,15 +413,8 @@
                     NSLog(@"post failed: %@", JSON);
                 } else {
                     NSLog(@"post succeed: %@", JSON);
-                    DFPost *post = [[DFPost alloc] init];
-                    post.bookedUserIDs = [NSArray array];
-                    post.bookedCount = 0;
-                    post.count = totalCount;
-                    post.name = postString;
-                    post.user = _currentUser;
 
-                    [_posts addObject:post];
-                    [self.tableView reloadData];
+                    [self pullForNew];
                 }
             } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
                 NSLog(@"post failed in failure block: %@", JSON);
