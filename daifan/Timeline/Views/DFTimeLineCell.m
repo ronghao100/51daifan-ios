@@ -14,7 +14,7 @@
 @implementation DFTimeLineCell {
     UIImageView *_lineView;
 
-    DFRemoteImageView *_avatarView;
+    UIImageView *_avatarView;
     UILabel *_userNameLabel;
 
     UILabel *_contentLabel;
@@ -44,7 +44,7 @@
         _lineView.frame = CGRectMake(MIDDLE_LINE_X, 0.0f, TIMELINE_WIDTH_NORMAL, self.frame.size.height);
 //        [self addSubview:_lineView];
 
-        _avatarView = [[DFRemoteImageView alloc] initWithFrame:CGRectMake(7.0f, 10.0f, 48.0f, 48.0f)];
+        _avatarView = [[UIImageView alloc] initWithFrame:CGRectMake(7.0f, 10.0f, 48.0f, 48.0f)];
         _avatarView.contentMode = UIViewContentModeScaleAspectFit;
         _avatarView.backgroundColor = [UIColor orangeColor];
         [self addSubview:_avatarView];
@@ -136,7 +136,8 @@
 }
 
 - (void)displayUserInfo {
-    [_avatarView loadImageFromURL:[NSURL URLWithString:_post.user.avatarURLString]];
+    [_avatarView setImageWithURL:[NSURL URLWithString:_post.user.avatarURLString]
+                placeholderImage:[UIImage imageNamed:@"avatar_placeholder.png"]];
 
     _userNameLabel.text = _post.user.name;
 }
@@ -189,7 +190,7 @@
 
     _commentView.comments = nil;
 
-    [_avatarView stopLoading];
+    [_avatarView cancelCurrentImageLoad];
     _avatarView.image = nil;
 }
 
