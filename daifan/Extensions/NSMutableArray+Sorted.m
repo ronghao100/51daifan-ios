@@ -2,8 +2,19 @@
 
 @implementation NSMutableArray (Sorted)
 
-- (void)insertObjectSorted:(id)anObject {
-    [self insertObject:anObject atIndex:[self indexForInsertObject:anObject]];
+- (void)insertOrReplaceObjectSorted:(id)anObject {
+    NSUInteger index = [self indexForInsertObject:anObject];
+
+    if (index == self.count) {
+        [self addObject:anObject];
+        return;
+    }
+
+    if ([anObject compare:[self objectAtIndex:index]] == NSOrderedSame) {
+        [self replaceObjectAtIndex:index withObject:anObject];
+    } else {
+        [self insertObject:anObject atIndex:index];
+    }
 }
 
 - (NSUInteger)indexForInsertObject:(id)anObject {
@@ -15,9 +26,17 @@
 
         id anotherObject = [self objectAtIndex:midIndex];
         if ([anObject compare:anotherObject] == NSOrderedAscending) {
-            rightIndex = midIndex;
+            if (rightIndex == midIndex) {
+                -- rightIndex;
+            } else {
+                rightIndex = midIndex;
+            }
         } else {
-            leftIndex = midIndex;
+            if (leftIndex == midIndex) {
+                ++ leftIndex;
+            } else {
+                leftIndex = midIndex;
+            }
         }
     }
 

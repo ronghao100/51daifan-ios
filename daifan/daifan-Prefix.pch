@@ -23,4 +23,5 @@
     #import "UILabel+TransparentFactory.h"
     #import "UIView+Frame.h"
     #import "NSDate+DateName.h"
+    #import "NSMutableArray+Sorted.h"
 #endif

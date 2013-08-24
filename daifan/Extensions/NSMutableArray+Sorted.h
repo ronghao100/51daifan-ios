@@ -2,6 +2,6 @@
 
 @interface NSMutableArray (Sorted)
 
-- (void)insertObjectSorted:(id)anObject;
+- (void)insertOrReplaceObjectSorted:(id)anObject;
 
 @end

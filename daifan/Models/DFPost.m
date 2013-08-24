@@ -80,11 +80,15 @@
 }
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"Post id:%ld, name:%@, desc:%@, publishDate:%@, eatDate:%@", self.identity, self.name, self.content, self.publishDate, self.eatDate];
+    return [NSString stringWithFormat:@"Post eatDate:%@, id:%ld, name:%@, desc:%@, publishDate:%@", self.eatDate, self.identity, self.name, self.content, self.publishDate];
 }
 
 - (NSComparisonResult)compare:(DFPost *)other
 {
+    if (other == nil) {
+        return NSOrderedAscending;
+    }
+
     if (self.identity == other.identity) {
         return NSOrderedSame;
     }

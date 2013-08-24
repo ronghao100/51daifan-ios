@@ -169,10 +169,10 @@
                 [posts enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
                     DFPost *post = [DFPost postFromDict:obj];
                     [self updateIDRange:post];
-                    [_posts addObject:post];
+                    [_posts insertOrReplaceObjectSorted:post];
                 }];
 
-                NSLog(@"time line count:%d.", _posts.count);
+                NSLog(@"time line:%@", _posts);
 
                 [self.tableView reloadData];
                 [self updateFooterViewText];
@@ -205,13 +205,12 @@
                 [[DFUserList sharedList] mergeUserDict:users];
 
                 [posts enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-//                    NSLog(@"%@", [DFPost postFromDict:obj]);
                     DFPost *post = [DFPost postFromDict:obj];
                     [self updateIDRange:post];
-                    [_posts insertObject:post atIndex:idx];
+                    [_posts insertOrReplaceObjectSorted:post];
                 }];
 
-                NSLog(@"time line count:%d.", _posts.count);
+                NSLog(@"time line:%@", _posts);
 
                 [self.tableView reloadData];
                 [self.refreshControl endRefreshing];
@@ -247,10 +246,10 @@
                 [posts enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
                     DFPost *post = [DFPost postFromDict:obj];
                     [self updateIDRange:post];
-                    [_posts addObject:post];
+                    [_posts insertOrReplaceObjectSorted:post];
                 }];
 
-                NSLog(@"time line count:%d.", _posts.count);
+                NSLog(@"time line:%@", _posts);
 
                 [self.tableView reloadData];
                 [_footerView endRefreshing];
