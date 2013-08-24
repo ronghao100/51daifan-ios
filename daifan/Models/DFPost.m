@@ -68,7 +68,7 @@
     self.bookedCount --;
 
     NSMutableArray *bookedList = [NSMutableArray arrayWithArray:self.bookedUserIDs];
-    NSString *idString = [NSString stringWithFormat:@"%d", user.identity];
+    NSString *idString = [NSString stringWithFormat:@"%ld", user.identity];
     [bookedList removeObject:idString];
     self.bookedUserIDs = [bookedList copy];
 }
@@ -80,7 +80,27 @@
 }
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"Post id:%d, name:%@, desc:%@, publishDate:%@, eatDate:%@", self.identity, self.name, self.content, self.publishDate, self.eatDate];
+    return [NSString stringWithFormat:@"Post id:%ld, name:%@, desc:%@, publishDate:%@, eatDate:%@", self.identity, self.name, self.content, self.publishDate, self.eatDate];
+}
+
+- (NSComparisonResult)compare:(DFPost *)other
+{
+    if (self.identity == other.identity) {
+        return NSOrderedSame;
+    }
+
+    NSComparisonResult comparisonResult = [self.eatDate compare:other.eatDate];
+    if (comparisonResult == NSOrderedSame) {
+        if (self.identity > other.identity) {
+            return NSOrderedAscending;
+        } else {
+            return NSOrderedDescending;
+        }
+    } else if (comparisonResult == NSOrderedAscending) {
+        return NSOrderedDescending;
+    } else {
+        return NSOrderedAscending;
+    }
 }
 
 @end

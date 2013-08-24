@@ -30,4 +30,6 @@
 
 - (void)addComment:(DFComment *)comment;
 
+- (NSComparisonResult)compare:(DFPost *)other;
+
 @end
