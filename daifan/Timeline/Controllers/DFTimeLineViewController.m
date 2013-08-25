@@ -413,7 +413,22 @@
                 } else {
                     NSLog(@"post succeed: %@", JSON);
 
-                    [self pullForNew];
+                    NSInteger postId = [[(NSDictionary *) JSON objectForKey:@"postid"] integerValue];
+
+                    DFPost *post = [[DFPost alloc] init];
+                    post.identity = postId;
+                    post.user = _currentUser;
+                    post.name = postString;
+                    post.count = totalCount;
+                    post.eatDate = eatDate;
+                    post.publishDate = [NSDate date];
+
+                    [self updateIDRange:post];
+                    [_posts insertOrReplaceObjectSorted:post];
+
+                    NSLog(@"time line:%@", _posts);
+
+                    [self.tableView reloadData];
                 }
             } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
                 NSLog(@"post failed in failure block: %@", JSON);

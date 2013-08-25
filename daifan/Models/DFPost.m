@@ -7,6 +7,21 @@
 
 }
 
+- (id)init {
+    self = [super init];
+    if (self) {
+        self.address = @"";
+        self.content = @"";
+        self.bookedCount = 0;
+        self.bookedUserIDs = @[];
+        self.comments = @[];
+        self.images = @[];
+    }
+
+    return self;
+}
+
+
 + (DFPost *)postFromDict:(NSDictionary *)postDict {
     DFPost *post = [[DFPost alloc] init];
 
