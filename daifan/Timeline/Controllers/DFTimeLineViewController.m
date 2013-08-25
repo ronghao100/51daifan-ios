@@ -23,7 +23,6 @@
     self = [super init];
     if (self) {
         self.wantsFullScreenLayout = YES;
-        self.title = @"51daifan";
 
         _posts = [[NSMutableArray alloc] init];
 
@@ -74,6 +73,8 @@
     postButton.frame = CGRectMake(0.0f, 0.0f, 34.0f, 34.0f);
 
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:postButton];
+
+    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"title.png"]];
 
     [self loadList];
 }

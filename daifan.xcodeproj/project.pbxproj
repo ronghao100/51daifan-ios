@@ -22,6 +22,7 @@
 		5ABD058B0FDFF38FD7673DF9 /* UILabel+TransparentFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD0A5DAAA81DBD18A19A9F /* UILabel+TransparentFactory.m */; };
 		5ABD05B6D2810735E4EA9D81 /* DFUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD0F7407CCEAA83B241D0B /* DFUser.m */; };
 		5ABD0614BE61CBCE260374C5 /* NSMutableArray+Sorted.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD02FA49BA26FEF6121C1B /* NSMutableArray+Sorted.m */; };
+		5ABD07126728B716C0ABB300 /* title@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ABD020788399EC9C2B5410E /* title@2x.png */; };
 		5ABD0731481AE419FFADBA44 /* DFPostCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD0C9797E5BF2F76DC6836 /* DFPostCommentViewController.m */; };
 		5ABD07DD1E4E0F4DB6922D61 /* DFTimeLineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD04B0B6BC93931CEED6CD /* DFTimeLineCell.m */; };
 		5ABD089E9C2730CEFB2354F9 /* DFCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD05F19FFFCB2383557E59 /* DFCommentView.m */; };
@@ -86,6 +87,7 @@
 		5ABD012A94016A1E54CB21D5 /* NSDate+DateName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+DateName.h"; sourceTree = "<group>"; };
 		5ABD013C7E3EB96B6EC4438E /* DFPostCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFPostCommentViewController.h; sourceTree = "<group>"; };
 		5ABD01779DD45ED7895B825F /* avatar_placeholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "avatar_placeholder@2x.png"; sourceTree = "<group>"; };
+		5ABD020788399EC9C2B5410E /* title@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "title@2x.png"; sourceTree = "<group>"; };
 		5ABD0250C3057DB3E4090823 /* DFCommentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFCommentView.h; sourceTree = "<group>"; };
 		5ABD02CE9F55785E6C28A9FA /* UIScreen+ApplicationBounds.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScreen+ApplicationBounds.m"; sourceTree = "<group>"; };
 		5ABD02FA49BA26FEF6121C1B /* NSMutableArray+Sorted.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Sorted.m"; sourceTree = "<group>"; };
@@ -257,6 +259,7 @@
 				5ABD035E9EA1C7D2404FDF12 /* nomore@2x.png */,
 				5ABD0DF14B8C27703E32862A /* unbook@2x.png */,
 				5ABD01779DD45ED7895B825F /* avatar_placeholder@2x.png */,
+				5ABD020788399EC9C2B5410E /* title@2x.png */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -555,6 +558,7 @@
 				5ABD046E1E1F62C2195C0EC8 /* blueheart@2x.png in Resources */,
 				5ABD00DC0F88514453EE070E /* unbook@2x.png in Resources */,
 				5ABD0524A5E607F4ABDA3AB8 /* avatar_placeholder@2x.png in Resources */,
+				5ABD07126728B716C0ABB300 /* title@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
