@@ -5,7 +5,7 @@
 
 @implementation DFPost (Book)
 
-- (void)bookByUser:(DFUser *)user success:(PostSuccessBlock)successBlock error:(PostErrorBlock)errorBlock {
+- (void)bookByUser:(DFUser *)user success:(BookSuccessBlock)successBlock error:(BookErrorBlock)errorBlock {
     NSString *newerListString = [NSString stringWithFormat:API_BOOK_PARAMETER, self.identity, self.user.identity, self.user.name, user.identity, user.name];
     NSString *urlString = [NSString stringWithFormat:@"%@%@%@", API_HOST, API_BOOK_PATH, newerListString];
 
@@ -44,7 +44,7 @@
     [[DFUserList sharedList] mergeUserDict:@{@(user.identity).stringValue : user.name}];
 }
 
-- (void)unbookByUser:(DFUser *)user success:(PostSuccessBlock)successBlock error:(PostErrorBlock)errorBlock {
+- (void)unbookByUser:(DFUser *)user success:(BookSuccessBlock)successBlock error:(BookErrorBlock)errorBlock {
     NSString *newerListString = [NSString stringWithFormat:API_UNBOOK_PARAMETER, self.identity, user.identity];
     NSString *urlString = [NSString stringWithFormat:@"%@%@%@", API_HOST, API_UNBOOK_PATH, newerListString];
 
@@ -81,7 +81,7 @@
     self.bookedUserIDs = [bookedList copy];
 }
 
-- (void)bookOrUnbookByUser:(DFUser *)user success:(PostSuccessBlock)successBlock error:(PostErrorBlock)errorBlock {
+- (void)bookOrUnbookByUser:(DFUser *)user success:(BookSuccessBlock)successBlock error:(BookErrorBlock)errorBlock {
     if ([self.bookedUserIDs containsObject:@(user.identity).stringValue]) {
         [self unbookByUser:user success:successBlock error:errorBlock];
     } else {

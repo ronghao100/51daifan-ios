@@ -24,8 +24,6 @@
 
 + (DFPost *)postFromDict:(NSDictionary *)postDict;
 
-- (void)addComment:(DFComment *)comment;
-
 - (NSComparisonResult)compare:(DFPost *)other;
 
 @end

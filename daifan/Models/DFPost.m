@@ -69,13 +69,6 @@
     return [NSString stringWithFormat:@"%@ 带 %@", date, self.name];
 }
 
-
-- (void)addComment:(DFComment *)comment {
-    NSMutableArray *mutableComments = [NSMutableArray arrayWithArray:self.comments];
-    [mutableComments insertObject:comment atIndex:0];
-    self.comments = [mutableComments copy];
-}
-
 - (NSString *)description {
     return [NSString stringWithFormat:@"Post eatDate:%@, id:%ld, name:%@, desc:%@, publishDate:%@", self.eatDate, self.identity, self.name, self.content, self.publishDate];
 }
