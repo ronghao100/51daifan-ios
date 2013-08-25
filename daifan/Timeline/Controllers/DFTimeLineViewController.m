@@ -386,26 +386,23 @@
 
 - (void)showSuccessMessage:(NSString *)message {
     [TSMessage showNotificationInViewController:self.navigationController
-                                      withTitle:message
-                                    withMessage:nil
-                                       withType:TSMessageNotificationTypeSuccess
-                                   withDuration:NOTIFICATION_DURATION];
+                                          title:message
+                                       subtitle:nil
+                                           type:TSMessageNotificationTypeSuccess];
 }
 
 - (void)showWarningMessage:(NSString *)message {
     [TSMessage showNotificationInViewController:self.navigationController
-                                      withTitle:message
-                                    withMessage:nil
-                                       withType:TSMessageNotificationTypeWarning
-                                   withDuration:NOTIFICATION_DURATION];
+                                          title:message
+                                       subtitle:nil
+                                           type:TSMessageNotificationTypeWarning];
 }
 
 - (void)showErrorMessage:(NSString *)message {
     [TSMessage showNotificationInViewController:self.navigationController
-                                      withTitle:message
-                                    withMessage:nil
-                                       withType:TSMessageNotificationTypeError
-                                   withDuration:NOTIFICATION_DURATION];
+                                          title:message
+                                       subtitle:nil
+                                           type:TSMessageNotificationTypeError];
 }
 
 @end
