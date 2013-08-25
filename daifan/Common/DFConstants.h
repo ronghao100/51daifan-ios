@@ -35,6 +35,8 @@
 #define RESPONSE_NOT_SUCCESS 0
 #define RESPONSE_SUCCESS 1
 
+#define NOTIFICATION_DURATION 2.3f
+
 #define API_HOST @"http://51daifan.sinaapp.com"
 
 #define API_POSTS_PATH @"/api/posts"

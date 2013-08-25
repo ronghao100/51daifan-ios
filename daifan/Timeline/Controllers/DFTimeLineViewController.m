@@ -8,6 +8,7 @@
 #import "DFComment.h"
 #import "DFPost+Book.h"
 #import "DFPost+Comment.h"
+#import "TSMessage.h"
 
 #define TIMELINE_CELL_ID @"timeLineCellIdentifier"
 
@@ -161,6 +162,7 @@
                 NSDictionary *dict = (NSDictionary *) JSON;
 
                 if ([[dict objectForKey:kRESPONSE_SUCCESS] integerValue] == RESPONSE_NOT_SUCCESS) {
+                    [self showErrorMessage:@"BS做服务端的同学" title:@"服务器出错了哦"];
                     return;
                 }
 
@@ -179,6 +181,9 @@
 
                 [self.tableView reloadData];
                 [self updateFooterViewText];
+
+                [self showSuccessMessage:[NSString stringWithFormat:@"成功获取%d条带饭信息", posts.count]
+                                   title:@"^_^"];
             } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
                 NSLog(@"time line failed. \n response: %@, error: %@, JSON: %@", response, error, JSON);
             }];
@@ -204,18 +209,29 @@
 
                 NSArray *posts = [dict objectForKey:kRESPONSE_POSTS];
 
-                NSDictionary *users = [dict objectForKey:kRESPONSE_BOOKED_USER_ID];
-                [[DFUserList sharedList] mergeUserDict:users];
+                NSUInteger newerPostCount = posts.count;
 
-                [posts enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-                    DFPost *post = [DFPost postFromDict:obj];
-                    [self updateIDRange:post];
-                    [_posts insertOrReplaceObjectSorted:post];
-                }];
+                if (newerPostCount > 0) {
+                    NSDictionary *users = [dict objectForKey:kRESPONSE_BOOKED_USER_ID];
+                    [[DFUserList sharedList] mergeUserDict:users];
 
-                NSLog(@"time line:%@", _posts);
+                    [posts enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                        DFPost *post = [DFPost postFromDict:obj];
+                        [self updateIDRange:post];
+                        [_posts insertOrReplaceObjectSorted:post];
+                    }];
 
-                [self.tableView reloadData];
+                    NSLog(@"time line:%@", _posts);
+
+                    [self.tableView reloadData];
+
+                    [self showSuccessMessage:[NSString stringWithFormat:@"成功取得%d条新带饭信息", newerPostCount]
+                                       title:@"^_^"];
+                } else {
+                    [self showWarningMessage:@"暂时没有新带饭信息了哦，亲"
+                                       title:@"嗯..."];
+                }
+
                 [self.refreshControl endRefreshing];
                 [self updateFooterViewText];
             } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
@@ -255,6 +271,15 @@
                 NSLog(@"time line:%@", _posts);
 
                 [self.tableView reloadData];
+
+                if (_oldestPostID == 1) {
+                    [self showSuccessMessage:@"WOW，成功获取到最古老的带饭信息了哦"
+                                       title:@"O_O"];
+                } else {
+                    [self showSuccessMessage:[NSString stringWithFormat:@"成功取得%d条旧的带饭信息", posts.count]
+                                       title:@"^_^"];
+                }
+
                 [_footerView endRefreshing];
                 [self updateFooterViewText];
             } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
@@ -288,7 +313,7 @@
 - (void)bookOnPost:(DFPost *)post {
     [post bookOrUnbookByUser:_currentUser success:^(DFPost *post) {
         [self.tableView reloadData];
-    } error:^(NSError *error) {
+    }                  error:^(NSError *error) {
         NSLog(@"book or unbook error: %@", error);
     }];
 }
@@ -360,6 +385,32 @@
             }];
 
     [httpClient enqueueHTTPRequestOperation:operation];
+}
+
+#pragma mark - notification message
+
+- (void)showSuccessMessage:(NSString *)message title:(NSString *)title {
+    [TSMessage showNotificationInViewController:self.navigationController
+                                      withTitle:title
+                                    withMessage:message
+                                       withType:TSMessageNotificationTypeSuccess
+                                   withDuration:NOTIFICATION_DURATION];
+}
+
+- (void)showWarningMessage:(NSString *)message title:(NSString *)title {
+    [TSMessage showNotificationInViewController:self.navigationController
+                                      withTitle:title
+                                    withMessage:message
+                                       withType:TSMessageNotificationTypeWarning
+                                   withDuration:NOTIFICATION_DURATION];
+}
+
+- (void)showErrorMessage:(NSString *)message title:(NSString *)title {
+    [TSMessage showNotificationInViewController:self.navigationController
+                                      withTitle:title
+                                    withMessage:message
+                                       withType:TSMessageNotificationTypeError
+                                   withDuration:NOTIFICATION_DURATION];
 }
 
 @end
