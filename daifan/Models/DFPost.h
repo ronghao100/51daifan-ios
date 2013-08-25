@@ -16,17 +16,13 @@
 
 @property(nonatomic) int count;
 @property(nonatomic) int bookedCount;
-@property (nonatomic, retain) NSArray *bookedUserIDs;
-@property (nonatomic, retain) NSArray *comments;
-@property (nonatomic, retain) NSArray *images;
+@property(nonatomic, retain) NSArray *bookedUserIDs;
+@property(nonatomic, retain) NSArray *comments;
+@property(nonatomic, retain) NSArray *images;
 
 @property(nonatomic, strong) NSDate *updateDate;
 
 + (DFPost *)postFromDict:(NSDictionary *)postDict;
-
-- (void)bookedByUser:(DFUser *)user;
-
-- (void)unbookedByUser:(DFUser *)user;
 
 - (void)addComment:(DFComment *)comment;
 

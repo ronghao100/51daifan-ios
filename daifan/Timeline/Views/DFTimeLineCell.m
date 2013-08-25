@@ -247,7 +247,7 @@
     _commentView.top = _bookButton.bottom + INSET_Y;
 
     CGFloat commentViewHeight = 0.0f;
-    if (_post.comments.count > 0) {
+    if (_post.bookedUserIDs.count > 0 || _post.comments.count > 0) {
         _commentView.hidden = NO;
         commentViewHeight = _commentView.height;
     } else {
@@ -280,7 +280,7 @@
     CGFloat contentHeight = [_content sizeWithFont:[UIFont boldSystemFontOfSize:[UIFont labelFontSize]] constrainedToSize:CGSizeMake(LABEL_WIDTH, CGFLOAT_MAX)].height;
 
     CGFloat commentViewHeight = 0.0f;
-    if (post.comments.count > 0) {
+    if (post.bookedUserIDs.count > 0 || post.comments.count > 0) {
         DFCommentView *commentView = [[DFCommentView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, LABEL_WIDTH, 0.0f)];
         commentView.bookedUserIDs = post.bookedUserIDs;
         commentView.comments = post.comments;

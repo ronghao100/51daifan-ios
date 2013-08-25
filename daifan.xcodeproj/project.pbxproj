@@ -25,6 +25,7 @@
 		5ABD07126728B716C0ABB300 /* title@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ABD020788399EC9C2B5410E /* title@2x.png */; };
 		5ABD0731481AE419FFADBA44 /* DFPostCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD0C9797E5BF2F76DC6836 /* DFPostCommentViewController.m */; };
 		5ABD07DD1E4E0F4DB6922D61 /* DFTimeLineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD04B0B6BC93931CEED6CD /* DFTimeLineCell.m */; };
+		5ABD083EFBCA0793611AF45F /* DFPost+Book.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD07DE7BA8C96D81F15D0F /* DFPost+Book.m */; };
 		5ABD089E9C2730CEFB2354F9 /* DFCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD05F19FFFCB2383557E59 /* DFCommentView.m */; };
 		5ABD09126878146977336DBE /* nomore@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ABD035E9EA1C7D2404FDF12 /* nomore@2x.png */; };
 		5ABD09895E4652BE633DDF4C /* DFRemoteImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD0A68CFE2077350411196 /* DFRemoteImageView.m */; };
@@ -110,6 +111,7 @@
 		5ABD05E5ECBDEF1B19B83588 /* DFPostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFPostViewController.m; sourceTree = "<group>"; };
 		5ABD05F19FFFCB2383557E59 /* DFCommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFCommentView.m; sourceTree = "<group>"; };
 		5ABD06C53F0FD222E61215D7 /* DFPost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFPost.h; sourceTree = "<group>"; };
+		5ABD07DE7BA8C96D81F15D0F /* DFPost+Book.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DFPost+Book.m"; sourceTree = "<group>"; };
 		5ABD0838FAEEDD3C559AE726 /* DFCoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFCoverView.h; sourceTree = "<group>"; };
 		5ABD08A991343EC47B1066AB /* DFSplashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSplashViewController.m; sourceTree = "<group>"; };
 		5ABD08C0D5009DBBFD3CC086 /* blueheart@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blueheart@2x.png"; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 		5ABD0E3801EACFCA21A43086 /* NSDate+DateName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+DateName.m"; sourceTree = "<group>"; };
 		5ABD0E67AFE31FCF86C93E4A /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
 		5ABD0E82821FE604DD076BBA /* DFFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFFooterView.h; sourceTree = "<group>"; };
+		5ABD0EE8BFA7207770FA5571 /* DFPost+Book.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DFPost+Book.h"; sourceTree = "<group>"; };
 		5ABD0F7407CCEAA83B241D0B /* DFUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFUser.m; sourceTree = "<group>"; };
 		5ABD0F9DEC3587F3C4FAD89B /* post@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "post@2x.png"; sourceTree = "<group>"; };
 		5ABD0FE9718978FAB11805A0 /* DFTimeLineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFTimeLineViewController.m; sourceTree = "<group>"; };
@@ -211,6 +214,8 @@
 				5ABD0389493B5EB824213721 /* DFUserList.h */,
 				5ABD0DB7303EC60A61017D8B /* DFComment.m */,
 				5ABD0DAD1338F4F5D5517B3E /* DFComment.h */,
+				5ABD07DE7BA8C96D81F15D0F /* DFPost+Book.m */,
+				5ABD0EE8BFA7207770FA5571 /* DFPost+Book.h */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -659,6 +664,7 @@
 				5ABD0A4D236FB6F611250EFB /* DFPostViewController.m in Sources */,
 				5ABD0CF4F46377262EA89B74 /* NSDate+DateName.m in Sources */,
 				5ABD0614BE61CBCE260374C5 /* NSMutableArray+Sorted.m in Sources */,
+				5ABD083EFBCA0793611AF45F /* DFPost+Book.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

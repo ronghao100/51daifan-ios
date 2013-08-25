@@ -2,7 +2,6 @@
 #import "DFUser.h"
 #import "DFComment.h"
 
-
 @implementation DFPost {
 
 }
@@ -70,23 +69,6 @@
     return [NSString stringWithFormat:@"%@ 带 %@", date, self.name];
 }
 
-- (void)bookedByUser:(DFUser *)user {
-    self.bookedCount ++;
-
-    NSMutableArray *bookedList = [NSMutableArray arrayWithArray:self.bookedUserIDs];
-    NSString *idString = [NSString stringWithFormat:@"%d", user.identity];
-    [bookedList insertObject:idString atIndex:0];
-    self.bookedUserIDs = [bookedList copy];
-}
-
-- (void)unbookedByUser:(DFUser *)user {
-    self.bookedCount --;
-
-    NSMutableArray *bookedList = [NSMutableArray arrayWithArray:self.bookedUserIDs];
-    NSString *idString = [NSString stringWithFormat:@"%ld", user.identity];
-    [bookedList removeObject:idString];
-    self.bookedUserIDs = [bookedList copy];
-}
 
 - (void)addComment:(DFComment *)comment {
     NSMutableArray *mutableComments = [NSMutableArray arrayWithArray:self.comments];
