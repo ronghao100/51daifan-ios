@@ -8,8 +8,7 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-//        self.wantsFullScreenLayout = YES;
-
+        self.wantsFullScreenLayout = YES;
 
         UIButton *cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
         cancelButton.frame = CGRectMake(0.0f, 0.0f, 44.0f, 34.0f);
@@ -47,7 +46,7 @@
 }
 
 - (void)loadView {
-    self.view = [[UIView alloc] initWithFrame:[UIScreen mainScreen].applicationBounds];
+    self.view = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.view.backgroundColor = [UIColor blackColor];
 }
 

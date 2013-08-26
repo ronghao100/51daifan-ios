@@ -15,7 +15,7 @@
 }
 
 - (void)relayoutViewWithKeyboardHeight:(CGFloat)newKeyboardHeight withDuration:(NSTimeInterval)duration {
-    CGFloat newHeight = self.view.height - newKeyboardHeight - DEFAULT_BAR_HEIGHT;
+    CGFloat newHeight = self.view.height - newKeyboardHeight;
 
     [UIView animateWithDuration:duration animations:^{
         _commentView.height = newHeight;
@@ -25,7 +25,7 @@
 - (void)loadView {
     [super loadView];
 
-    _commentView = [[UITextView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.view.width, self.view.height - DEFAULT_BAR_HEIGHT)];
+    _commentView = [[UITextView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.view.width, self.view.height)];
     _commentView.backgroundColor = [UIColor colorWithHexString:@"#F0F0F0"];
     _commentView.font = [UIFont systemFontOfSize:[UIFont systemFontSize]];
     _commentView.showsHorizontalScrollIndicator = NO;
