@@ -8,7 +8,26 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.wantsFullScreenLayout = YES;
+//        self.wantsFullScreenLayout = YES;
+
+
+        UIButton *cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        cancelButton.frame = CGRectMake(0.0f, 0.0f, 44.0f, 34.0f);
+        [cancelButton setTitle:@"取消" forState:UIControlStateNormal];
+        [cancelButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        cancelButton.titleLabel.font = [UIFont systemFontOfSize:[UIFont systemFontSize]];
+        [cancelButton addTarget:self action:@selector(cancel) forControlEvents:UIControlEventTouchUpInside];
+
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:cancelButton];
+
+        UIButton *postButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        postButton.frame = CGRectMake(0.0f, 0.0f, 44.0f, 34.0f);
+        [postButton setTitle:@"发送" forState:UIControlStateNormal];
+        [postButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        postButton.titleLabel.font = [UIFont systemFontOfSize:[UIFont systemFontSize]];
+        [postButton addTarget:self action:@selector(postContent) forControlEvents:UIControlEventTouchUpInside];
+
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:postButton];
 
         [self registerKeyboardNotification];
     }
@@ -28,35 +47,8 @@
 }
 
 - (void)loadView {
-    self.view = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    self.view = [[UIView alloc] initWithFrame:[UIScreen mainScreen].applicationBounds];
     self.view.backgroundColor = [UIColor blackColor];
-
-    CGFloat statusBarHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
-    CGFloat yOffset = statusBarHeight;
-
-    UIImage *barImage = [UIImage imageNamed:@"navigationBar.png"];
-    _barImageView = [[UIImageView alloc] initWithImage:barImage];
-    _barImageView.frame = CGRectMake(0.0f, yOffset, barImage.size.width, barImage.size.height);
-    [self.view addSubview:_barImageView];
-
-    UILabel *titleLabel = [UILabel transparentLabelWithFrame:_barImageView.frame];
-    titleLabel.text = self.title;
-    titleLabel.textAlignment = NSTextAlignmentCenter;
-    [self.view addSubview:titleLabel];
-
-    UIButton *cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    cancelButton.frame = CGRectMake(10.0f, yOffset + INSET_Y, 60.0f, 34.0f);
-    [cancelButton setTitle:@"取消" forState:UIControlStateNormal];
-    cancelButton.titleLabel.font = [UIFont systemFontOfSize:[UIFont systemFontSize]];
-    [cancelButton addTarget:self action:@selector(cancel) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:cancelButton];
-
-    UIButton *postButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    postButton.frame = CGRectMake(250.0f, yOffset + INSET_Y, 60.0f, 34.0f);
-    [postButton setTitle:@"发送" forState:UIControlStateNormal];
-    postButton.titleLabel.font = [UIFont systemFontOfSize:[UIFont systemFontSize]];
-    [postButton addTarget:self action:@selector(postContent) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:postButton];
 }
 
 #pragma mark - Responding to keyboard events

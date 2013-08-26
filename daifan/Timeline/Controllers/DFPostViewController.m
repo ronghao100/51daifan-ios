@@ -21,8 +21,7 @@
     [super loadView];
 
     CGFloat halfWidth = self.view.width / 2.0f;
-    CGFloat statusBarHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
-    CGFloat yOffset = statusBarHeight + self.barImageView.height;
+    CGFloat yOffset = 0.0f;
 
     _eatDateSelector = [[TCDateSelector alloc] initWithFrame:CGRectMake(0.0f, yOffset, halfWidth, DEFAULT_BAR_HEIGHT) date:[NSDate tomorrow]];
     _eatDateSelector.textColor = [UIColor blackColor];
@@ -67,8 +66,7 @@
 }
 
 - (void)relayoutViewWithKeyboardHeight:(CGFloat)newKeyboardHeight withDuration:(NSTimeInterval)duration {
-    CGFloat statusBarHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
-    CGFloat newHeight = self.view.height - statusBarHeight - self.barImageView.height - newKeyboardHeight - DEFAULT_BAR_HEIGHT;
+    CGFloat newHeight = self.view.height - newKeyboardHeight - DEFAULT_BAR_HEIGHT;
 
     [UIView animateWithDuration:duration animations:^{
         _postTextView.height = newHeight;

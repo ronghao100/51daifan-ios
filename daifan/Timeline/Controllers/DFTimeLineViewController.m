@@ -40,7 +40,10 @@
     DFPostViewController *postVC = [[DFPostViewController alloc] init];
     postVC.delegate = self;
 
-    [self presentViewController:postVC animated:YES completion:nil];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:postVC];
+    [nav.navigationBar setBackgroundImage:[UIImage imageNamed:@"navigationBar.png"] forBarMetrics:UIBarMetricsDefault];
+
+    [self presentViewController:nav animated:YES completion:nil];
 }
 
 - (void)loadView {
@@ -318,7 +321,10 @@
     vc.post = post;
     vc.delegate = self;
 
-    [self presentViewController:vc animated:YES completion:nil];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    [nav.navigationBar setBackgroundImage:[UIImage imageNamed:@"navigationBar.png"] forBarMetrics:UIBarMetricsDefault];
+
+    [self presentViewController:nav animated:YES completion:nil];
 }
 
 #pragma Mark - post comment delegate
