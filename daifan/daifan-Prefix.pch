@@ -24,5 +24,7 @@
     #import "UIView+Frame.h"
     #import "NSDate+DateName.h"
     #import "NSMutableArray+Sorted.h"
+    #import "UIViewController+ShowMessage.h"
+
     #import <SDWebImage/UIImageView+WebCache.h>
 #endif

@@ -5,10 +5,8 @@
 #import "DFFooterView.h"
 #import "DFUser.h"
 #import "AFHTTPClient.h"
-#import "DFComment.h"
 #import "DFPost+Book.h"
 #import "DFPost+Comment.h"
-#import "TSMessage.h"
 
 #define TIMELINE_CELL_ID @"timeLineCellIdentifier"
 
@@ -386,29 +384,6 @@
             }];
 
     [httpClient enqueueHTTPRequestOperation:operation];
-}
-
-#pragma mark - notification message
-
-- (void)showSuccessMessage:(NSString *)message {
-    [TSMessage showNotificationInViewController:self.navigationController
-                                          title:message
-                                       subtitle:nil
-                                           type:TSMessageNotificationTypeSuccess];
-}
-
-- (void)showWarningMessage:(NSString *)message {
-    [TSMessage showNotificationInViewController:self.navigationController
-                                          title:message
-                                       subtitle:nil
-                                           type:TSMessageNotificationTypeWarning];
-}
-
-- (void)showErrorMessage:(NSString *)message {
-    [TSMessage showNotificationInViewController:self.navigationController
-                                          title:message
-                                       subtitle:nil
-                                           type:TSMessageNotificationTypeError];
 }
 
 @end

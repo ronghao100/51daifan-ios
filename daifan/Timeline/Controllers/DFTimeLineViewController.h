@@ -9,4 +9,5 @@
 @interface DFTimeLineViewController : UITableViewController <ACTimeScrollerDelegate, DFTimeLineCellDelegate, DFPostCommentDelegate, DFPostDelegate>
 
 @property (nonatomic, strong) DFUser *currentUser;
+
 @end

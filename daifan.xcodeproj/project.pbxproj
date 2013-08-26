@@ -40,6 +40,7 @@
 		5ABD0AFCCB00836219ADE52A /* DFUserList.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD03D0806B666016F20388 /* DFUserList.m */; };
 		5ABD0B6BCC66BFE44B8F879E /* DFRoundImageButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD0D38C1CA62976EDAB1AD /* DFRoundImageButton.m */; };
 		5ABD0BC6C244536A4EE26FCE /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD007B5111418CFD24FEA1 /* UIView+Frame.m */; };
+		5ABD0C15BB4A9DD64CD04DAB /* UIViewController+ShowMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD0FE0E2E3CE61F10899E9 /* UIViewController+ShowMessage.m */; };
 		5ABD0CF4F46377262EA89B74 /* NSDate+DateName.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD0E3801EACFCA21A43086 /* NSDate+DateName.m */; };
 		5ABD0D073B953C0DA870208D /* DFTimeLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD0FE9718978FAB11805A0 /* DFTimeLineViewController.m */; };
 		5ABD0F1B9A434B527328B2D5 /* DFComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD0DB7303EC60A61017D8B /* DFComment.m */; };
@@ -118,6 +119,7 @@
 		5ABD08C0D5009DBBFD3CC086 /* blueheart@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blueheart@2x.png"; sourceTree = "<group>"; };
 		5ABD08F8FD659E754EE2E01B /* DFComposeBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFComposeBaseViewController.m; sourceTree = "<group>"; };
 		5ABD09040D1E0CB0F819EA7C /* DFTimeLineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFTimeLineViewController.h; sourceTree = "<group>"; };
+		5ABD09EF29BE9261691FC808 /* UIViewController+ShowMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ShowMessage.h"; sourceTree = "<group>"; };
 		5ABD0A5DAAA81DBD18A19A9F /* UILabel+TransparentFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+TransparentFactory.m"; sourceTree = "<group>"; };
 		5ABD0A68CFE2077350411196 /* DFRemoteImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFRemoteImageView.m; sourceTree = "<group>"; };
 		5ABD0B03429B344424310AE3 /* DFRoundImageButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFRoundImageButton.h; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 		5ABD0EE8BFA7207770FA5571 /* DFPost+Book.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DFPost+Book.h"; sourceTree = "<group>"; };
 		5ABD0F7407CCEAA83B241D0B /* DFUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFUser.m; sourceTree = "<group>"; };
 		5ABD0F9DEC3587F3C4FAD89B /* post@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "post@2x.png"; sourceTree = "<group>"; };
+		5ABD0FE0E2E3CE61F10899E9 /* UIViewController+ShowMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ShowMessage.m"; sourceTree = "<group>"; };
 		5ABD0FE9718978FAB11805A0 /* DFTimeLineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFTimeLineViewController.m; sourceTree = "<group>"; };
 		F115B3A217B7CD7800E45BB0 /* BPushConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BPushConfig.plist; sourceTree = "<group>"; };
 		F11AEE79178068F40008082E /* daifan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = daifan.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -359,6 +362,8 @@
 				5ABD012A94016A1E54CB21D5 /* NSDate+DateName.h */,
 				5ABD02FA49BA26FEF6121C1B /* NSMutableArray+Sorted.m */,
 				5ABD0577A7D0D48C63A1FE67 /* NSMutableArray+Sorted.h */,
+				5ABD0FE0E2E3CE61F10899E9 /* UIViewController+ShowMessage.m */,
+				5ABD09EF29BE9261691FC808 /* UIViewController+ShowMessage.h */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -671,6 +676,7 @@
 				5ABD0614BE61CBCE260374C5 /* NSMutableArray+Sorted.m in Sources */,
 				5ABD083EFBCA0793611AF45F /* DFPost+Book.m in Sources */,
 				5ABD08E93A911BE86367DB82 /* DFPost+Comment.m in Sources */,
+				5ABD0C15BB4A9DD64CD04DAB /* UIViewController+ShowMessage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,4 +1,5 @@
 #import "DFPostViewController.h"
+#import "UIViewController+ShowMessage.h"
 
 
 @implementation DFPostViewController {
@@ -54,6 +55,11 @@
 }
 
 - (void)postContent {
+    if (_postTextView.text.length == 0) {
+        [self showErrorMessage:@"要输入内容哦，亲"];
+        [_postTextView becomeFirstResponder];
+        return;
+    }
     [_postTextView resignFirstResponder];
 
     NSString *postText = [_postTextView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
