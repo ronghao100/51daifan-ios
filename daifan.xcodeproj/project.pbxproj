@@ -45,6 +45,7 @@
 		5ABD0D073B953C0DA870208D /* DFTimeLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD0FE9718978FAB11805A0 /* DFTimeLineViewController.m */; };
 		5ABD0F1B9A434B527328B2D5 /* DFComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD0DB7303EC60A61017D8B /* DFComment.m */; };
 		5ABD0F355EC35DEC17CA4734 /* UIScreen+ApplicationBounds.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD02CE9F55785E6C28A9FA /* UIScreen+ApplicationBounds.m */; };
+		5ABD0FB7BB70504C15C3CFCD /* UIViewController+NavigationAround.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD06F4049F04C403AAC5CB /* UIViewController+NavigationAround.m */; };
 		DA2035FF3CD349A0838396C5 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4901EC8B88EC476A8E2682EF /* libPods.a */; };
 		F115B3A317B7CD7800E45BB0 /* BPushConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = F115B3A217B7CD7800E45BB0 /* BPushConfig.plist */; };
 		F11AEE7D178068F40008082E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F11AEE7C178068F40008082E /* UIKit.framework */; };
@@ -113,6 +114,7 @@
 		5ABD05E5ECBDEF1B19B83588 /* DFPostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFPostViewController.m; sourceTree = "<group>"; };
 		5ABD05F19FFFCB2383557E59 /* DFCommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFCommentView.m; sourceTree = "<group>"; };
 		5ABD06C53F0FD222E61215D7 /* DFPost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFPost.h; sourceTree = "<group>"; };
+		5ABD06F4049F04C403AAC5CB /* UIViewController+NavigationAround.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+NavigationAround.m"; sourceTree = "<group>"; };
 		5ABD07DE7BA8C96D81F15D0F /* DFPost+Book.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DFPost+Book.m"; sourceTree = "<group>"; };
 		5ABD0838FAEEDD3C559AE726 /* DFCoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFCoverView.h; sourceTree = "<group>"; };
 		5ABD08A991343EC47B1066AB /* DFSplashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFSplashViewController.m; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 		5ABD0D18E3BD28B0481F8B0E /* DFPostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFPostViewController.h; sourceTree = "<group>"; };
 		5ABD0D38C1CA62976EDAB1AD /* DFRoundImageButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFRoundImageButton.m; sourceTree = "<group>"; };
 		5ABD0D5D33AA65E07CD57D7D /* DFConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFConstants.h; sourceTree = "<group>"; };
+		5ABD0D7D6664A6D02C4A6C3C /* UIViewController+NavigationAround.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+NavigationAround.h"; sourceTree = "<group>"; };
 		5ABD0D882B28307EAF462E94 /* navigationBar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigationBar@2x.png"; sourceTree = "<group>"; };
 		5ABD0DAD1338F4F5D5517B3E /* DFComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFComment.h; sourceTree = "<group>"; };
 		5ABD0DB7303EC60A61017D8B /* DFComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFComment.m; sourceTree = "<group>"; };
@@ -364,6 +367,8 @@
 				5ABD0577A7D0D48C63A1FE67 /* NSMutableArray+Sorted.h */,
 				5ABD0FE0E2E3CE61F10899E9 /* UIViewController+ShowMessage.m */,
 				5ABD09EF29BE9261691FC808 /* UIViewController+ShowMessage.h */,
+				5ABD06F4049F04C403AAC5CB /* UIViewController+NavigationAround.m */,
+				5ABD0D7D6664A6D02C4A6C3C /* UIViewController+NavigationAround.h */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -677,6 +682,7 @@
 				5ABD083EFBCA0793611AF45F /* DFPost+Book.m in Sources */,
 				5ABD08E93A911BE86367DB82 /* DFPost+Comment.m in Sources */,
 				5ABD0C15BB4A9DD64CD04DAB /* UIViewController+ShowMessage.m in Sources */,
+				5ABD0FB7BB70504C15C3CFCD /* UIViewController+NavigationAround.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,6 +7,7 @@
 #import "AFHTTPClient.h"
 #import "DFPost+Book.h"
 #import "DFPost+Comment.h"
+#import "UIViewController+NavigationAround.h"
 
 #define TIMELINE_CELL_ID @"timeLineCellIdentifier"
 
@@ -38,10 +39,7 @@
     DFPostViewController *postVC = [[DFPostViewController alloc] init];
     postVC.delegate = self;
 
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:postVC];
-    [nav.navigationBar setBackgroundImage:[UIImage imageNamed:@"navigationBar.png"] forBarMetrics:UIBarMetricsDefault];
-
-    [self presentViewController:nav animated:YES completion:nil];
+    [self presentViewController:[postVC aroundWithNavigation] animated:YES completion:nil];
 }
 
 - (void)loadView {
@@ -319,10 +317,7 @@
     vc.post = post;
     vc.delegate = self;
 
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
-    [nav.navigationBar setBackgroundImage:[UIImage imageNamed:@"navigationBar.png"] forBarMetrics:UIBarMetricsDefault];
-
-    [self presentViewController:nav animated:YES completion:nil];
+    [self presentViewController:[vc aroundWithNavigation] animated:YES completion:nil];
 }
 
 #pragma Mark - post comment delegate

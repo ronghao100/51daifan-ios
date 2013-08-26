@@ -12,14 +12,30 @@
     UITextField *_passwordField;
 
     UIButton *_loginButton;
-    UIButton *_registerButton;
+}
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        self.title = @"登录";
+
+        UIButton *registerButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        registerButton.frame = CGRectMake(0.0f, 0.0f, 44.0f, 34.0f);
+        [registerButton setTitle:@"注册" forState:UIControlStateNormal];
+        [registerButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        registerButton.titleLabel.font = [UIFont systemFontOfSize:[UIFont systemFontSize]];
+        [registerButton addTarget:self action:@selector(register) forControlEvents:UIControlEventTouchUpInside];
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:registerButton];
+    }
+
+    return self;
 }
 
 - (void)loadView {
     self.view = [[UIView alloc] initWithFrame:[UIScreen mainScreen].applicationBounds];
 
-    CGFloat minHeight = DEFAULT_BUTTON_HEIGHT * 2 + DEFAULT_TEXTFIELD_HEIGHT * 2 + DEFAULT_PADDING * 3;
-    CGFloat viewHeight = self.view.frame.size.height - DEFAULT_KEYBOARD_HEIGHT;
+    CGFloat minHeight = DEFAULT_BUTTON_HEIGHT + DEFAULT_TEXTFIELD_HEIGHT * 2 + DEFAULT_PADDING * 3;
+    CGFloat viewHeight = self.view.frame.size.height - DEFAULT_KEYBOARD_HEIGHT - DEFAULT_BAR_HEIGHT;
 
     CGFloat yOffset = (viewHeight - minHeight) / 2.0f;
 
@@ -52,13 +68,6 @@
     _loginButton.frame = CGRectMake(85.0f, yOffset, 150.0f, DEFAULT_BUTTON_HEIGHT);
     [_loginButton setTitle:@"登录" forState:UIControlStateNormal];
     [_loginButton addTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
-
-    yOffset += DEFAULT_BUTTON_HEIGHT + DEFAULT_PADDING;
-
-    _registerButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [self.view addSubview:_registerButton];
-    _registerButton.frame = CGRectMake(85.0f, yOffset, 150.0f, DEFAULT_BUTTON_HEIGHT);
-    [_registerButton setTitle:@"注册" forState:UIControlStateNormal];
 }
 
 - (void)login {
@@ -100,6 +109,11 @@
     [httpClient enqueueHTTPRequestOperation:operation];
 }
 
+- (void)register
+{
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://51daifan.sinaapp.com/account/register" relativeToURL:nil]];
+}
+
 - (void)showErrorMessage {
     [self showErrorMessage:@"登陆失败" description:@"亲，不记得账号密码了吗"];
 }
@@ -129,6 +143,5 @@
 
     [UIApplication sharedApplication].delegate.window.rootViewController = navigationController;
 }
-
 
 @end

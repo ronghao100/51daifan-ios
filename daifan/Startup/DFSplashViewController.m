@@ -54,7 +54,7 @@
 - (void)showLoginView {
     DFLoginViewController *vc = [[DFLoginViewController alloc] init];
 
-    [UIApplication sharedApplication].delegate.window.rootViewController = vc;
+    [UIApplication sharedApplication].delegate.window.rootViewController = [vc aroundWithNavigation];
 }
 
 - (void)showTimelineView {
