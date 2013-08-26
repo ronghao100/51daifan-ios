@@ -7,23 +7,35 @@
 #pragma mark - notification message
 
 - (void)showSuccessMessage:(NSString *)message {
-    [TSMessage showNotificationInViewController:self.navigationController
+    [self showSuccessMessage:message description:nil];
+}
+
+- (void)showSuccessMessage:(NSString *)message description:(NSString *)desc {
+    [TSMessage showNotificationInViewController:self.navigationController == nil ? self : self.navigationController
                                           title:message
-                                       subtitle:nil
+                                       subtitle:desc
                                            type:TSMessageNotificationTypeSuccess];
 }
 
 - (void)showWarningMessage:(NSString *)message {
-    [TSMessage showNotificationInViewController:self.navigationController
+    [self showWarningMessage:message description:nil];
+}
+
+- (void)showWarningMessage:(NSString *)message description:(NSString *)desc {
+    [TSMessage showNotificationInViewController:self.navigationController == nil ? self : self.navigationController
                                           title:message
-                                       subtitle:nil
+                                       subtitle:desc
                                            type:TSMessageNotificationTypeWarning];
 }
 
 - (void)showErrorMessage:(NSString *)message {
-    [TSMessage showNotificationInViewController:self.navigationController
+    [self showErrorMessage:message description:nil];
+}
+
+- (void)showErrorMessage:(NSString *)message description:(NSString *)desc{
+    [TSMessage showNotificationInViewController:self.navigationController == nil ? self : self.navigationController
                                           title:message
-                                       subtitle:nil
+                                       subtitle:desc
                                            type:TSMessageNotificationTypeError];
 }
 

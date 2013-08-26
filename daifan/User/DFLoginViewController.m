@@ -17,7 +17,6 @@
 
 - (void)loadView {
     self.view = [[UIView alloc] initWithFrame:[UIScreen mainScreen].applicationBounds];
-    self.view.backgroundColor = [UIColor orangeColor];
 
     CGFloat minHeight = DEFAULT_BUTTON_HEIGHT * 2 + DEFAULT_TEXTFIELD_HEIGHT * 2 + DEFAULT_PADDING * 3;
     CGFloat viewHeight = self.view.frame.size.height - DEFAULT_KEYBOARD_HEIGHT;
@@ -63,14 +62,26 @@
 }
 
 - (void)login {
-//    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"^_^" message:@"hello" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    NSString *username = _userNameField.text;
+    NSString *password = _passwordField.text;
+
+    if (username.length == 0 || password.length == 0) {
+        [self showWarningMessage:@"用户名和密码都要输入哦"];
+        
+        if (username.length == 0) {
+            [_userNameField becomeFirstResponder];
+        } else {
+            [_passwordField becomeFirstResponder];
+        }
+        return;
+    }
 
     NSURL *url = [NSURL URLWithString:API_HOST];
     AFHTTPClient *httpClient = [AFHTTPClient clientWithBaseURL:url];
 
     NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithCapacity:2];
-    [parameters setValue:_userNameField.text forKey:@"email"];
-    [parameters setValue:_passwordField.text forKey:@"password"];
+    [parameters setValue:username forKey:@"email"];
+    [parameters setValue:password forKey:@"password"];
 
     NSMutableURLRequest *postRequest = [httpClient requestWithMethod:@"POST" path:API_LOGIN_PATH parameters:parameters];
 
@@ -90,8 +101,7 @@
 }
 
 - (void)showErrorMessage {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"登录失败" message:@"亲，不记得账号密码了吗" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    [alertView show];
+    [self showErrorMessage:@"登陆失败" description:@"亲，不记得账号密码了吗"];
 }
 
 - (DFUser *)saveAccount:(id)JSON {
