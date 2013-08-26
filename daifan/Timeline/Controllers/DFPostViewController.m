@@ -55,14 +55,16 @@
 }
 
 - (void)postContent {
-    if (_postTextView.text.length == 0) {
+    NSString *postText = [_postTextView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+
+    if (postText.length == 0) {
         [self showErrorMessage:@"要输入内容哦，亲"];
         [_postTextView becomeFirstResponder];
         return;
     }
+
     [_postTextView resignFirstResponder];
 
-    NSString *postText = [_postTextView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     NSDate *eatDate = _eatDateSelector.date;
     NSInteger totalCount = _countSelector.number;
 

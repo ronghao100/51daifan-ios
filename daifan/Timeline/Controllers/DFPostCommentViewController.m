@@ -35,9 +35,15 @@
 }
 
 - (void)postContent {
-    [_commentView resignFirstResponder];
-
     NSString *commentText = [_commentView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+
+    if (commentText.length == 0) {
+        [self showErrorMessage:@"要输入内容哦，亲"];
+        [_commentView becomeFirstResponder];
+        return;
+    }
+
+    [_commentView resignFirstResponder];
 
     [_delegate postComment:commentText toPost:_post];
 
