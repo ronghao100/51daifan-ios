@@ -1,9 +1,9 @@
 #import <Foundation/Foundation.h>
 
+@class DFPost;
+
 
 @interface DFTimeline : NSObject
-
-//@property(nonatomic, readonly) NSArray *posts;
 
 @property(nonatomic, readonly) long newestPostID;
 @property(nonatomic, readonly) long oldestPostID;

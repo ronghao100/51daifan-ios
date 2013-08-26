@@ -142,137 +142,54 @@
     [_timeScroller scrollViewDidEndDecelerating];
 }
 
-#pragma mark - Services
+#pragma mark - services
 
 - (void)loadList {
-    NSString *urlString = [NSString stringWithFormat:@"%@%@%@", API_HOST, API_POSTS_PATH, API_POSTS_NEW_LIST_PARAMETER];
+    [_timeline loadList:^(long newPostCount){
+        [self.tableView reloadData];
+        [self updateFooterViewText];
 
-    NSLog(@"request: %@", urlString);
-
-    NSURL *url = [NSURL URLWithString:urlString];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
-            success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-                NSLog(@"time line success.");
-                NSDictionary *dict = (NSDictionary *) JSON;
-
-                if ([[dict objectForKey:kRESPONSE_SUCCESS] integerValue] == RESPONSE_NOT_SUCCESS) {
-                    [self showErrorMessage:@"服务器出错了哦" description:@"BS做服务端的同学"];
-                    return;
-                }
-
-                NSArray *posts = [dict objectForKey:kRESPONSE_POSTS];
-
-                NSDictionary *users = [dict objectForKey:kRESPONSE_BOOKED_USER_ID];
-                [[DFUserList sharedList] mergeUserDict:users];
-
-                [posts enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-                    DFPost *post = [DFPost postFromDict:obj];
-                    [_timeline addPost:post];
-                }];
-
-                NSLog(@"time line:%@", _timeline);
-
-                [self.tableView reloadData];
-                [self updateFooterViewText];
-
-                [self showSuccessMessage:[NSString stringWithFormat:@"成功获取%d条带饭信息", posts.count]];
-            } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-                NSLog(@"time line failed. \n response: %@, error: %@, JSON: %@", response, error, JSON);
-            }];
-    [operation start];
+        [self showSuccessMessage:[NSString stringWithFormat:@"成功获取%ld条带饭信息", newPostCount]];
+    } error:^(NSError *error) {
+        [self showErrorMessage:@"服务器出错了哦" description:@"BS做服务端的同学"];
+    }];
 }
 
 - (void)pullForNew {
-    NSString *newerListString = [NSString stringWithFormat:API_POSTS_NEWER_LIST_PARAMETER, _timeline.newestPostID];
-    NSString *urlString = [NSString stringWithFormat:@"%@%@%@", API_HOST, API_POSTS_PATH, newerListString];
+    [_timeline pullForNew:^(long newPostCount) {
+        [self.tableView reloadData];
 
-    NSLog(@"request: %@", urlString);
+        [self showSuccessMessage:[NSString stringWithFormat:@"成功取得%ld条新带饭信息", newPostCount]];
 
-    NSURL *url = [NSURL URLWithString:urlString];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
-            success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-                NSLog(@"time line newer success.");
-                NSDictionary *dict = (NSDictionary *) JSON;
+        [self.refreshControl endRefreshing];
+        [self updateFooterViewText];
+    } error:^(NSError *error) {
+        if (error.code == RESPONSE_CODE_NO_CONTENT) {
+            [self showWarningMessage:@"暂时没有新带饭信息了哦，亲"];
+        } else {
+            [self showErrorMessage:@"服务器出错了哦" description:@"BS做服务端的同学"];
+        }
 
-                if ([[dict objectForKey:kRESPONSE_SUCCESS] integerValue] == RESPONSE_NOT_SUCCESS) {
-                    return;
-                }
-
-                NSArray *posts = [dict objectForKey:kRESPONSE_POSTS];
-
-                NSUInteger newerPostCount = posts.count;
-
-                if (newerPostCount > 0) {
-                    NSDictionary *users = [dict objectForKey:kRESPONSE_BOOKED_USER_ID];
-                    [[DFUserList sharedList] mergeUserDict:users];
-
-                    [posts enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-                        DFPost *post = [DFPost postFromDict:obj];
-                        [_timeline addPost:post];
-                    }];
-
-                    NSLog(@"time line:%@", _timeline);
-
-                    [self.tableView reloadData];
-
-                    [self showSuccessMessage:[NSString stringWithFormat:@"成功取得%d条新带饭信息", newerPostCount]];
-                } else {
-                    [self showWarningMessage:@"暂时没有新带饭信息了哦，亲"];
-                }
-
-                [self.refreshControl endRefreshing];
-                [self updateFooterViewText];
-            } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-                NSLog(@"time line failed. \n response: %@, error: %@, JSON: %@", response, error, JSON);
-            }];
-    [operation start];
+        [self.refreshControl endRefreshing];
+        [self updateFooterViewText];
+    }];
 }
 
 - (void)loadMore {
-    NSString *newerListString = [NSString stringWithFormat:API_POSTS_OLDER_LIST_PARAMETER, _timeline.oldestPostID];
-    NSString *urlString = [NSString stringWithFormat:@"%@%@%@", API_HOST, API_POSTS_PATH, newerListString];
+    [_timeline loadMore:^(long newPostCount) {
+        [self.tableView reloadData];
 
-    NSLog(@"request: %@", urlString);
+        if (_timeline.oldestPostID == 1) {
+            [self showSuccessMessage:@"WOW，成功获取到最古老的带饭信息了哦"];
+        } else {
+            [self showSuccessMessage:[NSString stringWithFormat:@"成功取得%ld条旧的带饭信息", newPostCount]];
+        }
 
-    NSURL *url = [NSURL URLWithString:urlString];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
-            success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-                NSLog(@"time line older success.");
-                NSDictionary *dict = (NSDictionary *) JSON;
-
-                if ([[dict objectForKey:kRESPONSE_SUCCESS] integerValue] == RESPONSE_NOT_SUCCESS) {
-                    return;
-                }
-
-                NSArray *posts = [dict objectForKey:kRESPONSE_POSTS];
-
-                NSDictionary *users = [dict objectForKey:kRESPONSE_BOOKED_USER_ID];
-                [[DFUserList sharedList] mergeUserDict:users];
-
-                [posts enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-                    DFPost *post = [DFPost postFromDict:obj];
-                    [_timeline addPost:post];
-                }];
-
-                NSLog(@"time line:%@", _timeline);
-
-                [self.tableView reloadData];
-
-                if (_timeline.oldestPostID == 1) {
-                    [self showSuccessMessage:@"WOW，成功获取到最古老的带饭信息了哦"];
-                } else {
-                    [self showSuccessMessage:[NSString stringWithFormat:@"成功取得%d条旧的带饭信息", posts.count]];
-                }
-
-                [_footerView endRefreshing];
-                [self updateFooterViewText];
-            } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-                NSLog(@"time line failed. \n response: %@, error: %@, JSON: %@", response, error, JSON);
-            }];
-    [operation start];
+        [_footerView endRefreshing];
+        [self updateFooterViewText];
+    } error:^(NSError *error) {
+        [self showErrorMessage:@"服务器出错了哦" description:@"BS做服务端的同学"];
+    }];
 }
 
 - (void)updateFooterViewText {

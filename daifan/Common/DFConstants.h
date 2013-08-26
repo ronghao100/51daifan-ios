@@ -35,6 +35,10 @@
 #define RESPONSE_NOT_SUCCESS 0
 #define RESPONSE_SUCCESS 1
 
+#define RESPONSE_CODE_NO_CONTENT 204
+#define RESPONSE_CODE_BAD_REQUEST 400
+
+
 #define API_HOST @"http://51daifan.sinaapp.com"
 
 #define API_POSTS_PATH @"/api/posts"
