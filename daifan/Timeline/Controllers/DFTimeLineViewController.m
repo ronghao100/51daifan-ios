@@ -8,17 +8,16 @@
 #import "DFPost+Book.h"
 #import "DFPost+Comment.h"
 #import "UIViewController+NavigationAround.h"
+#import "DFTimeline.h"
 
 #define TIMELINE_CELL_ID @"timeLineCellIdentifier"
 
 @implementation DFTimeLineViewController {
     ACTimeScroller *_timeScroller;
 
-    NSMutableArray *_posts;
     DFFooterView *_footerView;
 
-    long _newestPostID;
-    long _oldestPostID;
+    DFTimeline *_timeline;
 }
 
 - (id)init {
@@ -26,10 +25,7 @@
     if (self) {
         self.wantsFullScreenLayout = YES;
 
-        _posts = [[NSMutableArray alloc] init];
-
-        _newestPostID = 0;
-        _oldestPostID = LONG_MAX;
+        _timeline = [[DFTimeline alloc] init];
     }
 
     return self;
@@ -84,20 +80,20 @@
 #pragma mark - table view data source & delegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    DFPost *post = [_posts objectAtIndex:(NSUInteger) indexPath.row];
+    DFPost *post = [_timeline postAtIndex:(NSUInteger) indexPath.row];
 
     return [DFTimeLineCell heightForPost:post];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return _posts.count;
+    return _timeline.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     DFTimeLineCell *cell = [tableView dequeueReusableCellWithIdentifier:TIMELINE_CELL_ID];
     cell.delegate = self;
 
-    DFPost *post = [_posts objectAtIndex:(NSUInteger) indexPath.row];
+    DFPost *post = [_timeline postAtIndex:(NSUInteger) indexPath.row];
     cell.post = post;
 
     return cell;
@@ -114,7 +110,7 @@
         return [NSDate date];
 
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-    DFPost *post = [_posts objectAtIndex:(NSUInteger) indexPath.row];
+    DFPost *post = [_timeline postAtIndex:(NSUInteger) indexPath.row];
     return post.publishDate;
 }
 
@@ -127,11 +123,11 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     [_timeScroller scrollViewDidScroll];
 
-    if (_posts.count <= 0) {
+    if (_timeline.count <= 0) {
         return;
     }
 
-    if (_oldestPostID <= 1) {
+    if (_timeline.oldestPostID <= 1) {
         return;
     }
 
@@ -161,7 +157,7 @@
                 NSDictionary *dict = (NSDictionary *) JSON;
 
                 if ([[dict objectForKey:kRESPONSE_SUCCESS] integerValue] == RESPONSE_NOT_SUCCESS) {
-                    [self showErrorMessage:@"服务器出错了哦\nBS做服务端的同学"];
+                    [self showErrorMessage:@"服务器出错了哦" description:@"BS做服务端的同学"];
                     return;
                 }
 
@@ -172,11 +168,10 @@
 
                 [posts enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
                     DFPost *post = [DFPost postFromDict:obj];
-                    [self updateIDRange:post];
-                    [_posts insertOrReplaceObjectSorted:post];
+                    [_timeline addPost:post];
                 }];
 
-                NSLog(@"time line:%@", _posts);
+                NSLog(@"time line:%@", _timeline);
 
                 [self.tableView reloadData];
                 [self updateFooterViewText];
@@ -189,7 +184,7 @@
 }
 
 - (void)pullForNew {
-    NSString *newerListString = [NSString stringWithFormat:API_POSTS_NEWER_LIST_PARAMETER, _newestPostID];
+    NSString *newerListString = [NSString stringWithFormat:API_POSTS_NEWER_LIST_PARAMETER, _timeline.newestPostID];
     NSString *urlString = [NSString stringWithFormat:@"%@%@%@", API_HOST, API_POSTS_PATH, newerListString];
 
     NSLog(@"request: %@", urlString);
@@ -215,11 +210,10 @@
 
                     [posts enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
                         DFPost *post = [DFPost postFromDict:obj];
-                        [self updateIDRange:post];
-                        [_posts insertOrReplaceObjectSorted:post];
+                        [_timeline addPost:post];
                     }];
 
-                    NSLog(@"time line:%@", _posts);
+                    NSLog(@"time line:%@", _timeline);
 
                     [self.tableView reloadData];
 
@@ -237,7 +231,7 @@
 }
 
 - (void)loadMore {
-    NSString *newerListString = [NSString stringWithFormat:API_POSTS_OLDER_LIST_PARAMETER, _oldestPostID];
+    NSString *newerListString = [NSString stringWithFormat:API_POSTS_OLDER_LIST_PARAMETER, _timeline.oldestPostID];
     NSString *urlString = [NSString stringWithFormat:@"%@%@%@", API_HOST, API_POSTS_PATH, newerListString];
 
     NSLog(@"request: %@", urlString);
@@ -260,15 +254,14 @@
 
                 [posts enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
                     DFPost *post = [DFPost postFromDict:obj];
-                    [self updateIDRange:post];
-                    [_posts insertOrReplaceObjectSorted:post];
+                    [_timeline addPost:post];
                 }];
 
-                NSLog(@"time line:%@", _posts);
+                NSLog(@"time line:%@", _timeline);
 
                 [self.tableView reloadData];
 
-                if (_oldestPostID == 1) {
+                if (_timeline.oldestPostID == 1) {
                     [self showSuccessMessage:@"WOW，成功获取到最古老的带饭信息了哦"];
                 } else {
                     [self showSuccessMessage:[NSString stringWithFormat:@"成功取得%d条旧的带饭信息", posts.count]];
@@ -282,20 +275,8 @@
     [operation start];
 }
 
-- (void)updateIDRange:(DFPost *)post {
-    if (post.identity > _newestPostID) {
-        _newestPostID = post.identity;
-    }
-
-    if (post.identity < _oldestPostID) {
-        _oldestPostID = post.identity;
-    }
-}
-
 - (void)updateFooterViewText {
-    NSLog(@"oldest id: %ld, newest id: %ld", _oldestPostID, _newestPostID);
-
-    if (_oldestPostID > 1) {
+    if (_timeline.oldestPostID > 1) {
         [_footerView showHaveMore];
     } else {
         [_footerView showNoMore];
@@ -367,10 +348,9 @@
                     post.eatDate = eatDate;
                     post.publishDate = [NSDate date];
 
-                    [self updateIDRange:post];
-                    [_posts insertOrReplaceObjectSorted:post];
+                    [_timeline addPost:post];
 
-                    NSLog(@"time line:%@", _posts);
+                    NSLog(@"time line:%@", _timeline);
 
                     [self.tableView reloadData];
                 }
