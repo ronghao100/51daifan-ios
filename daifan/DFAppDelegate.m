@@ -16,6 +16,8 @@
 
     [Crashlytics startWithAPIKey:@"12cf69bcd58555af123af07396580d08d970eee1"];
 
+    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"navigationBar.png"] forBarMetrics:UIBarMetricsDefault];
+
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
 
     DFSplashViewController *vc = [[DFSplashViewController alloc] init];
