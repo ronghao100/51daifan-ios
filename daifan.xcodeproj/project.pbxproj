@@ -68,6 +68,7 @@
 		F163B3FC17896A750064F890 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F163B3FB17896A750064F890 /* SystemConfiguration.framework */; };
 		F163B3FE17896A7D0064F890 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F163B3FD17896A7D0064F890 /* MobileCoreServices.framework */; };
 		F17B572B179A9EF900C08814 /* libBPush.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F17B5729179A9EF900C08814 /* libBPush.a */; };
+		F1BDDB5C17CDE71F0050116F /* libBPush-simulator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F1BDDB5B17CDE71F0050116F /* libBPush-simulator.a */; };
 		F1CE43211796D04900425029 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1CE43201796D04900425029 /* QuartzCore.framework */; };
 		F1F7AB33179289DC002D1B33 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = F1F7AB30179289DC002D1B33 /* Default.png */; };
 		F1F7AB34179289DC002D1B33 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F1F7AB31179289DC002D1B33 /* Default-568h@2x.png */; };
@@ -182,6 +183,7 @@
 		F163B3FD17896A7D0064F890 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		F17B5727179A9EF900C08814 /* BPush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPush.h; sourceTree = "<group>"; };
 		F17B5729179A9EF900C08814 /* libBPush.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libBPush.a; sourceTree = "<group>"; };
+		F1BDDB5B17CDE71F0050116F /* libBPush-simulator.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libBPush-simulator.a"; sourceTree = "<group>"; };
 		F1CE43201796D04900425029 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		F1F7AB30179289DC002D1B33 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		F1F7AB31179289DC002D1B33 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 				F11AEE7F178068F40008082E /* Foundation.framework in Frameworks */,
 				F11AEE81178068F40008082E /* CoreGraphics.framework in Frameworks */,
 				DA2035FF3CD349A0838396C5 /* libPods.a in Frameworks */,
+				F1BDDB5C17CDE71F0050116F /* libBPush-simulator.a in Frameworks */,
 				F17B572B179A9EF900C08814 /* libBPush.a in Frameworks */,
 				F14F813D17C4A8A30024A4E9 /* Crashlytics.framework in Frameworks */,
 			);
@@ -396,7 +399,6 @@
 			isa = PBXGroup;
 			children = (
 				F17B5726179A9EF900C08814 /* BPush */,
-				F1CE43201796D04900425029 /* QuartzCore.framework */,
 				F11AEE82178068F40008082E /* daifan */,
 				F11AEEA0178068F50008082E /* daifanTests */,
 				F11AEE7B178068F40008082E /* Frameworks */,
@@ -417,6 +419,7 @@
 		F11AEE7B178068F40008082E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F1CE43201796D04900425029 /* QuartzCore.framework */,
 				F14F813C17C4A8A30024A4E9 /* Crashlytics.framework */,
 				F163B3FD17896A7D0064F890 /* MobileCoreServices.framework */,
 				F163B3FB17896A750064F890 /* SystemConfiguration.framework */,
@@ -489,6 +492,7 @@
 			children = (
 				F17B5727179A9EF900C08814 /* BPush.h */,
 				F17B5729179A9EF900C08814 /* libBPush.a */,
+				F1BDDB5B17CDE71F0050116F /* libBPush-simulator.a */,
 			);
 			path = BPush;
 			sourceTree = "<group>";
@@ -797,7 +801,8 @@
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)\"",
+					"$(SRCROOT)",
+					"$(SYSTEM_APPS_DIR)/Reveal.app/Contents/SharedSupport/iOS-Libraries",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "daifan/daifan-Prefix.pch";
@@ -805,7 +810,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/BPush\"",
+					"\\\"$(SRCROOT)/BPush\\\"",
+					"/Users/cyril/Workspace/Projects/51daifan-ios/BPush",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/**";
@@ -819,7 +825,8 @@
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)\"",
+					"$(SRCROOT)",
+					"$(SYSTEM_APPS_DIR)/Reveal.app/Contents/SharedSupport/iOS-Libraries",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "daifan/daifan-Prefix.pch";
@@ -827,7 +834,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/BPush\"",
+					"\\\"$(SRCROOT)/BPush\\\"",
+					"/Users/cyril/Workspace/Projects/51daifan-ios/BPush",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/**";
