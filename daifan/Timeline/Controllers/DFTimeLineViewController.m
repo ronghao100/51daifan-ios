@@ -152,24 +152,22 @@
         [self showSuccessMessage:[NSString stringWithFormat:@"成功获取%ld条带饭信息", newPostCount]];
     } error:^(NSError *error) {
         [self showErrorMessage:@"服务器出错了哦" description:@"BS做服务端的同学"];
-    }];
+    } complete:nil];
 }
 
 - (void)pullForNew {
     [_timeline pullForNew:^(long newPostCount) {
+        if (newPostCount == 0) {
+            [self showWarningMessage:@"暂时没有新带饭信息了哦，亲"];
+            return;
+        }
+
         [self.tableView reloadData];
 
         [self showSuccessMessage:[NSString stringWithFormat:@"成功取得%ld条新带饭信息", newPostCount]];
-
-        [self.refreshControl endRefreshing];
-        [self updateFooterViewText];
     } error:^(NSError *error) {
-        if (error.code == RESPONSE_CODE_NO_CONTENT) {
-            [self showWarningMessage:@"暂时没有新带饭信息了哦，亲"];
-        } else {
-            [self showErrorMessage:@"服务器出错了哦" description:@"BS做服务端的同学"];
-        }
-
+        [self showErrorMessage:@"服务器出错了哦" description:@"BS做服务端的同学"];
+    } complete:^() {
         [self.refreshControl endRefreshing];
         [self updateFooterViewText];
     }];
@@ -184,11 +182,11 @@
         } else {
             [self showSuccessMessage:[NSString stringWithFormat:@"成功取得%ld条旧的带饭信息", newPostCount]];
         }
-
-        [_footerView endRefreshing];
-        [self updateFooterViewText];
     } error:^(NSError *error) {
         [self showErrorMessage:@"服务器出错了哦" description:@"BS做服务端的同学"];
+    } complete:^() {
+        [_footerView endRefreshing];
+        [self updateFooterViewText];
     }];
 }
 

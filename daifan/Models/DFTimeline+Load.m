@@ -8,7 +8,7 @@
 
 #pragma mark - Services
 
-- (void)loadList:(LoadSuccessBlock)successBlock error:(LoadErrorBlock)errorBlock {
+- (void)loadList:(LoadSuccessBlock)successBlock error:(LoadErrorBlock)errorBlock  complete:(LoadCompleteBlock)completeBlock{
     NSString *urlString = [NSString stringWithFormat:@"%@%@%@", API_HOST, API_POSTS_PATH, API_POSTS_NEW_LIST_PARAMETER];
 
     NSLog(@"request: %@", urlString);
@@ -21,6 +21,7 @@
 
                 if ([[dict objectForKey:kRESPONSE_SUCCESS] integerValue] == RESPONSE_NOT_SUCCESS) {
                     errorBlock([NSError errorWithDomain:@"loadlist" code:RESPONSE_CODE_BAD_REQUEST userInfo:nil]);
+                    completeBlock();
                     return;
                 }
 
@@ -38,14 +39,16 @@
                 NSLog(@"time line:%@", self);
 
                 successBlock(posts.count);
+                completeBlock();
             } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
                 NSLog(@"time line failed. \n response: %@, error: %@, JSON: %@", response, error, JSON);
                 errorBlock(error);
+                completeBlock();
             }];
     [operation start];
 }
 
-- (void)pullForNew:(LoadSuccessBlock)successBlock error:(LoadErrorBlock)errorBlock {
+- (void)pullForNew:(LoadSuccessBlock)successBlock error:(LoadErrorBlock)errorBlock  complete:(LoadCompleteBlock)completeBlock{
     NSString *newerListString = [NSString stringWithFormat:API_POSTS_NEWER_LIST_PARAMETER, self.newestPostID];
     NSString *urlString = [NSString stringWithFormat:@"%@%@%@", API_HOST, API_POSTS_PATH, newerListString];
 
@@ -59,6 +62,7 @@
 
                 if ([[dict objectForKey:kRESPONSE_SUCCESS] integerValue] == RESPONSE_NOT_SUCCESS) {
                     errorBlock([NSError errorWithDomain:@"pullfornew" code:RESPONSE_CODE_BAD_REQUEST userInfo:nil]);
+                    completeBlock();
                     return;
                 }
 
@@ -67,30 +71,27 @@
 
                 NSUInteger newerPostCount = posts.count;
 
-                if (newerPostCount > 0) {
-                    NSDictionary *users = [dict objectForKey:kRESPONSE_BOOKED_USER_ID];
-                    [[DFUserList sharedList] mergeUserDict:users];
+                NSDictionary *users = [dict objectForKey:kRESPONSE_BOOKED_USER_ID];
+                [[DFUserList sharedList] mergeUserDict:users];
 
-                    [posts enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-                        DFPost *post = [DFPost postFromDict:obj];
-                        [self addPost:post];
-                    }];
+                [posts enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                    DFPost *post = [DFPost postFromDict:obj];
+                    [self addPost:post];
+                }];
 
-                    NSLog(@"time line:%@", self);
+                NSLog(@"time line:%@", self);
 
-                    successBlock(newerPostCount);
-                } else {
-                    errorBlock([NSError errorWithDomain:@"pullfornew" code:RESPONSE_CODE_NO_CONTENT userInfo:nil]);
-                }
-
+                successBlock(newerPostCount);
+                completeBlock();
             } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
                 NSLog(@"time line failed. \n response: %@, error: %@, JSON: %@", response, error, JSON);
                 errorBlock(error);
+                completeBlock();
             }];
     [operation start];
 }
 
-- (void)loadMore:(LoadSuccessBlock)successBlock error:(LoadErrorBlock)errorBlock {
+- (void)loadMore:(LoadSuccessBlock)successBlock error:(LoadErrorBlock)errorBlock complete:(LoadCompleteBlock)completeBlock{
     NSString *newerListString = [NSString stringWithFormat:API_POSTS_OLDER_LIST_PARAMETER, self.oldestPostID];
     NSString *urlString = [NSString stringWithFormat:@"%@%@%@", API_HOST, API_POSTS_PATH, newerListString];
 
@@ -104,6 +105,7 @@
 
                 if ([[dict objectForKey:kRESPONSE_SUCCESS] integerValue] == RESPONSE_NOT_SUCCESS) {
                     errorBlock([NSError errorWithDomain:@"loadmore" code:RESPONSE_CODE_BAD_REQUEST userInfo:nil]);
+                    completeBlock();
                     return;
                 }
 
@@ -121,9 +123,11 @@
                 NSLog(@"time line:%@", self);
 
                 successBlock(posts.count);
+                completeBlock();
             } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
                 NSLog(@"time line failed. \n response: %@, error: %@, JSON: %@", response, error, JSON);
                 errorBlock(error);
+                completeBlock();
             }];
     [operation start];
 }
