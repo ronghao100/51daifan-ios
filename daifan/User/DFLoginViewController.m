@@ -91,6 +91,7 @@
     NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithCapacity:2];
     [parameters setValue:username forKey:@"email"];
     [parameters setValue:password forKey:@"password"];
+    [parameters setValue:@"1" forKey:@"ver"];
 
     NSMutableURLRequest *postRequest = [httpClient requestWithMethod:@"POST" path:API_LOGIN_PATH parameters:parameters];
 
@@ -125,6 +126,7 @@
     user.identity = [[userDict objectForKey:@"id"] intValue];
     user.email = [userDict objectForKey:@"email"];
     user.name = [userDict objectForKey:@"name"];
+    user.avatarURLString = [userDict objectForKey:@"avatar_thumbnail"];
 
     [user storeToUserDefaults];
 

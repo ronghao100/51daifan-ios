@@ -13,6 +13,7 @@
     [[NSUserDefaults standardUserDefaults] setObject:@(self.identity) forKey:kCURRENT_USER_ID];
     [[NSUserDefaults standardUserDefaults] setObject:self.name forKey:kCURRENT_USER_NAME];
     [[NSUserDefaults standardUserDefaults] setObject:self.email forKey:kCURRENT_USER_EMAIL];
+    [[NSUserDefaults standardUserDefaults] setObject:self.avatarURLString forKey:kCURRENT_USER_AVATAR];
 }
 
 + (BOOL)hasStoredUser {
@@ -31,6 +32,7 @@
         currentUser.identity = [[[NSUserDefaults standardUserDefaults] objectForKey:kCURRENT_USER_ID] longValue];
         currentUser.name = [[NSUserDefaults standardUserDefaults] objectForKey:kCURRENT_USER_NAME];
         currentUser.email = [[NSUserDefaults standardUserDefaults] objectForKey:kCURRENT_USER_EMAIL];
+        currentUser.avatarURLString = [[NSUserDefaults standardUserDefaults] objectForKey:kCURRENT_USER_AVATAR];
     });
 
     return currentUser;

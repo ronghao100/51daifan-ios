@@ -31,6 +31,7 @@
 #define kCURRENT_USER_ID @"current_user_id"
 #define kCURRENT_USER_NAME @"current_user_name"
 #define kCURRENT_USER_EMAIL @"current_user_email"
+#define kCURRENT_USER_AVATAR @"current_user_avatar"
 
 #define RESPONSE_NOT_SUCCESS 0
 #define RESPONSE_SUCCESS 1
