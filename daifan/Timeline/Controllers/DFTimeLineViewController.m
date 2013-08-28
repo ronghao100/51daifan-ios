@@ -152,7 +152,9 @@
         [self showSuccessMessage:[NSString stringWithFormat:@"成功获取%ld条带饭信息", newPostCount]];
     } error:^(NSError *error) {
         [self showErrorMessage:@"服务器出错了哦" description:@"BS做服务端的同学"];
-    } complete:nil];
+    } complete:^() {
+
+    }];
 }
 
 - (void)pullForNew {
@@ -236,6 +238,7 @@
     AFHTTPClient *httpClient = [AFHTTPClient clientWithBaseURL:url];
 
     NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithCapacity:3];
+    [parameters setValue:@"1" forKey:@"ver"];
     [parameters setValue:[@(totalCount) stringValue] forKey:@"count"];
     [parameters setValue:[df stringFromDate:eatDate] forKey:@"eatDate"];
     [parameters setValue:postString forKey:@"name"];
