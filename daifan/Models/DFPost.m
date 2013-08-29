@@ -20,7 +20,6 @@
     return self;
 }
 
-
 + (DFPost *)postFromDict:(NSDictionary *)postDict {
     DFPost *post = [[DFPost alloc] init];
 
@@ -67,6 +66,21 @@
 
     NSString *date = [dateFormatter stringFromDate:self.eatDate];
     return [NSString stringWithFormat:@"%@ 带 %@", date, self.name];
+}
+
+- (NSUInteger)imageCount {
+    __block NSUInteger ic = 0;
+    [self.images enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        if ([obj isKindOfClass:[NSString class]]) {
+            NSString *urlString = obj;
+
+            if ([urlString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]].length > 0) {
+                ++ ic;
+            }
+        }
+    }];
+
+    return ic;
 }
 
 - (NSString *)description {

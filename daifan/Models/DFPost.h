@@ -20,6 +20,8 @@
 @property(nonatomic, retain) NSArray *comments;
 @property(nonatomic, retain) NSArray *images;
 
+@property(nonatomic, readonly) NSUInteger imageCount;
+
 @property(nonatomic, strong) NSDate *updateDate;
 
 + (DFPost *)postFromDict:(NSDictionary *)postDict;

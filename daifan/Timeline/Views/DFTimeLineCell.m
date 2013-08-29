@@ -10,6 +10,8 @@
 #define MIDDLE_LINE_X 62.0f
 #define PADDING 10.0f
 
+#define IMAGE_WIDTH 80.0f
+
 
 @implementation DFTimeLineCell {
     UIImageView *_lineView;
@@ -31,6 +33,10 @@
     UILabel *_countLabel;
 
     DFCommentView *_commentView;
+
+    NSMutableArray *_imageViews;
+
+    NSUInteger _imageCount;
 }
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
@@ -58,6 +64,9 @@
         _contentLabel.font = [UIFont boldSystemFontOfSize:[UIFont labelFontSize]];
         _contentLabel.numberOfLines = 0;
         [self addSubview:_contentLabel];
+
+        _imageCount = 0;
+        _imageViews = [[NSMutableArray alloc] initWithCapacity:3];
 
         _publishDateLabel = [UILabel transparentLabelWithFrame:CGRectMake(MIDDLE_LINE_X, 0.0f, LABEL_WIDTH, 20.0f)];
         _publishDateLabel.font = [UIFont systemFontOfSize:9.0f];
@@ -119,6 +128,8 @@
 
         [self displayContent];
 
+        [self displayImages];
+
         [self displayPublishDate];
 
         [self displayAddress];
@@ -152,6 +163,33 @@
     _contentLabel.text = _content;
 }
 
+- (void)displayImages {
+    NSLog(@"Images: %@", _post.images);
+
+    [_post.images enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        if ([obj isKindOfClass:[NSString class]]) {
+            NSLog(@"Image: %@", obj);
+            NSString *urlString = obj;
+
+            if ([urlString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]].length > 0) {
+                UIImageView *iv;
+                if (_imageCount >= _imageViews.count) {
+                    iv = [[UIImageView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, IMAGE_WIDTH, IMAGE_WIDTH)];
+                    [_imageViews addObject:iv];
+                }
+
+                iv = _imageViews[_imageCount];
+                [iv setImageWithURL:[NSURL URLWithString:urlString]];
+                [self addSubview:iv];
+
+                ++ _imageCount;
+            }
+        }
+    }];
+
+    NSLog(@"image count: %d, image view count: %d", _imageCount, _imageViews.count);
+}
+
 - (void)displayAddress {
     _addressLabel.text = _post.address;
     if (!_post.address || _post.address.length <= 0) {
@@ -165,8 +203,8 @@
     [dateFormatter setTimeZone:[NSTimeZone localTimeZone]];
     dateFormatter.dateFormat = @"yyyy-M-d HH:mm发布";
 
-    NSString *formatedPublishDate = [dateFormatter stringFromDate:_post.publishDate];
-    _publishDateLabel.text = formatedPublishDate;
+    NSString *formattedPublishDate = [dateFormatter stringFromDate:_post.publishDate];
+    _publishDateLabel.text = formattedPublishDate;
 }
 
 - (void)displayCommentView {
@@ -177,8 +215,15 @@
 - (void)clearCellContent {
     _userNameLabel.text = @"";
     _contentLabel.text = @"";
-    _publishDateLabel.text = @"";
 
+    _imageCount = 0;
+    [_imageViews enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        UIImageView *iv = obj;
+        [iv setImageWithURL:nil];
+        [iv removeFromSuperview];
+    }];
+
+    _publishDateLabel.text = @"";
     _addressLabel.text = @"";
     _addressLabel.hidden = NO;
     _locationMark.hidden = NO;
@@ -227,7 +272,25 @@
     _contentLabel.top = _userNameLabel.bottom + INSET_Y;
     [_contentLabel fitToBestSize];
 
-    _publishDateLabel.top = _contentLabel.bottom + INSET_Y;
+    CGFloat dataTop = _contentLabel.bottom + INSET_Y;
+    CGFloat imageHeight = 0.0f;
+    if (_imageCount > 0) {
+        int x = 0;
+        int y = 0;
+        for (int i = 0; i < _imageCount; ++ i) {
+            UIImageView *iv = _imageViews[i];
+            x = i % 3;
+            y = i / 3;
+
+            iv.left = MIDDLE_LINE_X + (IMAGE_WIDTH + INSET_Y) * x;
+            iv.top = _contentLabel.bottom + INSET_Y + (IMAGE_WIDTH + INSET_Y) * y;
+        }
+
+        dataTop = ((UIImageView *)_imageViews[_imageCount - 1]).bottom + INSET_Y;
+        imageHeight = (y + 1) * (IMAGE_WIDTH + INSET_Y);
+    }
+
+    _publishDateLabel.top = dataTop;
     [_publishDateLabel fitToBestSize];
 
     _locationMark.top = _publishDateLabel.top;
@@ -257,6 +320,7 @@
     CGFloat totalHeight = PADDING
                     + _userNameLabel.height + INSET_Y
                     + _contentLabel.height + INSET_Y
+                    + imageHeight
                     + _publishDateLabel.height + INSET_Y
                     + _bookButton.height + INSET_Y
                     + commentViewHeight
@@ -279,6 +343,12 @@
 
     CGFloat contentHeight = [_content sizeWithFont:[UIFont boldSystemFontOfSize:[UIFont labelFontSize]] constrainedToSize:CGSizeMake(LABEL_WIDTH, CGFLOAT_MAX)].height;
 
+    CGFloat imageHeight = 0.0f;
+    NSUInteger imageCount = post.imageCount;
+    if (imageCount > 0) {
+        imageHeight = (IMAGE_WIDTH + INSET_Y) * (((imageCount - 1) / 3) + 1);
+    }
+
     CGFloat commentViewHeight = 0.0f;
     if (post.bookedUserIDs.count > 0 || post.comments.count > 0) {
         DFCommentView *commentView = [[DFCommentView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, LABEL_WIDTH, 0.0f)];
@@ -290,6 +360,7 @@
     return PADDING
          + 20.0f + INSET_Y
          + contentHeight + INSET_Y
+         + imageHeight
          + 20.0f + INSET_Y
          + 20.0f + INSET_Y
          + commentViewHeight
