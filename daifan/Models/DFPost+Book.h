@@ -1,8 +1,8 @@
 #import <Foundation/Foundation.h>
 #import "DFPost.h"
 
-typedef void(^BookSuccessBlock)(DFPost *post);
-typedef void(^BookErrorBlock)(NSError *error);
+typedef void(^BookSuccessBlock)(DFPost *post, BOOL booked);
+typedef void(^BookErrorBlock)(NSError *error, BOOL book);
 
 @interface DFPost (Book)
 

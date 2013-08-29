@@ -10,5 +10,8 @@
 - (void)showWarningMessage:(NSString *)message description:(NSString *)desc;
 - (void)showErrorMessage:(NSString *)message;
 - (void)showErrorMessage:(NSString *)message description:(NSString *)desc;
+- (void)showEndlessInfoMessage:(NSString *)message;
+- (void)showEndlessInfoMessage:(NSString *)message description:(NSString *)desc;
+- (void)closeEndlessMessage;
 
 @end

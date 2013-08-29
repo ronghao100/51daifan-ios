@@ -203,10 +203,20 @@
 #pragma mark - Book and Comment
 
 - (void)bookOnPost:(DFPost *)post {
-    [post bookOrUnbookByUser:_currentUser success:^(DFPost *post) {
+    [post bookOrUnbookByUser:_currentUser success:^(DFPost *post, BOOL booked) {
         [self.tableView reloadData];
-    }                  error:^(NSError *error) {
+        if (booked) {
+            [self showSuccessMessage:@"抢饭成功哦"];
+        } else {
+            [self showSuccessMessage:@"退订成功"];
+        }
+    }                  error:^(NSError *error, BOOL book) {
         NSLog(@"book or unbook error: %@", error);
+        if (book) {
+            [self showErrorMessage:@"服务器出错，暂时不能订饭"];
+        } else {
+            [self showErrorMessage:@"服务器出错，暂时不能退订"];
+        }
     }];
 }
 
@@ -223,13 +233,16 @@
 - (void)postComment:(NSString *)commentString toPost:(DFPost *)post {
     [post comment:commentString byUser:_currentUser success:^(DFPost *post) {
         [self.tableView reloadData];
+        [self showSuccessMessage:@"成功发送评论"];
     }       error:^(NSError *error) {
-
+        [self showErrorMessage:@"服务器出错，暂时不能发送评论"];
     }];
 }
 
 #pragma Mark - post delegate
 - (void)post:(NSString *)postString date:(NSDate *)eatDate count:(NSInteger)totalCount {
+    [self showEndlessInfoMessage:@"带饭信息发送中..."];
+
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
     df.dateFormat = @"yyyy-MM-dd";
     df.timeZone = [NSTimeZone localTimeZone];
@@ -251,8 +264,10 @@
 
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:postRequest
             success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+                [self closeEndlessMessage];
                 if ([[(NSDictionary *) JSON objectForKey:kRESPONSE_SUCCESS] integerValue] == RESPONSE_NOT_SUCCESS) {
                     NSLog(@"post failed: %@", JSON);
+                    [self showErrorMessage:@"无法发送带饭信息"];
                 } else {
                     NSLog(@"post succeed: %@", JSON);
 
@@ -271,9 +286,12 @@
                     NSLog(@"time line:%@", _timeline);
 
                     [self.tableView reloadData];
+                    [self showSuccessMessage:@"带饭信息发送成功"];
                 }
             } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
                 NSLog(@"post failed in failure block: %@", JSON);
+                [self closeEndlessMessage];
+                [self showErrorMessage:@"无法发送带饭信息"];
             }];
 
     [httpClient enqueueHTTPRequestOperation:operation];

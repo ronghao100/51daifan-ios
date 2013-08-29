@@ -18,17 +18,17 @@
                 NSDictionary *dict = (NSDictionary *) JSON;
 
                 if ([[dict objectForKey:kRESPONSE_SUCCESS] integerValue] == RESPONSE_NOT_SUCCESS) {
-                    errorBlock([NSError errorWithDomain:@"book" code:[[dict objectForKey:kRESPONSE_ERROR] integerValue] userInfo:nil]);
+                    errorBlock([NSError errorWithDomain:@"book" code:[[dict objectForKey:kRESPONSE_ERROR] integerValue] userInfo:nil], YES);
                     return;
                 }
                 NSLog(@"book success.");
 
                 [self bookedByUser:user];
 
-                successBlock(self);
+                successBlock(self, YES);
             } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
                 NSLog(@"book failed. \n response: %@, error: %@, JSON: %@", response, error, JSON);
-                errorBlock(error);
+                errorBlock(error, YES);
             }];
     [operation start];
 }
@@ -58,16 +58,16 @@
                 NSDictionary *dict = (NSDictionary *) JSON;
 
                 if ([[dict objectForKey:kRESPONSE_SUCCESS] integerValue] == RESPONSE_NOT_SUCCESS) {
-                    errorBlock([NSError errorWithDomain:@"unbook" code:[[dict objectForKey:kRESPONSE_ERROR] integerValue] userInfo:nil]);
+                    errorBlock([NSError errorWithDomain:@"unbook" code:[[dict objectForKey:kRESPONSE_ERROR] integerValue] userInfo:nil], NO);
                     return;
                 }
 
                 [self unbookedByUser:user];
 
-                successBlock(self);
+                successBlock(self, NO);
             } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
                 NSLog(@"book failed. \n response: %@, error: %@, JSON: %@", response, error, JSON);
-                errorBlock(error);
+                errorBlock(error, NO);
             }];
     [operation start];
 }
