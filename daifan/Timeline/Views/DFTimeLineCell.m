@@ -10,7 +10,7 @@
 #define MIDDLE_LINE_X 62.0f
 #define PADDING 10.0f
 
-#define IMAGE_WIDTH 80.0f
+#define IMAGE_WIDTH 70.0f
 
 
 @implementation DFTimeLineCell {
