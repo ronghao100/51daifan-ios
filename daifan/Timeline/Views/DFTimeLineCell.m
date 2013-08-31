@@ -165,37 +165,29 @@
 
 - (void)displayImages {
     NSLog(@"Images: %@", _post.images);
+    _imageCount = _post.images.count;
 
     [_post.images enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        if ([obj isKindOfClass:[NSString class]]) {
-            NSLog(@"Image: %@", obj);
-            NSString *urlString = obj;
+        NSString *urlString = obj;
 
-            if ([urlString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]].length > 0) {
-                UIImageView *iv;
-                if (_imageCount >= _imageViews.count) {
-                    iv = [[UIImageView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, IMAGE_WIDTH, IMAGE_WIDTH)];
-                    [_imageViews addObject:iv];
-                }
-
-                iv = _imageViews[_imageCount];
-                [iv setImageWithURL:[NSURL URLWithString:urlString]];
-                [self addSubview:iv];
-
-                ++ _imageCount;
-            }
+        UIImageView *iv;
+        if (idx >= _imageViews.count) {
+            iv = [[UIImageView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, IMAGE_WIDTH, IMAGE_WIDTH)];
+            [_imageViews addObject:iv];
         }
-    }];
 
-    NSLog(@"image count: %d, image view count: %d", _imageCount, _imageViews.count);
+        iv = _imageViews[idx];
+        [iv setImageWithURL:[NSURL URLWithString:urlString]];
+        [self addSubview:iv];
+    }];
 }
 
 - (void)displayAddress {
     _addressLabel.text = _post.address;
     if (!_post.address || _post.address.length <= 0) {
-            _addressLabel.hidden = YES;
-            _locationMark.hidden = YES;
-        }
+        _addressLabel.hidden = YES;
+        _locationMark.hidden = YES;
+    }
 }
 
 - (void)displayPublishDate {
@@ -277,7 +269,7 @@
     if (_imageCount > 0) {
         int x = 0;
         int y = 0;
-        for (int i = 0; i < _imageCount; ++ i) {
+        for (int i = 0; i < _imageCount; ++i) {
             UIImageView *iv = _imageViews[i];
             x = i % 3;
             y = i / 3;
@@ -286,7 +278,7 @@
             iv.top = _contentLabel.bottom + INSET_Y + (IMAGE_WIDTH + INSET_Y) * y;
         }
 
-        dataTop = ((UIImageView *)_imageViews[_imageCount - 1]).bottom + INSET_Y;
+        dataTop = ((UIImageView *) _imageViews[_imageCount - 1]).bottom + INSET_Y;
         imageHeight = (y + 1) * (IMAGE_WIDTH + INSET_Y);
     }
 
@@ -344,7 +336,7 @@
     CGFloat contentHeight = [_content sizeWithFont:[UIFont boldSystemFontOfSize:[UIFont labelFontSize]] constrainedToSize:CGSizeMake(LABEL_WIDTH, CGFLOAT_MAX)].height;
 
     CGFloat imageHeight = 0.0f;
-    NSUInteger imageCount = post.imageCount;
+    NSUInteger imageCount = post.images.count;
     if (imageCount > 0) {
         imageHeight = (IMAGE_WIDTH + INSET_Y) * (((imageCount - 1) / 3) + 1);
     }
@@ -358,13 +350,13 @@
     }
 
     return PADDING
-         + 20.0f + INSET_Y
-         + contentHeight + INSET_Y
-         + imageHeight
-         + 20.0f + INSET_Y
-         + 20.0f + INSET_Y
-         + commentViewHeight
-         + PADDING;
+                    + 20.0f + INSET_Y
+                    + contentHeight + INSET_Y
+                    + imageHeight
+                    + 20.0f + INSET_Y
+                    + 20.0f + INSET_Y
+                    + commentViewHeight
+                    + PADDING;
 }
 
 @end

@@ -36,11 +36,13 @@
     NSMutableArray *images = [[NSMutableArray alloc] init];
     for (int i = 1; i <= 6; i++) {
         NSString *image = [postDict objectForKey:[NSString stringWithFormat:@"image%d", i]];
-        if (image) {
+
+        if ([image isKindOfClass:[NSString class]] && [image stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]].length > 0) {
             [images addObject:image];
         }
     }
     post.images = images;
+    NSLog(@"image count: %d", post.images.count);
 
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setTimeZone:[NSTimeZone localTimeZone]];
@@ -69,18 +71,7 @@
 }
 
 - (NSUInteger)imageCount {
-    __block NSUInteger ic = 0;
-    [self.images enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        if ([obj isKindOfClass:[NSString class]]) {
-            NSString *urlString = obj;
-
-            if ([urlString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]].length > 0) {
-                ++ ic;
-            }
-        }
-    }];
-
-    return ic;
+    return self.images.count;
 }
 
 - (NSString *)description {
