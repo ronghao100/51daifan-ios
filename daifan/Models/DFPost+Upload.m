@@ -25,7 +25,7 @@
 
 - (void)image:(NSUInteger)index uploadedWithURLString:(NSString *)imageURLString totalCount:(NSUInteger)totalCount {
     if (imageURLString != nil) {
-        self.images[index] = imageURLString;
+        [self.images addObject:imageURLString];
     }
 
     ++ _uploadedCount;
