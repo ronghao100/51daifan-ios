@@ -50,9 +50,7 @@
     [parameters setValue:[df stringFromDate:self.eatDate] forKey:@"eatDate"];
     [parameters setValue:self.name forKey:@"name"];
     [parameters setValue:@"" forKey:@"desc"];
-//    [self.images enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        [parameters setValue:self.images forKey:@"img"];
-//    }];
+    [parameters setValue:self.images forKey:@"img"];
     [parameters setValue:[@(self.user.identity) stringValue] forKey:@"uid"];
 
     NSMutableURLRequest *postRequest = [httpClient requestWithMethod:@"POST" path:API_POST_PATH parameters:parameters];
