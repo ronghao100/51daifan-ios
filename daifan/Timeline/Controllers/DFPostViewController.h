@@ -10,7 +10,7 @@
 
 @end
 
-@interface DFPostViewController : DFComposeBaseViewController <UITextViewDelegate, TCSelectorDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface DFPostViewController : DFComposeBaseViewController <UITextViewDelegate, TCSelectorDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate>
 
 @property (nonatomic, weak) id<DFPostDelegate> delegate;
 

@@ -61,6 +61,7 @@
 		F11AEE9D178068F50008082E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F11AEE7E178068F40008082E /* Foundation.framework */; };
 		F11AEEA5178068F50008082E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F11AEEA3178068F50008082E /* InfoPlist.strings */; };
 		F13340F517D331D1001F3ADD /* UIImagePickerController+TakePicture.m in Sources */ = {isa = PBXBuildFile; fileRef = F13340F417D331D1001F3ADD /* UIImagePickerController+TakePicture.m */; };
+		F13340F817D350CF001F3ADD /* DFImageBar.m in Sources */ = {isa = PBXBuildFile; fileRef = F13340F717D350CF001F3ADD /* DFImageBar.m */; };
 		F133A8F71787F56500CF7897 /* daifan@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F133A8F51787F56500CF7897 /* daifan@2x.png */; };
 		F133A8F81787F56500CF7897 /* daifan-120@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F133A8F61787F56500CF7897 /* daifan-120@2x.png */; };
 		F133A8FA1787F8F300CF7897 /* daifan.png in Resources */ = {isa = PBXBuildFile; fileRef = F133A8F91787F8F300CF7897 /* daifan.png */; };
@@ -178,6 +179,8 @@
 		F11AEEA4178068F50008082E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F13340F317D331D1001F3ADD /* UIImagePickerController+TakePicture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImagePickerController+TakePicture.h"; sourceTree = "<group>"; };
 		F13340F417D331D1001F3ADD /* UIImagePickerController+TakePicture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImagePickerController+TakePicture.m"; sourceTree = "<group>"; };
+		F13340F617D350CF001F3ADD /* DFImageBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFImageBar.h; sourceTree = "<group>"; };
+		F13340F717D350CF001F3ADD /* DFImageBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFImageBar.m; sourceTree = "<group>"; };
 		F133A8F51787F56500CF7897 /* daifan@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "daifan@2x.png"; sourceTree = "<group>"; };
 		F133A8F61787F56500CF7897 /* daifan-120@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "daifan-120@2x.png"; sourceTree = "<group>"; };
 		F133A8F91787F8F300CF7897 /* daifan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = daifan.png; sourceTree = "<group>"; };
@@ -306,6 +309,8 @@
 				5ABD0A68CFE2077350411196 /* DFRemoteImageView.m */,
 				5ABD0D38C1CA62976EDAB1AD /* DFRoundImageButton.m */,
 				5ABD0B03429B344424310AE3 /* DFRoundImageButton.h */,
+				F13340F617D350CF001F3ADD /* DFImageBar.h */,
+				F13340F717D350CF001F3ADD /* DFImageBar.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -686,6 +691,7 @@
 				5ABD00BAF8FA072B823AEF73 /* DFPost.m in Sources */,
 				5ABD05B6D2810735E4EA9D81 /* DFUser.m in Sources */,
 				5ABD09895E4652BE633DDF4C /* DFRemoteImageView.m in Sources */,
+				F13340F817D350CF001F3ADD /* DFImageBar.m in Sources */,
 				5ABD0A16334B122F4C1F7EB5 /* DFLoginViewController.m in Sources */,
 				5ABD0AED842DEACD2A8A7452 /* DFSplashViewController.m in Sources */,
 				5ABD0B6BCC66BFE44B8F879E /* DFRoundImageButton.m in Sources */,

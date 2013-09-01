@@ -1,5 +1,7 @@
 #import "DFPostViewController.h"
 #import "UIViewController+ShowMessage.h"
+#import "UIImage+Resize.h"
+#import "DFImageBar.h"
 
 
 @implementation DFPostViewController {
@@ -8,7 +10,7 @@
     TCDateSelector *_eatDateSelector;
     TCNumberSelector *_countSelector;
 
-    UIButton *_addPhoto;
+    DFImageBar *_imageBar;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -41,7 +43,9 @@
 
     yOffset += DEFAULT_BAR_HEIGHT;
 
-    _postTextView = [[UITextView alloc] initWithFrame:CGRectMake(0.0f, yOffset, self.view.width, self.view.height - yOffset - DEFAULT_BAR_HEIGHT)];
+    float imageBarHeight = DEFAULT_IMAGE_HEIGHT + INSET_Y * 2.0f;
+
+    _postTextView = [[UITextView alloc] initWithFrame:CGRectMake(0.0f, yOffset, self.view.width, self.view.height - yOffset - DEFAULT_BAR_HEIGHT - imageBarHeight)];
     _postTextView.backgroundColor = [UIColor colorWithHexString:@"#F0F0F0"];
     _postTextView.font = [UIFont systemFontOfSize:[UIFont systemFontSize]];
     _postTextView.showsHorizontalScrollIndicator = NO;
@@ -49,12 +53,12 @@
     [self.view addSubview:_postTextView];
     [self.view sendSubviewToBack:_postTextView];
 
-    _addPhoto = [UIButton buttonWithType:UIButtonTypeCustom];
-    _addPhoto.frame = CGRectMake(INSET_X, _postTextView.bottom - INSET_Y - DEFAULT_BUTTON_HEIGHT, DEFAULT_BUTTON_WIDTH, DEFAULT_BUTTON_HEIGHT);
-    _addPhoto.backgroundColor = [[UIColor blueColor] colorWithAlphaComponent:DEFAULT_ALPHA];
-    [_addPhoto setTitle:@"+" forState:UIControlStateNormal];
-    [_addPhoto addTarget:self action:@selector(showCamera) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:_addPhoto];
+    _imageBar = [[DFImageBar alloc] initWithFrame:CGRectMake(0.0f, _postTextView.bottom - imageBarHeight, self.view.width, imageBarHeight)];
+    __weak DFPostViewController *weakSelf = self;
+    _imageBar.addPhotoClicked = ^() {
+        [weakSelf showCamera];
+    };
+    [self.view addSubview:_imageBar];
 
     [_postTextView becomeFirstResponder];
 }
@@ -79,11 +83,11 @@
 }
 
 - (void)layoutViewWithKeyboardHeight:(CGFloat)newKeyboardHeight withDuration:(NSTimeInterval)duration {
-    CGFloat newHeight = self.view.height - newKeyboardHeight - DEFAULT_BAR_HEIGHT;
+    CGFloat newHeight = self.view.height - newKeyboardHeight - DEFAULT_BAR_HEIGHT - INSET_Y * 2.0f - DEFAULT_IMAGE_HEIGHT;
 
     [UIView animateWithDuration:duration animations:^{
         _postTextView.height = newHeight;
-        _addPhoto.top = _postTextView.bottom - INSET_Y - DEFAULT_BUTTON_HEIGHT;
+        _imageBar.top = _postTextView.bottom;
     }];
 }
 
@@ -107,8 +111,7 @@
 }
 
 #pragma mark - TextView delegate
-- (void)textViewDidBeginEditing:(UITextView *)textView
-{
+- (void)textViewDidBeginEditing:(UITextView *)textView {
     [_eatDateSelector collapse];
     [_countSelector collapse];
 }
@@ -116,7 +119,45 @@
 #pragma mark - Camera
 
 - (void)showCamera {
-    [UIImagePickerController startCameraControllerFromViewController:self usingDelegate:self];
+    UIActionSheet *as = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"相机", @"图片库", nil];
+    [as showInView:self.view];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 0) {
+        [UIImagePickerController startCameraControllerFromViewController:self usingDelegate:self];
+    } else if (buttonIndex == 1) {
+        [UIImagePickerController startMediaBrowserFromViewController:self usingDelegate:self];
+    }
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    UIImage *originalImage, *editedImage, *imageToSave;
+
+    editedImage = (UIImage *) [info objectForKey:
+            UIImagePickerControllerEditedImage];
+    originalImage = (UIImage *) [info objectForKey:
+            UIImagePickerControllerOriginalImage];
+
+    if (editedImage) {
+        imageToSave = editedImage;
+    } else {
+        imageToSave = originalImage;
+    }
+
+    if (picker.sourceType == UIImagePickerControllerSourceTypeCamera) {
+        UIImageWriteToSavedPhotosAlbum(imageToSave, nil, nil, nil);
+    }
+
+    UIImage *imageToPost = [imageToSave resizedImageToFitInSize:CGSizeMake(IMAGE_SIZE, IMAGE_SIZE) scaleIfSmaller:NO];
+
+    [picker dismissViewControllerAnimated:YES completion:nil];
+
+    [_imageBar addImage:imageToPost];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
