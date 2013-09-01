@@ -14,7 +14,7 @@
     return self;
 }
 
-- (void)relayoutViewWithKeyboardHeight:(CGFloat)newKeyboardHeight withDuration:(NSTimeInterval)duration {
+- (void)layoutViewWithKeyboardHeight:(CGFloat)newKeyboardHeight withDuration:(NSTimeInterval)duration {
     CGFloat newHeight = self.view.height - newKeyboardHeight;
 
     [UIView animateWithDuration:duration animations:^{

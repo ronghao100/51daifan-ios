@@ -7,6 +7,8 @@
 
     TCDateSelector *_eatDateSelector;
     TCNumberSelector *_countSelector;
+
+    UIButton *_addPhoto;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -47,11 +49,14 @@
     [self.view addSubview:_postTextView];
     [self.view sendSubviewToBack:_postTextView];
 
-    [_postTextView becomeFirstResponder];
-}
+    _addPhoto = [UIButton buttonWithType:UIButtonTypeCustom];
+    _addPhoto.frame = CGRectMake(INSET_X, _postTextView.bottom - INSET_Y - DEFAULT_BUTTON_HEIGHT, DEFAULT_BUTTON_WIDTH, DEFAULT_BUTTON_HEIGHT);
+    _addPhoto.backgroundColor = [[UIColor blueColor] colorWithAlphaComponent:DEFAULT_ALPHA];
+    [_addPhoto setTitle:@"+" forState:UIControlStateNormal];
+    [_addPhoto addTarget:self action:@selector(showCamera) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_addPhoto];
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
+    [_postTextView becomeFirstResponder];
 }
 
 - (void)postContent {
@@ -73,11 +78,12 @@
     [super postContent];
 }
 
-- (void)relayoutViewWithKeyboardHeight:(CGFloat)newKeyboardHeight withDuration:(NSTimeInterval)duration {
+- (void)layoutViewWithKeyboardHeight:(CGFloat)newKeyboardHeight withDuration:(NSTimeInterval)duration {
     CGFloat newHeight = self.view.height - newKeyboardHeight - DEFAULT_BAR_HEIGHT;
 
     [UIView animateWithDuration:duration animations:^{
         _postTextView.height = newHeight;
+        _addPhoto.top = _postTextView.bottom - INSET_Y - DEFAULT_BUTTON_HEIGHT;
     }];
 }
 
@@ -105,6 +111,12 @@
 {
     [_eatDateSelector collapse];
     [_countSelector collapse];
+}
+
+#pragma mark - Camera
+
+- (void)showCamera {
+    [UIImagePickerController startCameraControllerFromViewController:self usingDelegate:self];
 }
 
 @end

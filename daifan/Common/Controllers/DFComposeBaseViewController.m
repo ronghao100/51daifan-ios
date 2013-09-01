@@ -62,7 +62,7 @@
     NSTimeInterval animationDuration;
     [animationDurationValue getValue:&animationDuration];
 
-    [self relayoutViewWithKeyboardHeight:keyboardRect.size.height withDuration:animationDuration];
+    [self layoutViewWithKeyboardHeight:keyboardRect.size.height withDuration:animationDuration];
 }
 
 - (void)keyboardWillHide:(NSNotification *)notification {
@@ -72,10 +72,10 @@
     NSTimeInterval animationDuration;
     [animationDurationValue getValue:&animationDuration];
 
-    [self relayoutViewWithKeyboardHeight:0.0f withDuration:animationDuration];
+    [self layoutViewWithKeyboardHeight:0.0f withDuration:animationDuration];
 }
 
-- (void)relayoutViewWithKeyboardHeight:(CGFloat)newKeyboardHeight withDuration:(NSTimeInterval)duration {
+- (void)layoutViewWithKeyboardHeight:(CGFloat)newKeyboardHeight withDuration:(NSTimeInterval)duration {
     // Do nothing.
 }
 

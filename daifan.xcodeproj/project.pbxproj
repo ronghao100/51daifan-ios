@@ -60,6 +60,7 @@
 		F11AEE9C178068F50008082E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F11AEE7C178068F40008082E /* UIKit.framework */; };
 		F11AEE9D178068F50008082E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F11AEE7E178068F40008082E /* Foundation.framework */; };
 		F11AEEA5178068F50008082E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F11AEEA3178068F50008082E /* InfoPlist.strings */; };
+		F13340F517D331D1001F3ADD /* UIImagePickerController+TakePicture.m in Sources */ = {isa = PBXBuildFile; fileRef = F13340F417D331D1001F3ADD /* UIImagePickerController+TakePicture.m */; };
 		F133A8F71787F56500CF7897 /* daifan@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F133A8F51787F56500CF7897 /* daifan@2x.png */; };
 		F133A8F81787F56500CF7897 /* daifan-120@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F133A8F61787F56500CF7897 /* daifan-120@2x.png */; };
 		F133A8FA1787F8F300CF7897 /* daifan.png in Resources */ = {isa = PBXBuildFile; fileRef = F133A8F91787F8F300CF7897 /* daifan.png */; };
@@ -175,6 +176,8 @@
 		F11AEE9A178068F50008082E /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		F11AEEA2178068F50008082E /* daifanTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "daifanTests-Info.plist"; sourceTree = "<group>"; };
 		F11AEEA4178068F50008082E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F13340F317D331D1001F3ADD /* UIImagePickerController+TakePicture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImagePickerController+TakePicture.h"; sourceTree = "<group>"; };
+		F13340F417D331D1001F3ADD /* UIImagePickerController+TakePicture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImagePickerController+TakePicture.m"; sourceTree = "<group>"; };
 		F133A8F51787F56500CF7897 /* daifan@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "daifan@2x.png"; sourceTree = "<group>"; };
 		F133A8F61787F56500CF7897 /* daifan-120@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "daifan-120@2x.png"; sourceTree = "<group>"; };
 		F133A8F91787F8F300CF7897 /* daifan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = daifan.png; sourceTree = "<group>"; };
@@ -385,6 +388,8 @@
 				5ABD09EF29BE9261691FC808 /* UIViewController+ShowMessage.h */,
 				5ABD06F4049F04C403AAC5CB /* UIViewController+NavigationAround.m */,
 				5ABD0D7D6664A6D02C4A6C3C /* UIViewController+NavigationAround.h */,
+				F13340F317D331D1001F3ADD /* UIImagePickerController+TakePicture.h */,
+				F13340F417D331D1001F3ADD /* UIImagePickerController+TakePicture.m */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -687,6 +692,7 @@
 				5ABD0F355EC35DEC17CA4734 /* UIScreen+ApplicationBounds.m in Sources */,
 				5ABD0AFCCB00836219ADE52A /* DFUserList.m in Sources */,
 				5ABD0F1B9A434B527328B2D5 /* DFComment.m in Sources */,
+				F13340F517D331D1001F3ADD /* UIImagePickerController+TakePicture.m in Sources */,
 				5ABD089E9C2730CEFB2354F9 /* DFCommentView.m in Sources */,
 				5ABD09D779A74D3455653968 /* UILabel+FitToBestSize.m in Sources */,
 				5ABD0BC6C244536A4EE26FCE /* UIView+Frame.m in Sources */,
