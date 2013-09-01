@@ -1,9 +1,16 @@
 #import <Foundation/Foundation.h>
 
+typedef void(^PostSuccessBlock)(DFPost *post);
+typedef void(^PostErrorBlock)(NSError *error);
+
 @class DFUser;
 @class DFComment;
 
-@interface DFPost : NSObject
+@interface DFPost : NSObject {
+    PostSuccessBlock _successBlock;
+    PostErrorBlock _errorBlock;
+    NSUInteger _uploadedCount;
+}
 
 @property(nonatomic) long identity;
 @property(nonatomic, strong) DFUser *user;
@@ -18,7 +25,7 @@
 @property(nonatomic) int bookedCount;
 @property(nonatomic, retain) NSArray *bookedUserIDs;
 @property(nonatomic, retain) NSArray *comments;
-@property(nonatomic, retain) NSArray *images;
+@property(nonatomic, retain) NSMutableArray *images;
 
 @property(nonatomic, strong) NSDate *updateDate;
 

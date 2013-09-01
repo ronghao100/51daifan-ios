@@ -64,3 +64,6 @@
 #define API_COMMENT_PATH @"/api/comment"
 
 #define API_POST_PATH @"/api/post"
+
+#define API_IMAGE_PATH @"recipes/add_image"
+

@@ -6,7 +6,7 @@
 
 @protocol DFPostDelegate
 
-- (void)post:(NSString *)postString date:(NSDate *)eatDate count:(NSInteger)totalCount;
+- (void)post:(NSString *)postString images:(NSArray *)images date:(NSDate *)eatDate count:(NSInteger)totalCount;
 
 @end
 

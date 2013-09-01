@@ -2,9 +2,7 @@
 #import "DFUser.h"
 #import "DFComment.h"
 
-@implementation DFPost {
-
-}
+@implementation DFPost
 
 - (id)init {
     self = [super init];
@@ -14,7 +12,7 @@
         self.bookedCount = 0;
         self.bookedUserIDs = @[];
         self.comments = @[];
-        self.images = @[];
+        self.images = [NSMutableArray array];
     }
 
     return self;
@@ -33,15 +31,13 @@
     post.bookedUserIDs = [postDict objectForKey:@"bookedUids"];
     post.comments = [DFComment commentsFromArray:[postDict objectForKey:@"comments"]];
 
-    NSMutableArray *images = [[NSMutableArray alloc] init];
     for (int i = 1; i <= 6; i++) {
         NSString *image = [postDict objectForKey:[NSString stringWithFormat:@"image%d", i]];
 
         if ([image isKindOfClass:[NSString class]] && [image stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]].length > 0) {
-            [images addObject:image];
+            [post.images addObject:image];
         }
     }
-    post.images = images;
     NSLog(@"image count: %d", post.images.count);
 
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];

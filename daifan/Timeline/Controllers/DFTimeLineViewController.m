@@ -9,6 +9,8 @@
 #import "DFPost+Comment.h"
 #import "UIViewController+NavigationAround.h"
 #import "DFTimeline.h"
+#import "UIImage+Upload.h"
+#import "DFPost+Upload.h"
 
 #define TIMELINE_CELL_ID @"timeLineCellIdentifier"
 
@@ -18,6 +20,8 @@
     DFFooterView *_footerView;
 
     DFTimeline *_timeline;
+
+    NSMutableArray *imageURLs;
 }
 
 - (id)init {
@@ -145,14 +149,14 @@
 #pragma mark - services
 
 - (void)loadList {
-    [_timeline loadList:^(long newPostCount){
+    [_timeline loadList:^(long newPostCount) {
         [self.tableView reloadData];
         [self updateFooterViewText];
 
         [self showSuccessMessage:[NSString stringWithFormat:@"成功获取%ld条带饭信息", newPostCount]];
-    } error:^(NSError *error) {
+    }             error:^(NSError *error) {
         [self showErrorMessage:@"服务器出错了哦" description:@"BS做服务端的同学"];
-    } complete:^() {
+    }          complete:^() {
 
     }];
 }
@@ -167,9 +171,9 @@
         [self.tableView reloadData];
 
         [self showSuccessMessage:[NSString stringWithFormat:@"成功取得%ld条新带饭信息", newPostCount]];
-    } error:^(NSError *error) {
+    }               error:^(NSError *error) {
         [self showErrorMessage:@"服务器出错了哦" description:@"BS做服务端的同学"];
-    } complete:^() {
+    }            complete:^() {
         [self.refreshControl endRefreshing];
         [self updateFooterViewText];
     }];
@@ -184,9 +188,9 @@
         } else {
             [self showSuccessMessage:[NSString stringWithFormat:@"成功取得%ld条旧的带饭信息", newPostCount]];
         }
-    } error:^(NSError *error) {
+    }             error:^(NSError *error) {
         [self showErrorMessage:@"服务器出错了哦" description:@"BS做服务端的同学"];
-    } complete:^() {
+    }          complete:^() {
         [_footerView endRefreshing];
         [self updateFooterViewText];
     }];
@@ -202,15 +206,15 @@
 
 #pragma mark - Book and Comment
 
-- (void)bookOnPost:(DFPost *)post {
-    [post bookOrUnbookByUser:_currentUser success:^(DFPost *post, BOOL booked) {
+- (void)bookOnPost:(DFPost *)aPost {
+    [aPost bookOrUnbookByUser:_currentUser success:^(DFPost *post, BOOL booked) {
         [self.tableView reloadData];
         if (booked) {
             [self showSuccessMessage:@"抢饭成功哦"];
         } else {
             [self showSuccessMessage:@"退订成功"];
         }
-    }                  error:^(NSError *error, BOOL book) {
+    }                   error:^(NSError *error, BOOL book) {
         NSLog(@"book or unbook error: %@", error);
         if (book) {
             [self showErrorMessage:@"服务器出错，暂时不能订饭"];
@@ -230,71 +234,44 @@
 
 #pragma Mark - post comment delegate
 
-- (void)postComment:(NSString *)commentString toPost:(DFPost *)post {
-    [post comment:commentString byUser:_currentUser success:^(DFPost *post) {
+- (void)postComment:(NSString *)commentString toPost:(DFPost *)aPost {
+    [aPost comment:commentString byUser:_currentUser success:^(DFPost *post) {
         [self.tableView reloadData];
         [self showSuccessMessage:@"成功发送评论"];
-    }       error:^(NSError *error) {
+    }        error:^(NSError *error) {
         [self showErrorMessage:@"服务器出错，暂时不能发送评论"];
     }];
 }
 
 #pragma Mark - post delegate
-- (void)post:(NSString *)postString date:(NSDate *)eatDate count:(NSInteger)totalCount {
+- (void)post:(NSString *)postString images:(NSArray *)images date:(NSDate *)eatDate count:(NSInteger)totalCount {
     [self showEndlessInfoMessage:@"带饭信息发送中..."];
 
-    NSDateFormatter *df = [[NSDateFormatter alloc] init];
-    df.dateFormat = @"yyyy-MM-dd";
-    df.timeZone = [NSTimeZone localTimeZone];
+    __weak DFTimeLineViewController *weakSelf = self;
 
-    NSURL *url = [NSURL URLWithString:API_HOST];
-    AFHTTPClient *httpClient = [AFHTTPClient clientWithBaseURL:url];
+    DFPost *newPost = [[DFPost alloc] init];
+    newPost.name = postString;
+    newPost.eatDate = eatDate;
+    newPost.count = totalCount;
+    newPost.user = _currentUser;
+    newPost.publishDate = [NSDate date];
 
-    NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithCapacity:3];
-    [parameters setValue:@"1" forKey:@"ver"];
-    [parameters setValue:[@(totalCount) stringValue] forKey:@"count"];
-    [parameters setValue:[df stringFromDate:eatDate] forKey:@"eatDate"];
-    [parameters setValue:postString forKey:@"name"];
-    [parameters setValue:@"" forKey:@"desc"];
-    [parameters setValue:[@(_currentUser.identity) stringValue] forKey:@"uid"];
+    [newPost uploadWithImages:images success:^(DFPost *post) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [weakSelf closeEndlessMessage];
 
-    NSMutableURLRequest *postRequest = [httpClient requestWithMethod:@"POST" path:API_POST_PATH parameters:parameters];
+            [_timeline addPost:post];
+            NSLog(@"time line:%@", _timeline);
 
-    NSLog(@"request: %@, %@", postRequest, parameters);
-
-    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:postRequest
-            success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-                [self closeEndlessMessage];
-                if ([[(NSDictionary *) JSON objectForKey:kRESPONSE_SUCCESS] integerValue] == RESPONSE_NOT_SUCCESS) {
-                    NSLog(@"post failed: %@", JSON);
-                    [self showErrorMessage:@"无法发送带饭信息"];
-                } else {
-                    NSLog(@"post succeed: %@", JSON);
-
-                    NSInteger postId = [[(NSDictionary *) JSON objectForKey:@"postid"] integerValue];
-
-                    DFPost *post = [[DFPost alloc] init];
-                    post.identity = postId;
-                    post.user = _currentUser;
-                    post.name = postString;
-                    post.count = totalCount;
-                    post.eatDate = eatDate;
-                    post.publishDate = [NSDate date];
-
-                    [_timeline addPost:post];
-
-                    NSLog(@"time line:%@", _timeline);
-
-                    [self.tableView reloadData];
-                    [self showSuccessMessage:@"带饭信息发送成功"];
-                }
-            } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-                NSLog(@"post failed in failure block: %@", JSON);
-                [self closeEndlessMessage];
-                [self showErrorMessage:@"无法发送带饭信息"];
-            }];
-
-    [httpClient enqueueHTTPRequestOperation:operation];
+            [weakSelf.tableView reloadData];
+            [weakSelf showSuccessMessage:@"带饭信息发送成功"];
+        });
+    }                   error:^(NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [weakSelf closeEndlessMessage];
+            [weakSelf showErrorMessage:@"无法发送带饭信息"];
+        });
+    }];
 }
 
 @end

@@ -77,7 +77,7 @@
     NSDate *eatDate = _eatDateSelector.date;
     NSInteger totalCount = _countSelector.number;
 
-    [_delegate post:postText date:eatDate count:totalCount];
+    [_delegate post:postText images:_imageBar.images date:eatDate count:totalCount];
 
     [super postContent];
 }

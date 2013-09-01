@@ -59,7 +59,6 @@
 }
 
 - (void)addImage:(UIImage *)image {
-    NSLog(@"add photo %f, %f", image.size.width, image.size.height);
     [_images addObject:image];
 
     UIImageView *lastImageView = [_imageViews lastObject];

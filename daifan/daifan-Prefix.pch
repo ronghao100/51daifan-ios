@@ -28,6 +28,7 @@
     #import "UIViewController+NavigationAround.h"
     #import "DFTimeline+Load.h"
     #import "UIImagePickerController+TakePicture.h"
+    #import "UIImage+Upload.h"
 
     #import <SDWebImage/UIImageView+WebCache.h>
 #endif
