@@ -107,6 +107,7 @@
                     [self showErrorMessage];
                 } else {
                     DFUser *user = [self saveAccount:JSON];
+                    [user registerPN];
                     [self showTimelineViewWithUser:user];
                 }
             } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {

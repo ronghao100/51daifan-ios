@@ -13,4 +13,7 @@
 + (DFUser *)storedUser;
 
 + (BOOL)hasStoredUser;
+
+- (void)registerPN;
+
 @end

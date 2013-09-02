@@ -64,6 +64,7 @@
 
 - (void)showTimelineView {
     DFUser *user = [DFUser storedUser];
+    [user registerPN];
 
     NSLog(@"got stored user: %@", user);
 

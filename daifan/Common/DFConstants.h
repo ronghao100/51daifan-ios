@@ -67,3 +67,5 @@
 
 #define API_IMAGE_PATH @"recipes/add_image"
 
+#define API_PUSH_REGISTER_PATH @"/push_register"
+

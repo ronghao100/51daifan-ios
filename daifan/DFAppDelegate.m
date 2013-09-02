@@ -54,11 +54,7 @@
     
     if ([BPushRequestMethod_Bind isEqualToString:method]) {
         NSDictionary* res = [[NSDictionary alloc] initWithDictionary:data];
-        NSString *appid = [res valueForKey:BPushRequestAppIdKey];
-        NSString *userid = [res valueForKey:BPushRequestUserIdKey];
-        NSString *channelid = [res valueForKey:BPushRequestChannelIdKey];
-        int returnCode = [[res valueForKey:BPushRequestErrorCodeKey] intValue];
-        NSString *requestid = [res valueForKey:BPushRequestRequestIdKey];
+        self.BPushDict = res;
     }
 }
 
@@ -77,8 +73,8 @@
     NSLog(@"Receive Notify: %@", [userInfo JSONString]);
     NSString *alert = [[userInfo objectForKey:@"aps"] objectForKey:@"alert"];
     if (application.applicationState == UIApplicationStateActive) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Did receive a Remote Notification"
-                                                            message:[NSString stringWithFormat:@"The application received this remote notification while it was running:\n%@", alert]
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"新消息哦"
+                                                            message:alert
                                                            delegate:self
                                                   cancelButtonTitle:@"OK"
                                                   otherButtonTitles:nil];

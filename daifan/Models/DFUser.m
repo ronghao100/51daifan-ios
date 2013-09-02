@@ -1,8 +1,36 @@
+#import <AFNetworking/AFHTTPClient.h>
 #import "DFUser.h"
+#import "BPush.h"
+#import "AFJSONRequestOperation.h"
+#import "DFAppDelegate.h"
 
 
 @implementation DFUser {
 
+}
+
+- (void)registerPN {
+    NSDictionary *bpushDict = ((DFAppDelegate *)[UIApplication sharedApplication].delegate).BPushDict;
+
+    NSString *userid = [bpushDict valueForKey:BPushRequestUserIdKey];
+    NSString *channelid = [bpushDict valueForKey:BPushRequestChannelIdKey];
+
+    NSURL *url = [NSURL URLWithString:API_HOST];
+    AFHTTPClient *httpClient = [AFHTTPClient clientWithBaseURL:url];
+
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithCapacity:2];
+    [parameters setValue:[@(self.identity) stringValue] forKey:@"userId"];
+    [parameters setValue:userid forKey:@"pushUserId"];
+    [parameters setValue:channelid forKey:@"pushChannelId"];
+
+    NSMutableURLRequest *postRequest = [httpClient requestWithMethod:@"POST" path:API_PUSH_REGISTER_PATH parameters:parameters];
+
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:postRequest
+            success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+            } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+            }];
+
+    [httpClient enqueueHTTPRequestOperation:operation];
 }
 
 - (NSString *)description {
