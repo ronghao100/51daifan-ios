@@ -11,6 +11,7 @@
 #import "DFTimeline.h"
 #import "UIImage+Upload.h"
 #import "DFPost+Upload.h"
+#import "DFPhotoShowViewController.h"
 
 #define TIMELINE_CELL_ID @"timeLineCellIdentifier"
 
@@ -273,5 +274,14 @@
         });
     }];
 }
+
+#pragma mark - image show delegate
+
+- (void)imageClickedForPost:(DFPost *)post index:(NSUInteger)index {
+    DFPhotoShowViewController *vc = [[DFPhotoShowViewController alloc] initWithImages:post.images index:index];
+
+    [self presentViewController:vc animated:YES completion:nil];
+}
+
 
 @end

@@ -22,6 +22,7 @@
 		5ABD04ECAFB8BCE1D5BF98E1 /* DFComposeBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD08F8FD659E754EE2E01B /* DFComposeBaseViewController.m */; };
 		5ABD0524A5E607F4ABDA3AB8 /* avatar_placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ABD01779DD45ED7895B825F /* avatar_placeholder@2x.png */; };
 		5ABD055532F77CAD627C86B2 /* location@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ABD04407BFEB22934FC7E5B /* location@2x.png */; };
+		5ABD0574E45D34910EBE95ED /* DFPhotoShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD07058E12CAC20BA2DDF8 /* DFPhotoShowViewController.m */; };
 		5ABD058B0FDFF38FD7673DF9 /* UILabel+TransparentFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD0A5DAAA81DBD18A19A9F /* UILabel+TransparentFactory.m */; };
 		5ABD05B6D2810735E4EA9D81 /* DFUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD0F7407CCEAA83B241D0B /* DFUser.m */; };
 		5ABD0614BE61CBCE260374C5 /* NSMutableArray+Sorted.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD02FA49BA26FEF6121C1B /* NSMutableArray+Sorted.m */; };
@@ -126,6 +127,7 @@
 		5ABD05F19FFFCB2383557E59 /* DFCommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFCommentView.m; sourceTree = "<group>"; };
 		5ABD06C53F0FD222E61215D7 /* DFPost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFPost.h; sourceTree = "<group>"; };
 		5ABD06F4049F04C403AAC5CB /* UIViewController+NavigationAround.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+NavigationAround.m"; sourceTree = "<group>"; };
+		5ABD07058E12CAC20BA2DDF8 /* DFPhotoShowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFPhotoShowViewController.m; sourceTree = "<group>"; };
 		5ABD07DE7BA8C96D81F15D0F /* DFPost+Book.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DFPost+Book.m"; sourceTree = "<group>"; };
 		5ABD0838FAEEDD3C559AE726 /* DFCoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFCoverView.h; sourceTree = "<group>"; };
 		5ABD089E6A14AEEAF3BF294B /* DFPost+Upload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DFPost+Upload.m"; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 		5ABD0C052847B0FFAFA54CE7 /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
 		5ABD0C57FE084735F71999BB /* DFComposeBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFComposeBaseViewController.h; sourceTree = "<group>"; };
 		5ABD0C5E71F5DE0A3E294538 /* comment@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "comment@2x.png"; sourceTree = "<group>"; };
+		5ABD0C64E116035C1C3A66B3 /* DFPhotoShowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFPhotoShowViewController.h; sourceTree = "<group>"; };
 		5ABD0C7AAF147BF2E151CC9D /* DFPost+Comment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DFPost+Comment.h"; sourceTree = "<group>"; };
 		5ABD0C89BAD6517297984A61 /* timeline@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "timeline@2x.png"; sourceTree = "<group>"; };
 		5ABD0C9797E5BF2F76DC6836 /* DFPostCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFPostCommentViewController.m; sourceTree = "<group>"; };
@@ -367,6 +370,8 @@
 				5ABD0FE9718978FAB11805A0 /* DFTimeLineViewController.m */,
 				5ABD05E5ECBDEF1B19B83588 /* DFPostViewController.m */,
 				5ABD0D18E3BD28B0481F8B0E /* DFPostViewController.h */,
+				5ABD07058E12CAC20BA2DDF8 /* DFPhotoShowViewController.m */,
+				5ABD0C64E116035C1C3A66B3 /* DFPhotoShowViewController.h */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -727,6 +732,7 @@
 				5ABD03B5E0627E94F582141D /* DFTimeline+Load.m in Sources */,
 				5ABD08B58CEF3770B92FE936 /* UIImage+Upload.m in Sources */,
 				5ABD047F3193582FB5E8AFA2 /* DFPost+Upload.m in Sources */,
+				5ABD0574E45D34910EBE95ED /* DFPhotoShowViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

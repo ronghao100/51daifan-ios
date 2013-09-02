@@ -7,7 +7,7 @@
 - (void)bookOnPost:(DFPost *)post;
 - (void)commentOnPost:(DFPost *)post;
 
-- (void)imageAtIndexClicked:(NSUInteger)index;
+- (void)imageClickedForPost:(DFPost *)post index:(NSUInteger)index;
 
 @end
 
