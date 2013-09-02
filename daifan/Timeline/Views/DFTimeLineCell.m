@@ -173,6 +173,10 @@
         UIImageView *iv;
         if (idx >= _imageViews.count) {
             iv = [[UIImageView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, IMAGE_WIDTH, IMAGE_WIDTH)];
+            iv.userInteractionEnabled = YES;
+            UITapGestureRecognizer *gr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageTapped:)];
+            [iv addGestureRecognizer:gr];
+
             [_imageViews addObject:iv];
         }
 
@@ -180,6 +184,16 @@
         [iv setImageWithURL:[NSURL URLWithString:urlString]];
         [self addSubview:iv];
     }];
+}
+
+- (void)imageTapped:(UITapGestureRecognizer *)gr {
+    NSUInteger index = [_imageViews indexOfObject:gr.view];
+
+    [self showBigImagesWithIndex:index];
+}
+
+- (void)showBigImagesWithIndex:(NSUInteger)index {
+    NSLog(@"image %d clicked", index);
 }
 
 - (void)displayAddress {

@@ -7,6 +7,8 @@
 - (void)bookOnPost:(DFPost *)post;
 - (void)commentOnPost:(DFPost *)post;
 
+- (void)imageAtIndexClicked:(NSUInteger)index;
+
 @end
 
 @interface DFTimeLineCell : UITableViewCell
