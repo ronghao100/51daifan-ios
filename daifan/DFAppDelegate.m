@@ -21,6 +21,7 @@
     DFSplashViewController *vc = [[DFSplashViewController alloc] init];
     self.window.rootViewController = vc;
 
+#ifdef __IPHONE_7_0
     if ([[UIDevice currentDevice].systemVersion floatValue] >= 7.0f) {
         UIImage *barImage = [UIImage imageNamed:@"navigationBarTall.png"];
         application.statusBarStyle = UIStatusBarStyleDefault;
@@ -30,6 +31,11 @@
         application.statusBarStyle = UIStatusBarStyleDefault;
         [[UINavigationBar appearance] setBackgroundImage:barImage forBarMetrics:UIBarMetricsDefault];
     }
+#else
+    UIImage *barImage = [UIImage imageNamed:@"navigationBar.png"];
+    application.statusBarStyle = UIStatusBarStyleDefault;
+    [[UINavigationBar appearance] setBackgroundImage:barImage forBarMetrics:UIBarMetricsDefault];
+#endif
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];

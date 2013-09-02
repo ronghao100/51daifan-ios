@@ -17,6 +17,11 @@
     return self;
 }
 
+#ifdef __IPHONE_7_0
+-(UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleDefault;
+}
+#endif
 
 - (void)loadView {
     self.view = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];

@@ -14,13 +14,19 @@
     self = [super initWithNibName:nil bundle:nil];
     if (self) {
         self.wantsFullScreenLayout = YES;
-
+        
         _images = images;
         _currentIndex = index;
     }
 
     return self;
 }
+
+#ifdef __IPHONE_7_0
+-(UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleLightContent;
+}
+#endif
 
 - (void)loadView {
     self.view = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];

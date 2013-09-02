@@ -36,6 +36,12 @@
     return self;
 }
 
+#ifdef __IPHONE_7_0
+-(UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleDefault;
+}
+#endif
+
 - (void)post {
     DFPostViewController *postVC = [[DFPostViewController alloc] init];
     postVC.delegate = self;
