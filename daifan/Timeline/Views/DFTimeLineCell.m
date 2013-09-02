@@ -5,6 +5,7 @@
 #import "DFUser.h"
 #import "DFRemoteImageView.h"
 #import "DFCommentView.h"
+#import "UIGestureRecognizer+BlocksKit.h"
 
 #define LABEL_WIDTH 248.0f
 #define MIDDLE_LINE_X 62.0f
@@ -174,7 +175,9 @@
         if (idx >= _imageViews.count) {
             iv = [[UIImageView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, IMAGE_WIDTH, IMAGE_WIDTH)];
             iv.userInteractionEnabled = YES;
-            UITapGestureRecognizer *gr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageTapped:)];
+            UITapGestureRecognizer *gr = [[UITapGestureRecognizer alloc] initWithHandler:^(UIGestureRecognizer *sender, UIGestureRecognizerState state, CGPoint location) {
+                [self showBigImagesWithIndex:idx];
+            }];
             [iv addGestureRecognizer:gr];
 
             [_imageViews addObject:iv];
@@ -184,12 +187,6 @@
         [iv setImageWithURL:[NSURL URLWithString:urlString]];
         [self addSubview:iv];
     }];
-}
-
-- (void)imageTapped:(UITapGestureRecognizer *)gr {
-    NSUInteger index = [_imageViews indexOfObject:gr.view];
-
-    [self showBigImagesWithIndex:index];
 }
 
 - (void)showBigImagesWithIndex:(NSUInteger)index {
