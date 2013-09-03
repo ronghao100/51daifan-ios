@@ -10,23 +10,18 @@
     if (self) {
         self.wantsFullScreenLayout = YES;
 
-        UIButton *cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        cancelButton.frame = CGRectMake(0.0f, 0.0f, 44.0f, 34.0f);
-        [cancelButton setTitle:@"取消" forState:UIControlStateNormal];
-        [cancelButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        cancelButton.titleLabel.font = [UIFont systemFontOfSize:[UIFont systemFontSize]];
-        [cancelButton addTarget:self action:@selector(cancel) forControlEvents:UIControlEventTouchUpInside];
-
-        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:cancelButton];
-
-        UIButton *postButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        postButton.frame = CGRectMake(0.0f, 0.0f, 44.0f, 34.0f);
-        [postButton setTitle:@"发送" forState:UIControlStateNormal];
-        [postButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        postButton.titleLabel.font = [UIFont systemFontOfSize:[UIFont systemFontSize]];
-        [postButton addTarget:self action:@selector(postContent) forControlEvents:UIControlEventTouchUpInside];
-
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:postButton];
+        NSString *tintColorString = @"#5177D6";
+        if ([[UIDevice currentDevice].systemVersion floatValue] >= 7.0) {
+            tintColorString = @"#FFFFFF";
+        }
+        
+        UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(cancel)];
+        cancelButton.tintColor = [UIColor colorWithHexString:tintColorString];
+        self.navigationItem.leftBarButtonItem = cancelButton;
+        
+        UIBarButtonItem *postButton = [[UIBarButtonItem alloc] initWithTitle:@"发送" style:UIBarButtonItemStylePlain target:self action:@selector(postContent)];
+        postButton.tintColor = [UIColor colorWithHexString:tintColorString];
+        self.navigationItem.rightBarButtonItem = postButton;
 
         [self registerKeyboardNotification];
     }

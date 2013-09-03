@@ -19,13 +19,15 @@
     if (self) {
         self.title = @"登录";
 
-        UIButton *registerButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        registerButton.frame = CGRectMake(0.0f, 0.0f, 44.0f, 34.0f);
-        [registerButton setTitle:@"注册" forState:UIControlStateNormal];
-        [registerButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        registerButton.titleLabel.font = [UIFont systemFontOfSize:[UIFont systemFontSize]];
-        [registerButton addTarget:self action:@selector(register) forControlEvents:UIControlEventTouchUpInside];
-        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:registerButton];
+        NSString *tintColorString = @"#5177D6";
+        if ([[UIDevice currentDevice].systemVersion floatValue] >= 7.0) {
+            tintColorString = @"#FFFFFF";
+        }
+        
+        UIBarButtonItem *registerButton = [[UIBarButtonItem alloc] initWithTitle:@"注册" style:UIBarButtonItemStylePlain target:self action:@selector(cancel)];
+        registerButton.tintColor = [UIColor colorWithHexString:tintColorString];
+
+        self.navigationItem.leftBarButtonItem = registerButton;
     }
 
     return self;
@@ -39,6 +41,7 @@
 
 - (void)loadView {
     self.view = [[UIView alloc] initWithFrame:[UIScreen mainScreen].applicationBounds];
+    self.view.backgroundColor = [UIColor colorWithHexString:@"F0F0F0"];
 
     CGFloat minHeight = DEFAULT_BUTTON_HEIGHT + DEFAULT_TEXTFIELD_HEIGHT * 2 + DEFAULT_PADDING * 3;
     CGFloat viewHeight = self.view.frame.size.height - DEFAULT_KEYBOARD_HEIGHT - DEFAULT_BAR_HEIGHT;
