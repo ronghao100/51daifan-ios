@@ -3,6 +3,7 @@
 #import "AFNetworkActivityIndicatorManager.h"
 #import "BPush.h"
 #import "JSONKit.h"
+#import "DFUser.h"
 #import <Crashlytics/Crashlytics.h>
 
 @implementation DFAppDelegate
@@ -55,6 +56,10 @@
     if ([BPushRequestMethod_Bind isEqualToString:method]) {
         NSDictionary* res = [[NSDictionary alloc] initWithDictionary:data];
         self.BPushDict = res;
+
+        if ([DFUser hasStoredUser]) {
+            [[DFUser storedUser] registerPN];
+        }
     }
 }
 

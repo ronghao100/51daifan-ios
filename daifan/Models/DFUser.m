@@ -12,6 +12,11 @@
 - (void)registerPN {
     NSDictionary *bpushDict = ((DFAppDelegate *)[UIApplication sharedApplication].delegate).BPushDict;
 
+    if (bpushDict == nil) {
+        NSLog(@"No BPush info now. skip.");
+        return;
+    }
+    
     NSString *userid = [bpushDict valueForKey:BPushRequestUserIdKey];
     NSString *channelid = [bpushDict valueForKey:BPushRequestChannelIdKey];
 
@@ -25,9 +30,13 @@
 
     NSMutableURLRequest *postRequest = [httpClient requestWithMethod:@"POST" path:API_PUSH_REGISTER_PATH parameters:parameters];
 
+    NSLog(@"register pn request: %@, %@", postRequest, parameters);
+    
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:postRequest
             success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+                NSLog(@"pn registered: %@", JSON);
             } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+                NSLog(@"pn register failed: %@", error);
             }];
 
     [httpClient enqueueHTTPRequestOperation:operation];
