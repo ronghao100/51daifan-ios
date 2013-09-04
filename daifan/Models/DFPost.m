@@ -66,10 +66,6 @@
     return [NSString stringWithFormat:@"%@ 带 %@", date, self.name];
 }
 
-- (NSUInteger)imageCount {
-    return self.images.count;
-}
-
 - (NSString *)description {
     return [NSString stringWithFormat:@"Post eatDate:%@, id:%ld, name:%@, desc:%@, publishDate:%@", self.eatDate, self.identity, self.name, self.content, self.publishDate];
 }
