@@ -12,6 +12,7 @@
 #import "UIImage+Upload.h"
 #import "DFPost+Upload.h"
 #import "DFPhotoShowViewController.h"
+#import "DFAppDelegate.h"
 
 #define TIMELINE_CELL_ID @"timeLineCellIdentifier"
 
@@ -56,7 +57,6 @@
     self.tableView.allowsSelection = NO;
 
     self.refreshControl = [[UIRefreshControl alloc] init];
-    self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"下拉刷新"];
     [self.refreshControl addTarget:self action:@selector(pullForNew) forControlEvents:UIControlEventValueChanged];
 
     [self.tableView registerClass:[DFTimeLineCell class] forCellReuseIdentifier:TIMELINE_CELL_ID];
@@ -85,6 +85,7 @@
 
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"title.png"]];
 
+    [self.refreshControl beginRefreshing];
     [self loadList];
 }
 
@@ -101,7 +102,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    DFTimeLineCell *cell = [tableView dequeueReusableCellWithIdentifier:TIMELINE_CELL_ID];
+    DFTimeLineCell *cell = [tableView dequeueReusableCellWithIdentifier:TIMELINE_CELL_ID forIndexPath:indexPath];
     cell.delegate = self;
 
     DFPost *post = [_timeline postAtIndex:(NSUInteger) indexPath.row];
@@ -156,6 +157,12 @@
 #pragma mark - services
 
 - (void)loadList {
+    if (!((DFAppDelegate *)([UIApplication sharedApplication].delegate)).isReachable) {
+        [self showErrorMessage:@"网络不给力哦，亲"];
+        [self.refreshControl endRefreshing];
+        return;
+    }
+
     [_timeline loadList:^(long newPostCount) {
         [self.tableView reloadData];
         [self updateFooterViewText];
@@ -164,11 +171,23 @@
     }             error:^(NSError *error) {
         [self showErrorMessage:@"服务器出错了哦" description:@"BS做服务端的同学"];
     }          complete:^() {
-
+        [self.refreshControl endRefreshing];
     }];
 }
 
 - (void)pullForNew {
+    if (_timeline.count == 0) {
+        [self loadList];
+        return;
+    }
+
+    if (!((DFAppDelegate *)([UIApplication sharedApplication].delegate)).isReachable) {
+        [self showErrorMessage:@"网络不给力哦，亲"];
+        [self.refreshControl endRefreshing];
+        [self updateFooterViewText];
+        return;
+    }
+
     [_timeline pullForNew:^(long newPostCount) {
         if (newPostCount == 0) {
             [self showWarningMessage:@"暂时没有新带饭信息了哦，亲"];
@@ -179,7 +198,7 @@
 
         [self showSuccessMessage:[NSString stringWithFormat:@"成功取得%ld条新带饭信息", newPostCount]];
     }               error:^(NSError *error) {
-        [self showErrorMessage:@"服务器出错了哦" description:@"BS做服务端的同学"];
+        [self showErrorMessage:@"暂时无法连接服务器" description:@"请稍后重试"];
     }            complete:^() {
         [self.refreshControl endRefreshing];
         [self updateFooterViewText];
@@ -187,6 +206,13 @@
 }
 
 - (void)loadMore {
+    if (!((DFAppDelegate *)([UIApplication sharedApplication].delegate)).isReachable) {
+        [self showErrorMessage:@"网络不给力哦，亲"];
+        [_footerView endRefreshing];
+        [self updateFooterViewText];
+        return;
+    }
+
     [_timeline loadMore:^(long newPostCount) {
         [self.tableView reloadData];
 
@@ -214,6 +240,11 @@
 #pragma mark - Book and Comment
 
 - (void)bookOnPost:(DFPost *)aPost {
+    if (!((DFAppDelegate *)([UIApplication sharedApplication].delegate)).isReachable) {
+        [self showErrorMessage:@"网络不给力哦，亲"];
+        return;
+    }
+
     [aPost bookOrUnbookByUser:_currentUser success:^(DFPost *post, BOOL booked) {
         [self.tableView reloadData];
         if (booked) {
@@ -242,6 +273,11 @@
 #pragma Mark - post comment delegate
 
 - (void)postComment:(NSString *)commentString toPost:(DFPost *)aPost {
+    if (!((DFAppDelegate *)([UIApplication sharedApplication].delegate)).isReachable) {
+        [self showErrorMessage:@"网络不给力哦，亲"];
+        return;
+    }
+
     [aPost comment:commentString byUser:_currentUser success:^(DFPost *post) {
         [self.tableView reloadData];
         [self showSuccessMessage:@"成功发送评论"];
@@ -252,6 +288,11 @@
 
 #pragma Mark - post delegate
 - (void)post:(NSString *)postString images:(NSArray *)images date:(NSDate *)eatDate count:(NSInteger)totalCount {
+    if (!((DFAppDelegate *)([UIApplication sharedApplication].delegate)).isReachable) {
+        [self showErrorMessage:@"网络不给力哦，亲"];
+        return;
+    }
+
     [self showEndlessInfoMessage:@"带饭信息发送中..."];
 
     __weak DFTimeLineViewController *weakSelf = self;

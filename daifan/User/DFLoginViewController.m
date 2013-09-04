@@ -5,6 +5,7 @@
 #import "AFHTTPClient.h"
 #import "AFJSONRequestOperation.h"
 #import "DFUser.h"
+#import "DFAppDelegate.h"
 
 
 @implementation DFLoginViewController {
@@ -91,6 +92,11 @@
         } else {
             [_passwordField becomeFirstResponder];
         }
+        return;
+    }
+
+    if (!((DFAppDelegate *)([UIApplication sharedApplication].delegate)).isReachable) {
+        [self showErrorMessage:@"网络不给力哦，亲"];
         return;
     }
 

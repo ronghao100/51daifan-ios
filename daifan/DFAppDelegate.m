@@ -4,16 +4,20 @@
 #import "BPush.h"
 #import "JSONKit.h"
 #import "DFUser.h"
+#import "Reachability.h"
 #import <Crashlytics/Crashlytics.h>
 
-@implementation DFAppDelegate
+@implementation DFAppDelegate {
+    NetworkStatus _currentStatus;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
 
-    [BPush setupChannel:launchOptions];
-    [BPush setDelegate:self];
+    [self initReachabilityProcessor];
+
+    [self initBPush:launchOptions];
 
     [Crashlytics startWithAPIKey:@"12cf69bcd58555af123af07396580d08d970eee1"];
     
@@ -22,22 +26,8 @@
     DFSplashViewController *vc = [[DFSplashViewController alloc] init];
     self.window.rootViewController = vc;
 
-#ifdef __IPHONE_7_0
-    if ([[UIDevice currentDevice].systemVersion floatValue] >= 7.0f) {
-        UIImage *barImage = [UIImage imageNamed:@"navigationBarTall.png"];
-        application.statusBarStyle = UIStatusBarStyleDefault;
-        [[UINavigationBar appearance] setBackgroundImage:barImage forBarPosition:UIBarPositionTopAttached barMetrics:UIBarMetricsDefault];
-    } else {
-        UIImage *barImage = [UIImage imageNamed:@"navigationBar.png"];
-        application.statusBarStyle = UIStatusBarStyleDefault;
-        [[UINavigationBar appearance] setBackgroundImage:barImage forBarMetrics:UIBarMetricsDefault];
-    }
-#else
-    UIImage *barImage = [UIImage imageNamed:@"navigationBar.png"];
-    application.statusBarStyle = UIStatusBarStyleDefault;
-    [[UINavigationBar appearance] setBackgroundImage:barImage forBarMetrics:UIBarMetricsDefault];
-#endif
-    
+    [self initBarAppearance];
+
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
@@ -48,6 +38,47 @@
      | UIRemoteNotificationTypeSound];
     
     return YES;
+}
+
+- (void)initReachabilityProcessor {
+    Reachability *reach = [Reachability reachabilityWithHostname:@"www.google.com"];
+
+    reach.reachableBlock = ^(Reachability *aReach)
+    {
+        _currentStatus = aReach.currentReachabilityStatus;
+    };
+
+    reach.unreachableBlock = ^(Reachability *aReach)
+    {
+        _currentStatus = aReach.currentReachabilityStatus;
+    };
+
+    [reach startNotifier];
+}
+
+- (BOOL)isReachable {
+    return (_currentStatus != NotReachable);
+}
+
+
+- (void)initBPush:(NSDictionary *)launchOptions {
+    [BPush setupChannel:launchOptions];
+    [BPush setDelegate:self];
+}
+
+- (void)initBarAppearance {
+#ifdef __IPHONE_7_0
+    if ([[UIDevice currentDevice].systemVersion floatValue] >= 7.0f) {
+        UIImage *barImage = [UIImage imageNamed:@"navigationBarTall.png"];
+        [[UINavigationBar appearance] setBackgroundImage:barImage forBarPosition:UIBarPositionTopAttached barMetrics:UIBarMetricsDefault];
+    } else {
+        UIImage *barImage = [UIImage imageNamed:@"navigationBar.png"];
+        [[UINavigationBar appearance] setBackgroundImage:barImage forBarMetrics:UIBarMetricsDefault];
+    }
+#else
+    UIImage *barImage = [UIImage imageNamed:@"navigationBar.png"];
+    [[UINavigationBar appearance] setBackgroundImage:barImage forBarMetrics:UIBarMetricsDefault];
+#endif
 }
 
 - (void)onMethod:(NSString*)method response:(NSDictionary*)data {
