@@ -65,14 +65,14 @@
 		F11AEEA5178068F50008082E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F11AEEA3178068F50008082E /* InfoPlist.strings */; };
 		F13340F517D331D1001F3ADD /* UIImagePickerController+TakePicture.m in Sources */ = {isa = PBXBuildFile; fileRef = F13340F417D331D1001F3ADD /* UIImagePickerController+TakePicture.m */; };
 		F13340F817D350CF001F3ADD /* DFImageBar.m in Sources */ = {isa = PBXBuildFile; fileRef = F13340F717D350CF001F3ADD /* DFImageBar.m */; };
-		F133A8F71787F56500CF7897 /* daifan@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F133A8F51787F56500CF7897 /* daifan@2x.png */; };
-		F133A8F81787F56500CF7897 /* daifan-120@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F133A8F61787F56500CF7897 /* daifan-120@2x.png */; };
-		F133A8FA1787F8F300CF7897 /* daifan.png in Resources */ = {isa = PBXBuildFile; fileRef = F133A8F91787F8F300CF7897 /* daifan.png */; };
 		F14F813D17C4A8A30024A4E9 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F14F813C17C4A8A30024A4E9 /* Crashlytics.framework */; };
 		F163B3FA17893ADD0064F890 /* production.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = F163B3F917893ADD0064F890 /* production.xcconfig */; };
 		F163B3FC17896A750064F890 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F163B3FB17896A750064F890 /* SystemConfiguration.framework */; };
 		F163B3FE17896A7D0064F890 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F163B3FD17896A7D0064F890 /* MobileCoreServices.framework */; };
 		F17B572B179A9EF900C08814 /* libBPush.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F17B5729179A9EF900C08814 /* libBPush.a */; };
+		F19EF59517D8855D00CA9464 /* daifan.png in Resources */ = {isa = PBXBuildFile; fileRef = F19EF59417D8855D00CA9464 /* daifan.png */; };
+		F19EF59717D8856100CA9464 /* daifan@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F19EF59617D8856100CA9464 /* daifan@2x.png */; };
+		F19EF59917D8859400CA9464 /* daifan-120@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F19EF59817D8859400CA9464 /* daifan-120@2x.png */; };
 		F1BDDB5C17CDE71F0050116F /* libBPush-simulator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F1BDDB5B17CDE71F0050116F /* libBPush-simulator.a */; };
 		F1BDDB5E17CDF8250050116F /* navigationBarTall@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F1BDDB5D17CDF8250050116F /* navigationBarTall@2x.png */; };
 		F1CE43211796D04900425029 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1CE43201796D04900425029 /* QuartzCore.framework */; };
@@ -190,15 +190,15 @@
 		F13340F417D331D1001F3ADD /* UIImagePickerController+TakePicture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImagePickerController+TakePicture.m"; sourceTree = "<group>"; };
 		F13340F617D350CF001F3ADD /* DFImageBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFImageBar.h; sourceTree = "<group>"; };
 		F13340F717D350CF001F3ADD /* DFImageBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFImageBar.m; sourceTree = "<group>"; };
-		F133A8F51787F56500CF7897 /* daifan@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "daifan@2x.png"; sourceTree = "<group>"; };
-		F133A8F61787F56500CF7897 /* daifan-120@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "daifan-120@2x.png"; sourceTree = "<group>"; };
-		F133A8F91787F8F300CF7897 /* daifan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = daifan.png; sourceTree = "<group>"; };
 		F14F813C17C4A8A30024A4E9 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		F163B3F917893ADD0064F890 /* production.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = production.xcconfig; sourceTree = "<group>"; };
 		F163B3FB17896A750064F890 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		F163B3FD17896A7D0064F890 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		F17B5727179A9EF900C08814 /* BPush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPush.h; sourceTree = "<group>"; };
 		F17B5729179A9EF900C08814 /* libBPush.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libBPush.a; sourceTree = "<group>"; };
+		F19EF59417D8855D00CA9464 /* daifan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = daifan.png; sourceTree = "<group>"; };
+		F19EF59617D8856100CA9464 /* daifan@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "daifan@2x.png"; sourceTree = "<group>"; };
+		F19EF59817D8859400CA9464 /* daifan-120@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "daifan-120@2x.png"; sourceTree = "<group>"; };
 		F1BDDB5B17CDE71F0050116F /* libBPush-simulator.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libBPush-simulator.a"; sourceTree = "<group>"; };
 		F1BDDB5D17CDF8250050116F /* navigationBarTall@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigationBarTall@2x.png"; sourceTree = "<group>"; };
 		F1CE43201796D04900425029 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -282,16 +282,6 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
-		5ABD081A36FE6F5CE68FC6B9 /* Logo */ = {
-			isa = PBXGroup;
-			children = (
-				F133A8F91787F8F300CF7897 /* daifan.png */,
-				F133A8F51787F56500CF7897 /* daifan@2x.png */,
-				F133A8F61787F56500CF7897 /* daifan-120@2x.png */,
-			);
-			path = Logo;
-			sourceTree = "<group>";
-		};
 		5ABD08987ABDE28CFE1969D9 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -300,7 +290,6 @@
 				F1F7AB31179289DC002D1B33 /* Default-568h@2x.png */,
 				F1F7AB32179289DC002D1B33 /* Default@2x.png */,
 				5ABD0C89BAD6517297984A61 /* timeline@2x.png */,
-				5ABD081A36FE6F5CE68FC6B9 /* Logo */,
 				5ABD0D882B28307EAF462E94 /* navigationBar@2x.png */,
 				5ABD0BBC8EB8BAC431590D9E /* Icons */,
 				5ABD0036492C99FCCF11F565 /* uparrow@2x.png */,
@@ -426,6 +415,9 @@
 		F11AEE70178068F40008082E = {
 			isa = PBXGroup;
 			children = (
+				F19EF59817D8859400CA9464 /* daifan-120@2x.png */,
+				F19EF59617D8856100CA9464 /* daifan@2x.png */,
+				F19EF59417D8855D00CA9464 /* daifan.png */,
 				F17B5726179A9EF900C08814 /* BPush */,
 				F11AEE82178068F40008082E /* daifan */,
 				F11AEEA0178068F50008082E /* daifanTests */,
@@ -601,13 +593,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				F1F7AB35179289DC002D1B33 /* Default@2x.png in Resources */,
-				F133A8F81787F56500CF7897 /* daifan-120@2x.png in Resources */,
 				F1F7AB34179289DC002D1B33 /* Default-568h@2x.png in Resources */,
 				F11AEE87178068F50008082E /* InfoPlist.strings in Resources */,
 				5ABD0219560A9FDA03DA43E5 /* timeline@2x.png in Resources */,
 				F163B3FA17893ADD0064F890 /* production.xcconfig in Resources */,
-				F133A8F71787F56500CF7897 /* daifan@2x.png in Resources */,
-				F133A8FA1787F8F300CF7897 /* daifan.png in Resources */,
 				5ABD09C6367AAFC5C2F71204 /* navigationBar@2x.png in Resources */,
 				F1F7AB33179289DC002D1B33 /* Default.png in Resources */,
 				5ABD02BAF1C0232D983FBB5E /* post@2x.png in Resources */,
@@ -622,6 +611,9 @@
 				5ABD0524A5E607F4ABDA3AB8 /* avatar_placeholder@2x.png in Resources */,
 				5ABD07126728B716C0ABB300 /* title@2x.png in Resources */,
 				F1BDDB5E17CDF8250050116F /* navigationBarTall@2x.png in Resources */,
+				F19EF59517D8855D00CA9464 /* daifan.png in Resources */,
+				F19EF59717D8856100CA9464 /* daifan@2x.png in Resources */,
+				F19EF59917D8859400CA9464 /* daifan-120@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

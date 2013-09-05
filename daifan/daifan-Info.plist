@@ -8,18 +8,12 @@
 	<string>51daifan</string>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
-	<key>CFBundleIconFiles</key>
-	<array>
-		<string>daifan.png</string>
-		<string>daifan@2x.png</string>
-	</array>
 	<key>CFBundleIcons</key>
 	<dict>
 		<key>CFBundlePrimaryIcon</key>
 		<dict>
 			<key>CFBundleIconFiles</key>
 			<array>
-				<string></string>
 				<string>daifan.png</string>
 				<string>daifan@2x.png</string>
 			</array>
