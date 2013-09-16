@@ -106,16 +106,16 @@
 
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-    NSLog(@"Receive Notify: %@", [userInfo JSONString]);
-    NSString *alert = [[userInfo objectForKey:@"aps"] objectForKey:@"alert"];
-    if (application.applicationState == UIApplicationStateActive) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"新消息哦"
-                                                            message:alert
-                                                           delegate:self
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:nil];
-        [alertView show];
-    }
+//    NSLog(@"Receive Notify: %@", [userInfo JSONString]);
+//    NSString *alert = [[userInfo objectForKey:@"aps"] objectForKey:@"alert"];
+//    if (application.applicationState == UIApplicationStateActive) {
+//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"新消息哦"
+//                                                            message:alert
+//                                                           delegate:self
+//                                                  cancelButtonTitle:@"OK"
+//                                                  otherButtonTitles:nil];
+//        [alertView show];
+//    }
     [application setApplicationIconBadgeNumber:0];
     
     [BPush handleNotification:userInfo];
