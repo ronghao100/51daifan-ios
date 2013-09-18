@@ -2,7 +2,7 @@
 #import "AFJSONRequestOperation.h"
 #import "DFUserList.h"
 #import "DFPost.h"
-
+#import "DFServices.h"
 
 @implementation DFTimeline (Load)
 
@@ -13,39 +13,35 @@
 
     NSLog(@"request: %@", urlString);
 
-    NSURL *url = [NSURL URLWithString:urlString];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
-            success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-                NSDictionary *dict = (NSDictionary *) JSON;
+    serviceCompleteBlock serviceBlock = ^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON, NSError *error) {
+        NSDictionary *dict = (NSDictionary *) JSON;
 
-                if ([[dict objectForKey:kRESPONSE_SUCCESS] integerValue] == RESPONSE_NOT_SUCCESS) {
-                    errorBlock([NSError errorWithDomain:@"loadlist" code:RESPONSE_CODE_BAD_REQUEST userInfo:nil]);
-                    completeBlock();
-                    return;
-                }
+        if (error) {
+            NSLog(@"time line failed. \n response: %@, error: %@", response, error);
+            errorBlock(error);
+        } else if ([[dict objectForKey:kRESPONSE_SUCCESS] integerValue] == RESPONSE_NOT_SUCCESS) {
+            errorBlock([NSError errorWithDomain:@"loadlist" code:RESPONSE_CODE_BAD_REQUEST userInfo:nil]);
+        } else {
+            NSLog(@"time line success.");
+            NSArray *posts = [dict objectForKey:kRESPONSE_POSTS];
 
-                NSLog(@"time line success.");
-                NSArray *posts = [dict objectForKey:kRESPONSE_POSTS];
+            NSDictionary *users = [dict objectForKey:kRESPONSE_BOOKED_USER_ID];
+            [[DFUserList sharedList] mergeUserDict:users];
 
-                NSDictionary *users = [dict objectForKey:kRESPONSE_BOOKED_USER_ID];
-                [[DFUserList sharedList] mergeUserDict:users];
-
-                [posts enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-                    DFPost *post = [DFPost postFromDict:obj];
-                    [self addPost:post];
-                }];
-
-                NSLog(@"time line:%@", self);
-
-                successBlock(posts.count);
-                completeBlock();
-            } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-                NSLog(@"time line failed. \n response: %@, error: %@, JSON: %@", response, error, JSON);
-                errorBlock(error);
-                completeBlock();
+            [posts enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                DFPost *post = [DFPost postFromDict:obj];
+                [self addPost:post];
             }];
-    [operation start];
+
+            NSLog(@"time line:%@", self);
+
+            successBlock(posts.count);
+        }
+        
+        completeBlock();
+    };
+
+    [DFServices startCallURLString:urlString completeBlock:serviceBlock];
 }
 
 - (void)pullForNew:(LoadSuccessBlock)successBlock error:(LoadErrorBlock)errorBlock  complete:(LoadCompleteBlock)completeBlock{
@@ -56,6 +52,7 @@
 
     NSURL *url = [NSURL URLWithString:urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
+
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
             success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
                 NSDictionary *dict = (NSDictionary *) JSON;

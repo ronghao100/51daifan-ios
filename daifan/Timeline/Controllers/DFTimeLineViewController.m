@@ -169,7 +169,7 @@
 
         [self showSuccessMessage:[NSString stringWithFormat:@"成功获取%ld条带饭信息", newPostCount]];
     }             error:^(NSError *error) {
-        [self showErrorMessage:@"服务器出错了哦" description:@"BS做服务端的同学"];
+        [self showErrorMessage:@"暂时无法连接服务器" description:@"请稍后重试"];
     }          complete:^() {
         [self.refreshControl endRefreshing];
     }];
@@ -222,7 +222,7 @@
             [self showSuccessMessage:[NSString stringWithFormat:@"成功取得%ld条旧的带饭信息", newPostCount]];
         }
     }             error:^(NSError *error) {
-        [self showErrorMessage:@"服务器出错了哦" description:@"BS做服务端的同学"];
+        [self showErrorMessage:@"暂时无法连接服务器" description:@"请稍后重试"];
     }          complete:^() {
         [_footerView endRefreshing];
         [self updateFooterViewText];

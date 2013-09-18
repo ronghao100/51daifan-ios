@@ -73,6 +73,7 @@
 		F19EF59517D8855D00CA9464 /* daifan.png in Resources */ = {isa = PBXBuildFile; fileRef = F19EF59417D8855D00CA9464 /* daifan.png */; };
 		F19EF59717D8856100CA9464 /* daifan@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F19EF59617D8856100CA9464 /* daifan@2x.png */; };
 		F19EF59917D8859400CA9464 /* daifan-120@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F19EF59817D8859400CA9464 /* daifan-120@2x.png */; };
+		F1A2C14317EC2ACC001933E2 /* DFServices.m in Sources */ = {isa = PBXBuildFile; fileRef = F1A2C14217EC2ACC001933E2 /* DFServices.m */; };
 		F1BDDB5C17CDE71F0050116F /* libBPush-simulator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F1BDDB5B17CDE71F0050116F /* libBPush-simulator.a */; };
 		F1BDDB5E17CDF8250050116F /* navigationBarTall@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F1BDDB5D17CDF8250050116F /* navigationBarTall@2x.png */; };
 		F1CE43211796D04900425029 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1CE43201796D04900425029 /* QuartzCore.framework */; };
@@ -199,6 +200,8 @@
 		F19EF59417D8855D00CA9464 /* daifan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = daifan.png; sourceTree = "<group>"; };
 		F19EF59617D8856100CA9464 /* daifan@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "daifan@2x.png"; sourceTree = "<group>"; };
 		F19EF59817D8859400CA9464 /* daifan-120@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "daifan-120@2x.png"; sourceTree = "<group>"; };
+		F1A2C14117EC2ACC001933E2 /* DFServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFServices.h; sourceTree = "<group>"; };
+		F1A2C14217EC2ACC001933E2 /* DFServices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DFServices.m; sourceTree = "<group>"; };
 		F1BDDB5B17CDE71F0050116F /* libBPush-simulator.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libBPush-simulator.a"; sourceTree = "<group>"; };
 		F1BDDB5D17CDF8250050116F /* navigationBarTall@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigationBarTall@2x.png"; sourceTree = "<group>"; };
 		F1CE43201796D04900425029 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -455,6 +458,7 @@
 		F11AEE82178068F40008082E /* daifan */ = {
 			isa = PBXGroup;
 			children = (
+				F1A2C14017EC2AB6001933E2 /* Services */,
 				F163B3F817893AA80064F890 /* Configurations */,
 				F11AEE8B178068F50008082E /* DFAppDelegate.h */,
 				F11AEE8C178068F50008082E /* DFAppDelegate.m */,
@@ -515,6 +519,15 @@
 				F1BDDB5B17CDE71F0050116F /* libBPush-simulator.a */,
 			);
 			path = BPush;
+			sourceTree = "<group>";
+		};
+		F1A2C14017EC2AB6001933E2 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				F1A2C14117EC2ACC001933E2 /* DFServices.h */,
+				F1A2C14217EC2ACC001933E2 /* DFServices.m */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -696,6 +709,7 @@
 				5ABD07DD1E4E0F4DB6922D61 /* DFTimeLineCell.m in Sources */,
 				5ABD02474615AD0115E8F712 /* DFFooterView.m in Sources */,
 				5ABD00BAF8FA072B823AEF73 /* DFPost.m in Sources */,
+				F1A2C14317EC2ACC001933E2 /* DFServices.m in Sources */,
 				5ABD05B6D2810735E4EA9D81 /* DFUser.m in Sources */,
 				5ABD09895E4652BE633DDF4C /* DFRemoteImageView.m in Sources */,
 				F13340F817D350CF001F3ADD /* DFImageBar.m in Sources */,
