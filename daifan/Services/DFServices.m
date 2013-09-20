@@ -38,13 +38,20 @@
     AFHTTPClient *httpClient = [AFHTTPClient clientWithBaseURL:url];
     NSMutableURLRequest *postRequest = [httpClient requestWithMethod:@"POST" path:path parameters:parameters];
 
-    NSLog(@"register pn request: %@, %@", postRequest, parameters);
+    NSLog(@"post request : %@, %@", postRequest, parameters);
 
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:postRequest];
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *theOperation, id responseObject) {
-        NSError *error;
-        id JSON = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:&error];
-
+        NSError *error = nil;
+        id JSON = nil;
+        
+        NSString *str = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        NSLog(@"response: %@", str);
+        
+        if (str.length != 0) {
+            JSON = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:&error];
+        }
+     
         completeBlock(theOperation.request, theOperation.response, JSON, error);
     } failure:^(AFHTTPRequestOperation *theOperation, NSError *error) {
         completeBlock(theOperation.request, theOperation.response, nil, error);

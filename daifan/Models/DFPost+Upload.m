@@ -11,6 +11,12 @@
     _uploadedCount = 0;
 
     NSUInteger totalCount = images.count;
+
+    if (totalCount == 0) {
+        [self post];
+        return;
+    }
+
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [images enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             UIImage *image = obj;
@@ -41,7 +47,7 @@
     df.timeZone = [NSTimeZone localTimeZone];
 
     NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithCapacity:3];
-    [parameters setValue:@"1" forKey:@"ver"];
+//    [parameters setValue:@"1" forKey:@"ver"];
     [parameters setValue:[@(self.count) stringValue] forKey:@"count"];
     [parameters setValue:[df stringFromDate:self.eatDate] forKey:@"eatDate"];
     [parameters setValue:self.name forKey:@"name"];
@@ -53,7 +59,7 @@
         if (error) {
             NSLog(@"post failed in failure block: %@", error);
             _errorBlock(error);
-        } else if ([[(NSDictionary *) JSON objectForKey:kRESPONSE_SUCCESS] integerValue] == RESPONSE_NOT_SUCCESS) {
+        } else if (JSON && [[(NSDictionary *) JSON objectForKey:kRESPONSE_SUCCESS] integerValue] == RESPONSE_NOT_SUCCESS) {
             NSLog(@"post failed: %@", JSON);
             _errorBlock(nil);
         } else {

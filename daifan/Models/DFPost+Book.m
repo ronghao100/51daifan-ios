@@ -17,7 +17,7 @@
         if (error) {
             NSLog(@"book failed. \n response: %@, error: %@, JSON: %@", response, error, JSON);
             errorBlock(error, YES);
-        } else if ([[dict objectForKey:kRESPONSE_SUCCESS] integerValue] == RESPONSE_NOT_SUCCESS) {
+        } else if (dict && [[dict objectForKey:kRESPONSE_SUCCESS] integerValue] == RESPONSE_NOT_SUCCESS) {
             errorBlock([NSError errorWithDomain:@"book" code:[[dict objectForKey:kRESPONSE_ERROR] integerValue] userInfo:nil], YES);
         } else {
             NSLog(@"book success.");
@@ -54,7 +54,7 @@
         if (error) {
             NSLog(@"unbook failed. \n response: %@, error: %@, JSON: %@", response, error, JSON);
             errorBlock(error, NO);
-        } else if ([[dict objectForKey:kRESPONSE_SUCCESS] integerValue] == RESPONSE_NOT_SUCCESS) {
+        } else if (dict && [[dict objectForKey:kRESPONSE_SUCCESS] integerValue] == RESPONSE_NOT_SUCCESS) {
             errorBlock([NSError errorWithDomain:@"unbook" code:[[dict objectForKey:kRESPONSE_ERROR] integerValue] userInfo:nil], NO);
         } else {
             NSLog(@"unbook success.");

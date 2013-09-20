@@ -16,7 +16,7 @@
         if (error) {
             NSLog(@"comment post failed in failure block: %@", JSON);
             errorBlock(error);
-        } else if ([[(NSDictionary *) JSON objectForKey:kRESPONSE_SUCCESS] integerValue] == RESPONSE_NOT_SUCCESS) {
+        } else if (JSON && [[(NSDictionary *) JSON objectForKey:kRESPONSE_SUCCESS] integerValue] == RESPONSE_NOT_SUCCESS) {
             NSLog(@"comment post failed: %@", JSON);
             errorBlock([NSError errorWithDomain:@"comment" code:[[(NSDictionary *) JSON objectForKey:kRESPONSE_ERROR] integerValue] userInfo:nil]);
         } else {
