@@ -1,8 +1,8 @@
 #import <AFNetworking/AFHTTPClient.h>
 #import "DFUser.h"
 #import "BPush.h"
-#import "AFJSONRequestOperation.h"
 #import "DFAppDelegate.h"
+#import "DFServices.h"
 
 
 @implementation DFUser {
@@ -20,30 +20,24 @@
     NSString *userid = [bpushDict valueForKey:BPushRequestUserIdKey];
     NSString *channelid = [bpushDict valueForKey:BPushRequestChannelIdKey];
 
-    NSURL *url = [NSURL URLWithString:API_HOST];
-    AFHTTPClient *httpClient = [AFHTTPClient clientWithBaseURL:url];
-
     NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithCapacity:2];
     [parameters setValue:[@(self.identity) stringValue] forKey:@"userId"];
     [parameters setValue:userid forKey:@"pushUserId"];
     [parameters setValue:channelid forKey:@"pushChannelId"];
 
-    NSMutableURLRequest *postRequest = [httpClient requestWithMethod:@"POST" path:API_PUSH_REGISTER_PATH parameters:parameters];
+    serviceCompleteBlock serviceBlock = ^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON, NSError *error) {
+        if (error) {
+            NSLog(@"pn register failed: %@", error);
+        } else {
+            NSLog(@"pn registered: %@", JSON);
+        }
+    };
 
-    NSLog(@"register pn request: %@, %@", postRequest, parameters);
-    
-    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:postRequest
-            success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-                NSLog(@"pn registered: %@", JSON);
-            } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-                NSLog(@"pn register failed: %@", error);
-            }];
-
-    [httpClient enqueueHTTPRequestOperation:operation];
+    [DFServices postWithPath:API_PUSH_REGISTER_PATH parameters:parameters completeBlock:serviceBlock];
 }
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"user id:%ld, name:%@, email:%@", self.identity, self.name, self.email];
+    return [NSString stringWithFormat:@"user id:%ld, name:%@, email:%@ avatar:%@", self.identity, self.name, self.email, self.avatarURLString];
 }
 
 - (void)storeToUserDefaults {

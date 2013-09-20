@@ -1,5 +1,5 @@
 #import <AFNetworking/AFHTTPClient.h>
-#import <AFNetworking/AFJSONRequestOperation.h>
+#import <AFNetworking/AFHTTPRequestOperation.h>
 #import "UIImage+Upload.h"
 
 

@@ -1,5 +1,4 @@
 #import "DFTimeline+Load.h"
-#import "AFJSONRequestOperation.h"
 #import "DFUserList.h"
 #import "DFPost.h"
 #import "DFServices.h"
@@ -41,7 +40,7 @@
         completeBlock();
     };
 
-    [DFServices startCallURLString:urlString completeBlock:serviceBlock];
+    [DFServices getFromURLString:urlString completeBlock:serviceBlock];
 }
 
 - (void)pullForNew:(LoadSuccessBlock)successBlock error:(LoadErrorBlock)errorBlock  complete:(LoadCompleteBlock)completeBlock {
@@ -80,7 +79,7 @@
         completeBlock();
     };
 
-    [DFServices startCallURLString:urlString completeBlock:serviceBlock];
+    [DFServices getFromURLString:urlString completeBlock:serviceBlock];
 }
 
 - (void)loadMore:(LoadSuccessBlock)successBlock error:(LoadErrorBlock)errorBlock complete:(LoadCompleteBlock)completeBlock {
@@ -117,7 +116,7 @@
         completeBlock();
     };
 
-    [DFServices startCallURLString:urlString completeBlock:serviceBlock];
+    [DFServices getFromURLString:urlString completeBlock:serviceBlock];
 }
 
 @end

@@ -6,6 +6,7 @@
 #import "AFJSONRequestOperation.h"
 #import "DFUser.h"
 #import "DFAppDelegate.h"
+#import "DFServices.h"
 
 
 @implementation DFLoginViewController {
@@ -100,30 +101,26 @@
         return;
     }
 
-    NSURL *url = [NSURL URLWithString:API_HOST];
-    AFHTTPClient *httpClient = [AFHTTPClient clientWithBaseURL:url];
-
     NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithCapacity:2];
     [parameters setValue:username forKey:@"email"];
     [parameters setValue:password forKey:@"password"];
     [parameters setValue:@"1" forKey:@"ver"];
 
-    NSMutableURLRequest *postRequest = [httpClient requestWithMethod:@"POST" path:API_LOGIN_PATH parameters:parameters];
-
-    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:postRequest
-            success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-                if ([[(NSDictionary *) JSON objectForKey:kRESPONSE_SUCCESS] integerValue] == RESPONSE_NOT_SUCCESS) {
-                    [self showErrorMessage];
-                } else {
-                    DFUser *user = [self saveAccount:JSON];
-                    [user registerPN];
-                    [self showTimelineViewWithUser:user];
-                }
-            } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+    serviceCompleteBlock serviceBlock = ^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON, NSError *error) {
+        if (error) {
+            [self showErrorMessage];
+        } else {
+            if ([[(NSDictionary *) JSON objectForKey:kRESPONSE_SUCCESS] integerValue] == RESPONSE_NOT_SUCCESS) {
                 [self showErrorMessage];
-            }];
+            } else {
+                DFUser *user = [self saveAccount:JSON];
+                [user registerPN];
+                [self showTimelineViewWithUser:user];
+            }
+        }
+    };
 
-    [httpClient enqueueHTTPRequestOperation:operation];
+    [DFServices postWithPath:API_LOGIN_PATH parameters:parameters completeBlock:serviceBlock];
 }
 
 - (void)register

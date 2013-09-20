@@ -12,6 +12,9 @@ typedef void (^serviceCompleteBlock)(NSURLRequest *request, NSHTTPURLResponse *r
 
 @interface DFServices : NSObject
 
-+ (void)startCallURLString:(NSString *)urlString completeBlock:(serviceCompleteBlock)completeBlock;
++ (void)getFromURLString:(NSString *)urlString completeBlock:(serviceCompleteBlock)completeBlock;
++ (void)getWithRequest:(NSURLRequest *)request completeBlock:(serviceCompleteBlock)completeBlock;
+
++ (void)postWithPath:(NSString *)path parameters:(NSDictionary *)parameters completeBlock:(serviceCompleteBlock)completeBlock;
 
 @end
