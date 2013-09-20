@@ -47,7 +47,7 @@
     df.timeZone = [NSTimeZone localTimeZone];
 
     NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithCapacity:3];
-//    [parameters setValue:@"1" forKey:@"ver"];
+    [parameters setValue:@"1" forKey:@"ver"];
     [parameters setValue:[@(self.count) stringValue] forKey:@"count"];
     [parameters setValue:[df stringFromDate:self.eatDate] forKey:@"eatDate"];
     [parameters setValue:self.name forKey:@"name"];
