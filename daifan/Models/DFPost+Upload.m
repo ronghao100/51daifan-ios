@@ -59,7 +59,7 @@
         if (error) {
             NSLog(@"post failed in failure block: %@", error);
             _errorBlock(error);
-        } else if (JSON && [[(NSDictionary *) JSON objectForKey:kRESPONSE_SUCCESS] integerValue] == RESPONSE_NOT_SUCCESS) {
+        } else if ([[(NSDictionary *) JSON objectForKey:kRESPONSE_SUCCESS] integerValue] == RESPONSE_NOT_SUCCESS) {
             NSLog(@"post failed: %@", JSON);
             _errorBlock(nil);
         } else {
