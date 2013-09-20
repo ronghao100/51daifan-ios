@@ -1,7 +1,6 @@
-#import <AFNetworking/AFHTTPClient.h>
-#import <AFNetworking/AFJSONRequestOperation.h>
 #import "DFPost+Upload.h"
 #import "DFUser.h"
+#import "DFServices.h"
 
 
 @implementation DFPost (Upload)
@@ -28,7 +27,7 @@
         [self.images addObject:imageURLString];
     }
 
-    ++ _uploadedCount;
+    ++_uploadedCount;
     NSLog(@"uploaded count: %d", _uploadedCount);
 
     if (_uploadedCount >= totalCount) {
@@ -41,9 +40,6 @@
     df.dateFormat = @"yyyy-MM-dd";
     df.timeZone = [NSTimeZone localTimeZone];
 
-    NSURL *url = [NSURL URLWithString:API_HOST];
-    AFHTTPClient *httpClient = [AFHTTPClient clientWithBaseURL:url];
-
     NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithCapacity:3];
     [parameters setValue:@"1" forKey:@"ver"];
     [parameters setValue:[@(self.count) stringValue] forKey:@"count"];
@@ -53,29 +49,24 @@
     [parameters setValue:self.images forKey:@"img"];
     [parameters setValue:[@(self.user.identity) stringValue] forKey:@"uid"];
 
-    NSMutableURLRequest *postRequest = [httpClient requestWithMethod:@"POST" path:API_POST_PATH parameters:parameters];
+    serviceCompleteBlock serviceBlock = ^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON, NSError *error) {
+        if (error) {
+            NSLog(@"post failed in failure block: %@", error);
+            _errorBlock(error);
+        } else if ([[(NSDictionary *) JSON objectForKey:kRESPONSE_SUCCESS] integerValue] == RESPONSE_NOT_SUCCESS) {
+            NSLog(@"post failed: %@", JSON);
+            _errorBlock(nil);
+        } else {
+            NSLog(@"post succeed: %@", JSON);
 
-    NSLog(@"request: %@, %@", postRequest, parameters);
+            NSInteger postId = [[(NSDictionary *) JSON objectForKey:@"postid"] integerValue];
+            self.identity = postId;
 
-    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:postRequest
-            success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-                if ([[(NSDictionary *) JSON objectForKey:kRESPONSE_SUCCESS] integerValue] == RESPONSE_NOT_SUCCESS) {
-                    NSLog(@"post failed: %@", JSON);
-                    _errorBlock(nil);
-                } else {
-                    NSLog(@"post succeed: %@", JSON);
+            _successBlock(self);
+        }
+    };
 
-                    NSInteger postId = [[(NSDictionary *) JSON objectForKey:@"postid"] integerValue];
-                    self.identity = postId;
-
-                    _successBlock(self);
-                }
-            } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-                NSLog(@"post failed in failure block: %@", error);
-                _errorBlock(error);
-            }];
-
-    [httpClient enqueueHTTPRequestOperation:operation];
+    [DFServices postWithPath:API_POST_PATH parameters:parameters completeBlock:serviceBlock];
 }
 
 @end
