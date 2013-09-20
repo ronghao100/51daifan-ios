@@ -1,7 +1,7 @@
-#import <AFNetworking/AFJSONRequestOperation.h>
 #import "DFPost+Book.h"
 #import "DFUser.h"
 #import "DFUserList.h"
+#import "DFServices.h"
 
 @implementation DFPost (Book)
 
@@ -11,26 +11,24 @@
 
     NSLog(@"request: %@", urlString);
 
-    NSURL *url = [NSURL URLWithString:urlString];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
-            success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-                NSDictionary *dict = (NSDictionary *) JSON;
+    serviceCompleteBlock serviceBlock = ^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON, NSError *error) {
+        NSDictionary *dict = (NSDictionary *) JSON;
 
-                if ([[dict objectForKey:kRESPONSE_SUCCESS] integerValue] == RESPONSE_NOT_SUCCESS) {
-                    errorBlock([NSError errorWithDomain:@"book" code:[[dict objectForKey:kRESPONSE_ERROR] integerValue] userInfo:nil], YES);
-                    return;
-                }
-                NSLog(@"book success.");
+        if (error) {
+            NSLog(@"book failed. \n response: %@, error: %@, JSON: %@", response, error, JSON);
+            errorBlock(error, YES);
+        } else if ([[dict objectForKey:kRESPONSE_SUCCESS] integerValue] == RESPONSE_NOT_SUCCESS) {
+            errorBlock([NSError errorWithDomain:@"book" code:[[dict objectForKey:kRESPONSE_ERROR] integerValue] userInfo:nil], YES);
+        } else {
+            NSLog(@"book success.");
 
-                [self bookedByUser:user];
+            [self bookedByUser:user];
 
-                successBlock(self, YES);
-            } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-                NSLog(@"book failed. \n response: %@, error: %@, JSON: %@", response, error, JSON);
-                errorBlock(error, YES);
-            }];
-    [operation start];
+            successBlock(self, YES);
+        }
+    };
+
+    [DFServices getFromURLString:urlString completeBlock:serviceBlock];
 }
 
 - (void)bookedByUser:(DFUser *)user {
@@ -50,26 +48,24 @@
 
     NSLog(@"request: %@", urlString);
 
-    NSURL *url = [NSURL URLWithString:urlString];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
-            success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-                NSLog(@"unbook success.");
-                NSDictionary *dict = (NSDictionary *) JSON;
+    serviceCompleteBlock serviceBlock = ^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON, NSError *error) {
+        NSDictionary *dict = (NSDictionary *) JSON;
 
-                if ([[dict objectForKey:kRESPONSE_SUCCESS] integerValue] == RESPONSE_NOT_SUCCESS) {
-                    errorBlock([NSError errorWithDomain:@"unbook" code:[[dict objectForKey:kRESPONSE_ERROR] integerValue] userInfo:nil], NO);
-                    return;
-                }
+        if (error) {
+            NSLog(@"unbook failed. \n response: %@, error: %@, JSON: %@", response, error, JSON);
+            errorBlock(error, NO);
+        } else if ([[dict objectForKey:kRESPONSE_SUCCESS] integerValue] == RESPONSE_NOT_SUCCESS) {
+            errorBlock([NSError errorWithDomain:@"unbook" code:[[dict objectForKey:kRESPONSE_ERROR] integerValue] userInfo:nil], NO);
+        } else {
+            NSLog(@"unbook success.");
 
-                [self unbookedByUser:user];
+            [self unbookedByUser:user];
 
-                successBlock(self, NO);
-            } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-                NSLog(@"book failed. \n response: %@, error: %@, JSON: %@", response, error, JSON);
-                errorBlock(error, NO);
-            }];
-    [operation start];
+            successBlock(self, NO);
+        }
+    };
+
+    [DFServices getFromURLString:urlString completeBlock:serviceBlock];
 }
 
 - (void)unbookedByUser:(DFUser *)user {

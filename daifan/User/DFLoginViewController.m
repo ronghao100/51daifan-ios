@@ -2,8 +2,6 @@
 #import <SSKeychain/SSKeychain.h>
 #import "DFLoginViewController.h"
 #import "DFTimeLineViewController.h"
-#import "AFHTTPClient.h"
-#import "AFJSONRequestOperation.h"
 #import "DFUser.h"
 #import "DFAppDelegate.h"
 #import "DFServices.h"
