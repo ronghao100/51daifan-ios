@@ -693,7 +693,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "./Crashlytics.framework/run 12cf69bcd58555af123af07396580d08d970eee1";
+			shellScript = "./Crashlytics.framework/run 14d75c31a7b5949c98944925d2d58251190b1de3";
 		};
 /* End PBXShellScriptBuildPhase section */
 

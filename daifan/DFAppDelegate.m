@@ -19,7 +19,7 @@
 
     [self initBPush:launchOptions];
 
-    [Crashlytics startWithAPIKey:@"12cf69bcd58555af123af07396580d08d970eee1"];
+    [Crashlytics startWithAPIKey:@"14d75c31a7b5949c98944925d2d58251190b1de3"];
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
 
