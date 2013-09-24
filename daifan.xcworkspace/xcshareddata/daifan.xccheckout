@@ -5,19 +5,19 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>F969C117-6603-4A43-B3AB-D9B724A8EE15</string>
+	<string>A2F5B48F-9462-4EB1-9C18-F4D34AC8C95C</string>
 	<key>IDESourceControlProjectName</key>
 	<string>daifan</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>EA0E80AC-D581-4FF0-9DCC-A8FE5D1D1F05</key>
+		<key>B4F9CA6B-0CC8-4A2D-AD5B-EF4D24E363E6</key>
 		<string>https://github.com/ronghao100/51daifan-ios.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>daifan.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>EA0E80AC-D581-4FF0-9DCC-A8FE5D1D1F05</key>
+		<key>B4F9CA6B-0CC8-4A2D-AD5B-EF4D24E363E6</key>
 		<string>..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
@@ -25,14 +25,14 @@
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>EA0E80AC-D581-4FF0-9DCC-A8FE5D1D1F05</string>
+	<string>B4F9CA6B-0CC8-4A2D-AD5B-EF4D24E363E6</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>EA0E80AC-D581-4FF0-9DCC-A8FE5D1D1F05</string>
+			<string>B4F9CA6B-0CC8-4A2D-AD5B-EF4D24E363E6</string>
 			<key>IDESourceControlWCCName</key>
 			<string>51daifan-ios</string>
 		</dict>
